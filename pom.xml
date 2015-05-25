@@ -13,5 +13,6 @@
     <module>kylin-good</module>
     <module>kylin-order</module>
     <module>kylin-cart</module>
+    <module>kylin-coupon</module>
   </modules>
 </project>
