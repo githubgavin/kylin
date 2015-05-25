@@ -11,5 +11,6 @@
 		<module>kylin-dorm</module>
 		<module>kylin-location</module>
     <module>kylin-good</module>
+    <module>kylin-order</module>
   </modules>
 </project>
