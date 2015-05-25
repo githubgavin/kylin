@@ -8,5 +8,6 @@
 	<modules>
 		<module>kylin-datasource</module>
 		<module>kylin-common</module>
+		<module>kylin-dorm</module>
 	</modules>
 </project>
