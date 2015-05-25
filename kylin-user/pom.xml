@@ -7,9 +7,7 @@
     <artifactId>kylin-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>com.kylin</groupId>
   <artifactId>kylin-user</artifactId>
-  <version>1.0-SNAPSHOT</version>
   <name>kylin-user</name>
   <url>http://maven.apache.org</url>
   <properties>
