@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<group>
+		<property name="db.master.ip" defaultValue="127.0.0.1"
+			description="Master database server ip" />
+		<property name="db.master.port" defaultValue="3306"
+			description="Master database server port" />
+		<property name="db.master.dbname" defaultValue="59store"
+			description="Master database name" />
+		<property name="db.master.username" defaultValue="59store"
+			description="Master database user name" />
+		<property name="db.master.password" defaultValue="59store"
+			description="Master database password" />
+		<property name="db.master.maxconn" defaultValue="20"
+			description="Master database poolMaximumActiveConnections" />
+		<property name="db.master.minconn" defaultValue="10"
+			description="Master database poolMaximumIdleConnections" />
+		<property name="db.master.mappers" defaultValue=""
+			description="Master database mappers" />
+		<property name="db.slave.ip" defaultValue="127.0.0.1"
+			description="Slave database server ip" />
+		<property name="db.slave.port" defaultValue="3306"
+			description="Slave database server port" />
+		<property name="db.slave.dbname" defaultValue="59store"
+			description="Slave database name" />
+		<property name="db.slave.username" defaultValue="59store"
+			description="Slave database user name" />
+		<property name="db.slave.password" defaultValue="59store"
+			description="Slave database password" />
+		<property name="db.slave.maxconn" defaultValue="20"
+			description="Slave database poolMaximumActiveConnections" />
+		<property name="db.slave.minconn" defaultValue="10"
+			description="Slave database poolMaximumIdleConnections" />
+		<property name="db.slave.mappers" defaultValue=""
+			description="Slave database mappers" />
+	</group>
+	<script>
+		<generate template="ReadSqlMapConfig.xml.vm"
+			destfile="com/kylin/datasource/factory/ReadSqlMapConfig.xml" />
+		<generate template="WriteSqlMapConfig.xml.vm"
+			destfile="com/kylin/datasource/factory/WriteSqlMapConfig.xml" />
+	</script>
+</config>
