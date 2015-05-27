@@ -14,7 +14,10 @@
 	<!-- 指定Spring Bean的配置文件所在目录。默认配置在WEB-INF目录下 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:applicationContext_dorm.xml</param-value>
+		<param-value>
+		classpath*:applicationContext_dorm.xml,
+		classpath*:applicationContext_common.xml
+		</param-value>
 	</context-param>
 	<servlet>
 		<servlet-name>viewspace</servlet-name>

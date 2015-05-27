@@ -11,3 +11,4 @@ target/
 
 # Mac crap
 .DS_Store
+/target/

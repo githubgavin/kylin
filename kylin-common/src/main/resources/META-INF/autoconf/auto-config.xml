@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<group>
+		<property name="common.cache.conn" defaultValue="127.0.0.1:6379"
+			description="cache ip and port config" />
+	</group>
+	<script>
+		<generate template="common.properties.vm"
+			destfile="common.properties" />
+	</script>
+</config>
