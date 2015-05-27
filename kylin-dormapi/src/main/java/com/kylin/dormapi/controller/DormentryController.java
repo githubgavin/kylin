@@ -22,10 +22,6 @@ public class DormentryController {
 	@Autowired
 	private DormentryService dormentryService;
 
-	public void setDormentryService(DormentryService dormentryService) {
-		this.dormentryService = dormentryService;
-	}
-
 	@RequestMapping(value = "/dormentry/list", method = RequestMethod.GET)
 	public Object getDormentryList(HttpServletRequest request, Integer dorm_id) {
 		List<Dormentry> dormentries = dormentryService.getDormentryList(dorm_id);

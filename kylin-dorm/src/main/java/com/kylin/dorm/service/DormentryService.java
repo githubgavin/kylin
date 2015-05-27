@@ -15,16 +15,9 @@ import com.kylin.dorm.data.model.Dormentry;
 public class DormentryService {
 	@Autowired
 	private DormentryDao dormentryDao;
+	@Autowired
 	private ICache cache;
 	private int cacheDormentryListTimeout = 10;
-
-	public void setDormentryDao(DormentryDao dormentryDao) {
-		this.dormentryDao = dormentryDao;
-	}
-
-	public void setCache(ICache cache) {
-		this.cache = cache;
-	}
 
 	public List<Dormentry> getDormentryList(int dormId) {
 		List<Dormentry> result = null;

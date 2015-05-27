@@ -15,10 +15,6 @@ public class DormentryDao {
 	@Autowired
 	private DaoReadFactory daoReadFactory;
 	
-	public void setDaoReadFactory(DaoReadFactory daoReadFactory){
-		this.daoReadFactory = daoReadFactory;
-	}
-
 	public List<Dormentry> getDormEntryList(int dormId) {
 		SqlSession session = null;
 		try {

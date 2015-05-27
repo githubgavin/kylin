@@ -11,4 +11,5 @@
 	<bean id="ICacheClient" class="com.kylin.common.cache.RedisCache" >
 		<constructor-arg type="String" value="${common.cache.conn}"/>
 	</bean>
+	<context:component-scan base-package="com.kylin"/>
 </beans>
