@@ -14,7 +14,7 @@ public class DormentryServiceTest extends TestCase{
 	
 	public void testGetDormEntryList(){
 		Integer dormId = 3;
-		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:applicationContext_dorm.xml");
 		DormentryService ds = ctx.getBean(DormentryService.class);
 		List<Dormentry> dormentries = ds.getDormentryList(dormId);
 		assertTrue(dormentries != null);

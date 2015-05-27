@@ -14,13 +14,7 @@
 	<bean class="com.kylin.dormapi.controller.DormentryController">
 		<property name="dormentryService"  ref="dorm.service.DormentryService"/>
 	</bean>
-	<bean id="dorm.service.DormentryService" class="com.kylin.dorm.service.DormentryService">
-		<property name="dormentryDao"  ref="dorm.data.dao.DormentryDao"/>
-	</bean>
-	<bean id="dorm.data.dao.DormentryDao" class="com.kylin.dorm.data.dao.DormentryDao">
-		<property name="daoReadFactory"  ref="datasource.factory.DaoReadFactory"/>
-	</bean>
-	<bean id="datasource.factory.DaoReadFactory" class="com.kylin.datasource.factory.DaoReadFactory" />
+	
 	<!-- <context:component-scan base-package="com.kylin.dormapi.controller" /> -->
     <mvc:annotation-driven>  
     </mvc:annotation-driven> 
