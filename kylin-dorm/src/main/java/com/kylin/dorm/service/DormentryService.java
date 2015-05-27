@@ -12,8 +12,12 @@ import com.kylin.dorm.data.model.Dormentry;
 public class DormentryService {
 	@Autowired
 	private DormentryDao dormentryDao;
+	
+	public void setDormentryDao(DormentryDao dormentryDao){
+		this.dormentryDao = dormentryDao;
+	}
 
-	public List<Dormentry> getDormEntryList(int dormId) {
+	public List<Dormentry> getDormentryList(int dormId) {
 		return dormentryDao.getDormEntryList(dormId);
 	}
 
