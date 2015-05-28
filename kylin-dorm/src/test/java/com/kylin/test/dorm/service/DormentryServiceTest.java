@@ -14,8 +14,7 @@ public class DormentryServiceTest extends TestCase {
 
 	public void testGetDormEntryList() {
 		Integer dormId = 3;
-		// ApplicationContext ctx=new
-		// ClassPathXmlApplicationContext("classpath:applicationContext_dorm.xml");
+		@SuppressWarnings("resource")
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				new String[] { "applicationContext_dorm.xml",
 						"applicationContext_common.xml" });
