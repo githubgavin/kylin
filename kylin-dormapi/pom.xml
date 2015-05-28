@@ -19,7 +19,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.kylin</groupId>
+			<groupId>com.store59</groupId>
 			<artifactId>kylin-dorm</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
@@ -33,15 +33,6 @@
 		<finalName>dormapi</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>com.alibaba.citrus.tool</groupId>
 				<artifactId>autoconfig-maven-plugin</artifactId>
 				<version>1.2</version>
@@ -53,10 +44,6 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
