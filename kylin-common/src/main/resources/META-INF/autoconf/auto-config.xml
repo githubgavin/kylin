@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<group>
+		<property name="common.cache.conn" defaultValue="127.0.0.1:6379"
+			description="cache ip and port config" />
+	</group>
+	<group>
+		<property name="log4j.appender.controllerfile.File"
+			defaultValue="/var/log/tomcat_log/controller.log" description="log4j controllerfile File path" />
+		<property name="log4j.appender.ServerDailyRollingFile.File"
+			defaultValue="/var/log/tomcat_log/server.log" description="log4j ServerDailyRollingFile path" />
+		<property name="log4j.appender.printfile.File" defaultValue="/var/log/tomcat_log/print.log"
+			description="log4j printfile File path" />
+	</group>
+	<script>
+		<generate template="common.properties.vm"
+			destfile="common.properties" />
+		<generate template="log4j.properties.vm"
+			destfile="log4j.properties" />
+	</script>
+</config>
