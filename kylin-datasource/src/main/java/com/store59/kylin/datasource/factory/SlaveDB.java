@@ -27,21 +27,32 @@ public class SlaveDB {
 			@Value("#{'${datasource.slave.ports}'.split(',')}") int[] ports,
 			@Value("#{'${datasource.slave.dbs}'.split(',')}") String[] dbs,
 			@Value("#{'${datasource.slave.usernames}'.split(',')}") String[] usernames,
-			@Value("#{'${datasource.slave.passwords}'.split(',')}") String[] passwords)
+			@Value("#{'${datasource.slave.passwords}'.split(',')}") String[] passwords,
+			@Value("#{'${datasource.slave.maxconns}'.split(',')}") int[] poolMaximumActiveConnections,
+			@Value("#{'${datasource.slave.minconns}'.split(',')}") int[] poolMaximumIdleConnections)
 			throws Exception {
 		this.size = hosts.length;
 		if (ports.length != size || dbs.length != size
-				|| usernames.length != size || passwords.length != size) {
+				|| usernames.length != size || passwords.length != size
+				|| poolMaximumActiveConnections.length != size
+				|| poolMaximumIdleConnections.length != size) {
 			// TODO log
 			throw new Exception();
 		}
-		
+
 		this.dataSourceList = new ArrayList<>();
 		this.sqlSessionFactoryList = new ArrayList<>();
 		for (int i = 0; i < size; i++) {
-			DataSource dataSource = new PooledDataSource(this.driver,
+			PooledDataSource dataSource = new PooledDataSource(this.driver,
 					String.format(this.url, hosts[i], ports[i], dbs[i]),
 					usernames[i], passwords[i]);
+			dataSource
+					.setPoolMaximumActiveConnections(poolMaximumActiveConnections[i]);
+			dataSource
+					.setPoolMaximumIdleConnections(poolMaximumIdleConnections[i]);
+			dataSource.setPoolPingEnabled(true);
+			dataSource.setPoolPingQuery("select 1");
+			dataSource.setPoolPingConnectionsNotUsedFor(3600000);
 			this.dataSourceList.add(dataSource);
 
 			SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();

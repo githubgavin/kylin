@@ -17,13 +17,24 @@ public class MasterDB {
 	private SqlSessionFactoryBean sqlSessionFactory;
 
 	@Autowired
-	public MasterDB(@Value("${datasource.master.host}") String host,
+	public MasterDB(
+			@Value("${datasource.master.host}") String host,
 			@Value("${datasource.master.port}") int port,
 			@Value("${datasource.master.db}") String db,
 			@Value("${datasource.master.username}") String username,
-			@Value("${datasource.master.password}") String password) {
-		this.dataSource = new PooledDataSource(this.driver, String.format(
-				this.url, host, port, db), username, password);
+			@Value("${datasource.master.password}") String password,
+			@Value("${datasource.master.maxconn}") int poolMaximumActiveConnections,
+			@Value("${datasource.master.minconn}") int poolMaximumIdleConnections) {
+		PooledDataSource dataSource = new PooledDataSource(this.driver,
+				String.format(this.url, host, port, db), username, password);
+		dataSource
+				.setPoolMaximumActiveConnections(poolMaximumActiveConnections);
+		dataSource.setPoolMaximumIdleConnections(poolMaximumIdleConnections);
+		dataSource.setPoolPingEnabled(true);
+		dataSource.setPoolPingQuery("select 1");
+		dataSource.setPoolPingConnectionsNotUsedFor(3600000);
+		this.dataSource = dataSource;
+		
 		this.sqlSessionFactory = new SqlSessionFactoryBean();
 		this.sqlSessionFactory.setDataSource(this.dataSource);
 	}
