@@ -39,8 +39,6 @@ public class DESUtil {
             Exception {
         if (data == null)
             return null;
-        //BASE64Decoder decoder = new BASE64Decoder();
-        //byte[] buf = decoder.decodeBuffer(data);
         byte[] buf = Base64.decodeBase64(data);
         byte[] bt = decrypt(buf,key.getBytes());
         return new String(bt);
