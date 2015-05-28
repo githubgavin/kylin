@@ -1,7 +1,10 @@
 package com.kylin.dormapi.viewmodel;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.kylin.dorm.data.model.Dormentry;
 
+@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class DormentryView {
 	private Integer dormentryId;
 	private String name;
