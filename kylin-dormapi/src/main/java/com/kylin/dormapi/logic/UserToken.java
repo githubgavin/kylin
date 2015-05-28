@@ -13,7 +13,7 @@ public class UserToken {
 	private static int OUT_TIME = 100 * 60 * 60 * 24 * 2;
 
 	public UserToken() {
-		this.endTime = System.currentTimeMillis() + OUT_TIME;
+		this.setDefaultEndTime();
 	}
 
 	public Integer getUserId() {
@@ -35,6 +35,11 @@ public class UserToken {
 	@JsonIgnore
 	public boolean isValid() {
 		return System.currentTimeMillis() < endTime;
+	}
+
+	@JsonIgnore
+	public void setDefaultEndTime() {
+		this.endTime = System.currentTimeMillis() + OUT_TIME;
 	}
 
 	private static String TOKEN_KEY = "38d3fd30050211e5b5d4985aeb89a1ce";
