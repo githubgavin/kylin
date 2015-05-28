@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.kylin.dormapi.logic.UserToken;
+
 public class MyInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1,
 			Object arg2) throws Exception {
@@ -20,6 +22,15 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
 		}
 		Logger logger = Logger.getLogger("controller");
 		logger.info(sb.toString());
+		
+		String token = arg0.getParameter("token");
+		if(token!=null){
+			UserToken userToken = UserToken.createToken(token);
+			if(userToken ==null || !userToken.isValid()){
+				throw new Exception("invalid token");
+			}
+		}
+		
 		return super.preHandle(arg0, arg1, arg2);
 	}
 }
