@@ -28,6 +28,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
 
 		String token = arg0.getParameter("token");
 		if (token != null) {
+			token = token.replace(" ", "+");
 			UserToken userToken = UserToken.createToken(token);
 			if (userToken == null || !userToken.isValid()) {
 				throw new ServiceException(2, "invalid token");

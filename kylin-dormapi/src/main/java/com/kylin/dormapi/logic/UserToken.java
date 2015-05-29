@@ -10,7 +10,7 @@ import com.kylin.common.Util;
 public class UserToken {
 	private Integer userId;
 	private long endTime;
-	private static int OUT_TIME = 100 * 60 * 60 * 24 * 2;
+	private static int OUT_TIME = 1000 * 60 * 60 * 24 * 2;
 
 	public UserToken() {
 		this.setDefaultEndTime();
