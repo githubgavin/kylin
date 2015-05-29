@@ -1,4 +1,4 @@
-package org.kylin.user;
+package com.kylin.user;
 
 /**
  * Hello world!
