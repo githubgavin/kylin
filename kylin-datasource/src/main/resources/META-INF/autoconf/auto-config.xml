@@ -35,9 +35,6 @@
 			description="Slave database mappers" />
 	</group>
 	<script>
-		<generate template="ReadSqlMapConfig.xml.vm"
-			destfile="com/kylin/datasource/factory/ReadSqlMapConfig.xml" />
-		<generate template="WriteSqlMapConfig.xml.vm"
-			destfile="com/kylin/datasource/factory/WriteSqlMapConfig.xml" />
+		<generate template="application.properties.vm" destfile="application.properties"></generate>
 	</script>
 </config>
