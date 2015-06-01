@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.store59.kylin.datasource.factory.SlaveDB;
+import com.store59.kylin.datasource.factory.MasterDB;
 import com.store59.kylin.user.data.mapper.UserMapper;
 
 @Configuration
-public class SlaveUserFactory {
+public class UserMasteFactory {
 	@Autowired
-	private SlaveDB slaveDB;
+	private MasterDB masterDB;
 
 	@Bean
-	public SqlSessionTemplate slaveSqlSession() {
-		return slaveDB.getSqlSession();
+	public SqlSessionTemplate masterSqlSession() {
+		return masterDB.getSqlSession();
 	}
 
 	@Bean
-	public MapperFactoryBean<UserMapper> slaveUserMapper()
+	public MapperFactoryBean<UserMapper> masterUserMapper()
 			throws Exception {
 		MapperFactoryBean<UserMapper> mapperFactory = new MapperFactoryBean<>();
 		mapperFactory.setMapperInterface(UserMapper.class);
-		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
+		mapperFactory.setSqlSessionTemplate(masterSqlSession());
 		return mapperFactory;
 	}
 

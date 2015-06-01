@@ -1,4 +1,4 @@
-package com.store59.kylin.dorm.data;
+package com.store59.kylin.user.data;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.mapper.MapperFactoryBean;
@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.store59.kylin.datasource.factory.SlaveDB;
-import com.store59.kylin.dorm.data.mapper.DormentryMapper;
+import com.store59.kylin.user.data.mapper.UserMapper;
 
 @Configuration
-public class SlaveMapperFactory {
+public class UserSlaveFactory {
 	@Autowired
 	private SlaveDB slaveDB;
 
@@ -20,10 +20,10 @@ public class SlaveMapperFactory {
 	}
 
 	@Bean
-	public MapperFactoryBean<DormentryMapper> slaveDormentryMapper()
+	public MapperFactoryBean<UserMapper> slaveUserMapper()
 			throws Exception {
-		MapperFactoryBean<DormentryMapper> mapperFactory = new MapperFactoryBean<>();
-		mapperFactory.setMapperInterface(DormentryMapper.class);
+		MapperFactoryBean<UserMapper> mapperFactory = new MapperFactoryBean<>();
+		mapperFactory.setMapperInterface(UserMapper.class);
 		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
 		return mapperFactory;
 	}
