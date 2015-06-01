@@ -31,16 +31,12 @@ public class UserController {
 		}
 		UserToken token = (UserToken) obj;
 		User user = userService.getUserForLogin(username, password);
-		Map<String, Object> data = new HashMap<String, Object>();
 		Result result = new Result();
-		if (user == null) {
-			data.put("status", 0);
-		} else {
+		if (user != null) {
 			token.setUserId(user.getUid());
-			data.put("status", 1);
 			result.setToken(UserToken.getTokenString(token));
 		}
-		result.setData(data);
+		result.setData(new UserView(user));
 		return result;
 	}
 
@@ -60,7 +56,7 @@ public class UserController {
 		return result;
 	}
 
-	@RequestMapping(value = "/user/info", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
 	public Object info(HttpServletRequest request) throws ServiceException {
 		Object obj = request.getSession().getAttribute("usertoken");
 		if (obj == null || !(obj instanceof UserToken)) {
