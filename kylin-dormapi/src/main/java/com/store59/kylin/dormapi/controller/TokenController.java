@@ -1,4 +1,4 @@
-package com.kylin.dormapi.controller;
+package com.store59.kylin.dormapi.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kylin.dormapi.logic.UserToken;
-import com.kylin.dormapi.viewmodel.Result;
+import com.store59.kylin.dormapi.logic.UserToken;
+import com.store59.kylin.dormapi.viewmodel.Result;
 
 @RestController
 public class TokenController {

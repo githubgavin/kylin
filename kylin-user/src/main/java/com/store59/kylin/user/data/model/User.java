@@ -1,4 +1,4 @@
-package com.kylin.user.data.model;
+package com.store59.kylin.user.data.model;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;

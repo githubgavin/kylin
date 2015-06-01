@@ -1,6 +1,6 @@
 package com.store59.kylin.dormapi.viewmodel;
 
-import com.kylin.dormapi.logic.UserToken;
+import com.store59.kylin.dormapi.logic.UserToken;
 
 public class Result {
 	private int status;

@@ -1,8 +1,8 @@
-package com.kylin.user.data.mapper;
+package com.store59.kylin.user.data.mapper;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.kylin.user.data.model.User;
+import com.store59.kylin.user.data.model.User;
 
 public interface UserMapper {
 

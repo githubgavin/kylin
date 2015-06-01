@@ -30,6 +30,7 @@
 		<module>kylin-good</module>
 		<module>kylin-location</module>
 		<module>kylin-order</module>
+		<module>kylin-user</module>
 	</modules>
 
 	<dependencies>

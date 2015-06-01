@@ -1,4 +1,4 @@
-package com.kylin.dormapi.controller;
+package com.store59.kylin.dormapi.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kylin.dormapi.exception.ServiceException;
-import com.kylin.dormapi.logic.UserToken;
-import com.kylin.dormapi.viewmodel.Result;
-import com.kylin.dormapi.viewmodel.UserView;
-import com.kylin.user.data.model.User;
-import com.kylin.user.service.UserService;
+import com.store59.kylin.dormapi.exception.ServiceException;
+import com.store59.kylin.dormapi.logic.UserToken;
+import com.store59.kylin.dormapi.viewmodel.Result;
+import com.store59.kylin.dormapi.viewmodel.UserView;
+import com.store59.kylin.user.data.model.User;
+import com.store59.kylin.user.service.UserService;
 
 @RestController
 public class UserController {

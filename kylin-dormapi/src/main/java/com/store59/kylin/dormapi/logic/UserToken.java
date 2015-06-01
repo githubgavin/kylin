@@ -1,10 +1,10 @@
-package com.kylin.dormapi.logic;
+package com.store59.kylin.dormapi.logic;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.kylin.common.DESUtil;
-import com.kylin.common.Util;
+import com.store59.kylin.common.DESUtil;
+import com.store59.kylin.common.Util;
 
 @JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class UserToken {

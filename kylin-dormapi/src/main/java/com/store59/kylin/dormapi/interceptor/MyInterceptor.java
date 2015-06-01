@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.kylin.dormapi.exception.ServiceException;
-import com.kylin.dormapi.logic.UserToken;
+import com.store59.kylin.dormapi.exception.ServiceException;
+import com.store59.kylin.dormapi.logic.UserToken;
 
 public class MyInterceptor extends HandlerInterceptorAdapter {
 	static Boolean DEUBG_TOKEN = false;

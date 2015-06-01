@@ -1,4 +1,4 @@
-package com.kylin.dormapi.exception;
+package com.store59.kylin.dormapi.exception;
 
 @SuppressWarnings("serial")
 public class ServiceException extends Exception {

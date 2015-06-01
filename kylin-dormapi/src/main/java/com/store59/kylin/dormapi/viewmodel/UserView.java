@@ -1,8 +1,8 @@
-package com.kylin.dormapi.viewmodel;
+package com.store59.kylin.dormapi.viewmodel;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.kylin.user.data.model.User;
+import com.store59.kylin.user.data.model.User;
 
 @JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class UserView {

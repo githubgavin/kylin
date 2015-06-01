@@ -1,10 +1,10 @@
-package com.kylin.user.service;
+package com.store59.kylin.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kylin.user.data.dao.UserDao;
-import com.kylin.user.data.model.User;
+import com.store59.kylin.user.data.dao.UserDao;
+import com.store59.kylin.user.data.model.User;
 
 @Service
 public class UserService {

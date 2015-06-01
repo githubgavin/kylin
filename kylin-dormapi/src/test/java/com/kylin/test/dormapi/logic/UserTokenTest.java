@@ -1,6 +1,6 @@
 package com.kylin.test.dormapi.logic;
 
-import com.kylin.dormapi.logic.UserToken;
+import com.store59.kylin.dormapi.logic.UserToken;
 
 import junit.framework.TestCase;
 

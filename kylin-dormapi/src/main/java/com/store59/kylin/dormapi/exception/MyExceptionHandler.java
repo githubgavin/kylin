@@ -1,4 +1,4 @@
-package com.kylin.dormapi.exception;
+package com.store59.kylin.dormapi.exception;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kylin.common.Util;
-import com.kylin.dormapi.viewmodel.Result;
+import com.store59.kylin.common.Util;
+import com.store59.kylin.dormapi.viewmodel.Result;
 
 public class MyExceptionHandler implements HandlerExceptionResolver {
 	static Logger logger = Logger.getLogger("MyExceptionHandler");
