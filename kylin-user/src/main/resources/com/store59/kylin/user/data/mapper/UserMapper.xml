@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.kylin.user.data.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.kylin.user.data.model.User" >
+<mapper namespace="com.store59.kylin.user.data.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.store59.kylin.user.data.model.User" >
     <id column="uid" property="uid" jdbcType="INTEGER" />
     <result column="role" property="role" jdbcType="TINYINT" />
     <result column="gender" property="gender" jdbcType="TINYINT" />
@@ -55,7 +55,7 @@
     delete from 59_user
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.kylin.user.data.model.User" >
+  <insert id="insert" parameterType="com.store59.kylin.user.data.model.User" >
     insert into 59_user (uid, role, gender, 
       level, credit, historycredit, 
       uname, passwd, email, 
@@ -79,7 +79,7 @@
       #{thirdWeibo,jdbcType=VARCHAR}, #{thirdWeixin,jdbcType=VARCHAR}, #{thirdPassword,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.kylin.user.data.model.User" >
+  <insert id="insertSelective" parameterType="com.store59.kylin.user.data.model.User" >
     insert into 59_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
@@ -266,7 +266,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.kylin.user.data.model.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.store59.kylin.user.data.model.User" >
     update 59_user
     <set >
       <if test="role != null" >
@@ -359,7 +359,7 @@
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.kylin.user.data.model.User" >
+  <update id="updateByPrimaryKey" parameterType="com.store59.kylin.user.data.model.User" >
     update 59_user
     set role = #{role,jdbcType=TINYINT},
       gender = #{gender,jdbcType=TINYINT},

@@ -1,7 +1,7 @@
 package com.store59.kylin.dormapi.exception;
 
 @SuppressWarnings("serial")
-public class ServiceException extends Exception {
+public class ServiceException extends RuntimeException {
 	private int status;
 	private String msg;
 
@@ -21,6 +21,10 @@ public class ServiceException extends Exception {
 	public int getStatus() {
 		return status;
 	}
+	
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public String getMsg() {
 		if (msg != null) {
@@ -29,4 +33,9 @@ public class ServiceException extends Exception {
 			return getMessage();
 		}
 	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
 }
