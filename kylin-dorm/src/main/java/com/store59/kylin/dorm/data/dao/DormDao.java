@@ -17,6 +17,10 @@ public class DormDao {
 		return slaveDormMapper.selectByPrimaryKey(dormId);
 	}
 
+	public Dorm selectByUid(Integer uid) {
+		return slaveDormMapper.selectByUid(uid);
+	}
+
 	public Boolean updateByPrimaryKeySelective(Dorm dorm) {
 		int rows = masterDormMapper.updateByPrimaryKeySelective(dorm);
 		if (rows > 0) {

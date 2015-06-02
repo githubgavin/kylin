@@ -15,6 +15,10 @@ public class DormService {
 		return dormDao.selectByPrimaryKey(dormId);
 	}
 
+	public Dorm getDormByUid(Integer uid) {
+		return dormDao.selectByUid(uid);
+	}
+
 	public Boolean updateDorm(Dorm dorm) {
 		return dormDao.updateByPrimaryKeySelective(dorm);
 	}
