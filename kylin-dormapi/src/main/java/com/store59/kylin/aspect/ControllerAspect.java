@@ -15,7 +15,7 @@ import com.store59.kylin.dormapi.logic.UserToken;
 @Component
 public class ControllerAspect {
 	private static Logger logger = Logger.getLogger("controller");
-	static Boolean DEUBG_TOKEN = false;
+	static Boolean DEBUG_TOKEN = false;
 
 	@Before("execution(* com.store59.kylin.dormapi.controller.*.*(javax.servlet.http.HttpServletRequest, ..))")
 	public void preController(JoinPoint point) throws ServiceException {
@@ -43,7 +43,7 @@ public class ControllerAspect {
 					throw new ServiceException(2, "invalid token");
 				}
 				request.getSession().setAttribute("usertoken", userToken);
-			} else if (!(DEUBG_TOKEN || request.getRequestURI().contains(
+			} else if (!(DEBUG_TOKEN || request.getRequestURI().contains(
 					"/token/new"))) {
 				throw new ServiceException(2, "empty token");
 			}
