@@ -63,7 +63,9 @@ public class Dorm{
 
     private String studentcardPic;
 
-    public Integer getDormId() {
+    private Byte status;
+
+	public Integer getDormId() {
         return dormId;
     }
 
@@ -286,5 +288,13 @@ public class Dorm{
     public void setStudentcardPic(String studentcardPic) {
         this.studentcardPic = studentcardPic == null ? null : studentcardPic.trim();
     }
+
+    public Byte getStatus() {
+		return status;
+	}
+
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
 
 }
