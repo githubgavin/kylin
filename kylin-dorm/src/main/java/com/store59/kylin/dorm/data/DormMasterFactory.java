@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.store59.kylin.datasource.factory.MasterDB;
+import com.store59.kylin.dorm.data.mapper.DormMapper;
 import com.store59.kylin.dorm.data.mapper.DormentryMapper;
 
 @Configuration
@@ -27,5 +28,13 @@ public class DormMasterFactory {
 		mapperFactory.setSqlSessionTemplate(masterSqlSession());
 		return mapperFactory;
 	}
-
+	
+	@Bean
+	public MapperFactoryBean<DormMapper> masterDormMapper()
+			throws Exception {
+		MapperFactoryBean<DormMapper> mapperFactory = new MapperFactoryBean<>();
+		mapperFactory.setMapperInterface(DormMapper.class);
+		mapperFactory.setSqlSessionTemplate(masterSqlSession());
+		return mapperFactory;
+	}
 }
