@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.kylin</groupId>
+    <groupId>com.store59</groupId>
     <artifactId>kylin-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
@@ -15,10 +15,14 @@
   </properties>
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+			<groupId>com.store59</groupId>
+			<artifactId>kylin-datasource</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.store59</groupId>
+			<artifactId>kylin-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
   </dependencies>
 </project>

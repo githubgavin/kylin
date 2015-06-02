@@ -6,25 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.store59.kylin.datasource.factory.SlaveDB;
+import com.store59.kylin.datasource.factory.MasterDB;
 import com.store59.kylin.dorm.data.mapper.DormentryMapper;
 
 @Configuration
-public class SlaveMapperFactory {
+public class DormMasterFactory {
 	@Autowired
-	private SlaveDB slaveDB;
+	private MasterDB masterDB;
 
 	@Bean
-	public SqlSessionTemplate slaveSqlSession() {
-		return slaveDB.getSqlSession();
+	public SqlSessionTemplate masterSqlSession() {
+		return masterDB.getSqlSession();
 	}
 
 	@Bean
-	public MapperFactoryBean<DormentryMapper> slaveDormentryMapper()
+	public MapperFactoryBean<DormentryMapper> masterDormentryMapper()
 			throws Exception {
 		MapperFactoryBean<DormentryMapper> mapperFactory = new MapperFactoryBean<>();
 		mapperFactory.setMapperInterface(DormentryMapper.class);
-		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
+		mapperFactory.setSqlSessionTemplate(masterSqlSession());
 		return mapperFactory;
 	}
 
