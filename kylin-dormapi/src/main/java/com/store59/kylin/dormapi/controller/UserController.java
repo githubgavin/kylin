@@ -69,4 +69,26 @@ public class UserController {
 		result.UpdateToken(token);
 		return result;
 	}
+
+	@RequestMapping(value = "/user/resetpassword", method = RequestMethod.POST)
+	public Object resetPassword(HttpServletRequest request, String oldpassword,
+			String password) throws ServiceException {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "empty token");
+		}
+		UserToken token = (UserToken) obj;
+		Boolean status = userService.resetPassword(token.getUserId(),
+				oldpassword, password);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (status) {
+			data.put("status", 1);
+		} else {
+			data.put("status", 0);
+		}
+		Result result = new Result();
+		result.setData(data);
+		result.UpdateToken(token);
+		return result;
+	}
 }
