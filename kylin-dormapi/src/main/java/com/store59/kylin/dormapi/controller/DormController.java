@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.store59.kylin.dorm.data.model.Dorm;
 import com.store59.kylin.dorm.service.DormService;
 import com.store59.kylin.dormapi.exception.ServiceException;
+import com.store59.kylin.dormapi.logic.DormLogic;
 import com.store59.kylin.dormapi.logic.UserToken;
 import com.store59.kylin.dormapi.viewmodel.DormView;
 import com.store59.kylin.dormapi.viewmodel.Result;
@@ -22,6 +23,9 @@ public class DormController {
 	@Autowired
 	private DormService dormService;
 
+	@Autowired
+	private DormLogic dormLogic;
+
 	@RequestMapping(value = "/dorm/info", method = RequestMethod.GET)
 	public Object getDormInfo(HttpServletRequest request) {
 		Object obj = request.getSession().getAttribute("usertoken");
@@ -29,18 +33,7 @@ public class DormController {
 			throw new ServiceException(2, "invalid token");
 		}
 		UserToken token = (UserToken) obj;
-		Dorm dorm = dormService.getDormByUid(token.getUserId());
-		if (dorm == null) {
-			throw new ServiceException(1000, "不存在该楼主");
-		}
-		int dormStatus = dorm.getStatus().intValue();
-		if (dormStatus == 1) {
-			throw new ServiceException(1001, "楼主账号已被删除");
-		} else if (dormStatus == 2) {
-			throw new ServiceException(1002, "楼主账号已被限制登录");
-		} else if (dormStatus != 0) {
-			throw new ServiceException(-1);
-		}
+		Dorm dorm = dormLogic.getDormByUid(token.getUserId());
 		Result result = new Result();
 		result.setData(new DormView(dorm));
 		result.UpdateToken(token);
@@ -55,8 +48,7 @@ public class DormController {
 			throw new ServiceException(2, "invalid token");
 		}
 		UserToken token = (UserToken) obj;
-		Dorm dorm = dormService.getDormByUid(token.getUserId());
-		if (dorm == null || !dorm.getDormId().equals(dorm_id)) {
+		if (token.getDormId() == null || !token.getDormId().equals(dorm_id)) {
 			throw new ServiceException(1000, "不存在该楼主");
 		}
 		Dorm updateDorm = new Dorm();

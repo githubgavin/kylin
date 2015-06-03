@@ -8,9 +8,10 @@ import com.store59.kylin.common.Util;
 
 @JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class UserToken {
+	private static int OUT_TIME = 1000 * 60 * 60 * 24 * 2;
 	private Integer userId;
 	private long endTime;
-	private static int OUT_TIME = 1000 * 60 * 60 * 24 * 2;
+	private Integer dormId;
 
 	public UserToken() {
 		this.setDefaultEndTime();
@@ -30,6 +31,14 @@ public class UserToken {
 
 	public void setEndTime(long endTime) {
 		this.endTime = endTime;
+	}
+
+	public Integer getDormId() {
+		return dormId;
+	}
+
+	public void setDormId(Integer dormId) {
+		this.dormId = dormId;
 	}
 
 	@JsonIgnore
