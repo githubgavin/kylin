@@ -44,10 +44,6 @@ public class MasterDB {
 				this.sqlSessionFactory.getObject());
 	}
 	
-	public DataSource getDataSource() {
-		return this.dataSource;
-	}
-
 	public SqlSessionTemplate getSqlSession() {
 		return this.sqlSession;
 	}
