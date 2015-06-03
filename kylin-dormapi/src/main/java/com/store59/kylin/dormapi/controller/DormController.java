@@ -42,7 +42,7 @@ public class DormController {
 
 	@RequestMapping(value = "/dorm/updateinfo", method = RequestMethod.POST)
 	public Object updateDormInfo(HttpServletRequest request, Integer dorm_id,
-			String delivery_address, String zhifubao) {
+			String delivery_address, String zhifubao, String notice) {
 		Object obj = request.getSession().getAttribute("usertoken");
 		if (obj == null || !(obj instanceof UserToken)) {
 			throw new ServiceException(2, "invalid token");
@@ -53,6 +53,7 @@ public class DormController {
 		updateDorm.setDormId(dorm_id);
 		updateDorm.setAliAccount(zhifubao);
 		updateDorm.setDeliveryAddress(delivery_address);
+		updateDorm.setNotice(notice);
 		Boolean status = dormService.updateDorm(updateDorm);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (status) {

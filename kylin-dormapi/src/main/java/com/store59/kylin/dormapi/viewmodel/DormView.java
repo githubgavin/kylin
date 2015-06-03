@@ -10,6 +10,7 @@ public class DormView {
 	private String deliveryAddress;
 	private String zhifubao;
 	private Float balance;
+	private String notice;
 
 	public DormView() {
 
@@ -22,6 +23,7 @@ public class DormView {
 		if (dorm.getMoney() != null) {
 			this.balance = dorm.getMoney().floatValue();
 		}
+		this.notice = dorm.getNotice();
 	}
 
 	public String getDeliveryAddress() {
@@ -54,6 +56,14 @@ public class DormView {
 
 	public void setDormId(Integer dormId) {
 		this.dormId = dormId;
+	}
+
+	public String getNotice() {
+		return notice;
+	}
+
+	public void setNotice(String notice) {
+		this.notice = notice;
 	}
 
 }
