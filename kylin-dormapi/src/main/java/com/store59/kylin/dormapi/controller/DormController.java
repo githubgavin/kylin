@@ -48,9 +48,7 @@ public class DormController {
 			throw new ServiceException(2, "invalid token");
 		}
 		UserToken token = (UserToken) obj;
-		if (token.getDormId() == null || !token.getDormId().equals(dorm_id)) {
-			throw new ServiceException(1000, "不存在该楼主");
-		}
+		dormLogic.checkDormId(dorm_id, token);
 		Dorm updateDorm = new Dorm();
 		updateDorm.setDormId(dorm_id);
 		updateDorm.setAliAccount(zhifubao);

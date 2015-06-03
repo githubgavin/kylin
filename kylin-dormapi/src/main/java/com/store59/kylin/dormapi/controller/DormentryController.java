@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.store59.kylin.dorm.data.model.Dormentry;
 import com.store59.kylin.dorm.service.DormentryService;
 import com.store59.kylin.dormapi.exception.ServiceException;
+import com.store59.kylin.dormapi.logic.DormLogic;
 import com.store59.kylin.dormapi.logic.UserToken;
 import com.store59.kylin.dormapi.viewmodel.DormentryView;
 import com.store59.kylin.dormapi.viewmodel.Result;
@@ -23,6 +24,8 @@ import com.store59.kylin.dormapi.viewmodel.Result;
 public class DormentryController {
 	@Autowired
 	private DormentryService dormentryService;
+	@Autowired
+	private DormLogic dormLogic;
 
 	@RequestMapping(value = "/dormentry/list", method = RequestMethod.GET)
 	public Object getDormentryList(HttpServletRequest request, Integer dorm_id) {
@@ -31,12 +34,14 @@ public class DormentryController {
 			throw new ServiceException(2, "empty token");
 		}
 		UserToken token = (UserToken) obj;
-		List<Dormentry> dormentries = dormentryService.getDormentryList(dorm_id);
+		dormLogic.checkDormId(dorm_id, token);
+		List<Dormentry> dormentries = dormentryService
+				.getDormentryList(dorm_id);
 		List<DormentryView> rlist = new ArrayList<>();
-		for(Dormentry dormentry:dormentries){
+		for (Dormentry dormentry : dormentries) {
 			rlist.add(new DormentryView(dormentry));
 		}
-		Map<String,Object> data = new HashMap<>();
+		Map<String, Object> data = new HashMap<>();
 		data.put("dormentries", rlist);
 		Result result = new Result();
 		result.setData(data);
