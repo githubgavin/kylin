@@ -19,4 +19,12 @@ public class DormentryDao {
 		return slaveDormentryMapper.selectByDormID(dormId);
 	}
 
+	public Boolean updateByPrimaryKeySelective(Dormentry dormentry) {
+		int rows = masterDormentryMapper.updateByPrimaryKeySelective(dormentry);
+		if (rows > 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

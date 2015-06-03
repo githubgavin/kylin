@@ -35,4 +35,8 @@ public class DormentryService {
 		}
 		return result;
 	}
+
+	public Boolean updateDormentry(Dormentry dormentry) {
+		return dormentryDao.updateByPrimaryKeySelective(dormentry);
+	}
 }
