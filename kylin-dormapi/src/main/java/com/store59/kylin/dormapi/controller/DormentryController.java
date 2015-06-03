@@ -49,4 +49,30 @@ public class DormentryController {
 		return result;
 	}
 
+	@RequestMapping(value = "/dormentry/setstatus", method = RequestMethod.POST)
+	public Object setStatus(HttpServletRequest request, Integer dormentry_id,
+			Byte status) {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "empty token");
+		}
+		UserToken token = (UserToken) obj;
+		if (dormentry_id == null || status == null) {
+			throw new ServiceException(3, "请求参数有误");
+		}
+		Dormentry dormentry = new Dormentry();
+		dormentry.setDormentryId(dormentry_id);
+		dormentry.setStatus(status);
+		Boolean updateStatus = dormentryService.updateDormentry(dormentry);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (updateStatus) {
+			data.put("status", 1);
+		} else {
+			data.put("status", 0);
+		}
+		Result result = new Result();
+		result.setData(data);
+		result.UpdateToken(token);
+		return result;
+	}
 }
