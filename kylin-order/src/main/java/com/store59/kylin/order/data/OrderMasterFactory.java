@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.store59.kylin.datasource.factory.MasterDB;
 import com.store59.kylin.order.data.mapper.OrderMapper;
+import com.store59.kylin.order.data.mapper.OrderfoodMapper;
 
 @Configuration
 public class OrderMasterFactory {
@@ -23,6 +24,15 @@ public class OrderMasterFactory {
 	public MapperFactoryBean<OrderMapper> masterOrderMapper() throws Exception {
 		MapperFactoryBean<OrderMapper> mapperFactory = new MapperFactoryBean<>();
 		mapperFactory.setMapperInterface(OrderMapper.class);
+		mapperFactory.setSqlSessionTemplate(masterSqlSession());
+		return mapperFactory;
+	}
+
+	@Bean
+	public MapperFactoryBean<OrderfoodMapper> masterOrderfoodMapper()
+			throws Exception {
+		MapperFactoryBean<OrderfoodMapper> mapperFactory = new MapperFactoryBean<>();
+		mapperFactory.setMapperInterface(OrderfoodMapper.class);
 		mapperFactory.setSqlSessionTemplate(masterSqlSession());
 		return mapperFactory;
 	}
