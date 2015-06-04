@@ -8,7 +8,7 @@ import com.store59.kylin.order.data.model.Order;
 
 @JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class OrderView {
-	private Long orderId;
+	private String orderId;
 	private BigDecimal orderAmount;
 	private Byte status;
 	private Integer buyTimes;
@@ -22,7 +22,7 @@ public class OrderView {
 	}
 
 	public OrderView(Order order) {
-		this.orderId = order.getOrderId();
+		this.orderId = order.getOrderId().toString();
 		this.orderAmount = order.getOrderAmount();
 		this.status = order.getStatus();
 		this.buyTimes = order.getBuyTimes();
@@ -33,11 +33,11 @@ public class OrderView {
 		this.remark = order.getRemark();
 	}
 
-	public Long getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(Long orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 
