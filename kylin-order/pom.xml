@@ -13,5 +13,15 @@
 	<name>kylin-order</name>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.store59</groupId>
+			<artifactId>kylin-datasource</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.store59</groupId>
+			<artifactId>kylin-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
