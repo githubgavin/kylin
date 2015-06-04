@@ -16,10 +16,13 @@ import com.store59.kylin.dormapi.exception.ServiceException;
 import com.store59.kylin.dormapi.logic.DormLogic;
 import com.store59.kylin.dormapi.logic.UserToken;
 import com.store59.kylin.dormapi.viewmodel.OrderView;
+import com.store59.kylin.dormapi.viewmodel.OrderfoodView;
 import com.store59.kylin.dormapi.viewmodel.Result;
 import com.store59.kylin.order.data.filter.OrderFilter;
 import com.store59.kylin.order.data.model.Order;
+import com.store59.kylin.order.data.model.Orderfood;
 import com.store59.kylin.order.data.service.OrderService;
+import com.store59.kylin.order.data.service.OrderfoodService;
 
 @RestController
 public class OrderController {
@@ -27,6 +30,8 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private DormLogic dormLogic;
+	@Autowired
+	private OrderfoodService orderfoodService;
 
 	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
 	public Object getOrderList(HttpServletRequest request, Integer dorm_id,
@@ -66,4 +71,23 @@ public class OrderController {
 		return result;
 	}
 
+	@RequestMapping(value = "/order/foods", method = RequestMethod.GET)
+	public Object getFoodList(HttpServletRequest request, Long order_id) {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "invalid token");
+		}
+		UserToken token = (UserToken) obj;
+		List<Orderfood> foods = orderfoodService.getOrderfoodList(order_id);
+		List<OrderfoodView> foodViews = new ArrayList<>();
+		for (Orderfood food : foods) {
+			foodViews.add(new OrderfoodView(food));
+		}
+		Map<String, Object> data = new HashMap<>();
+		data.put("foods", foodViews);
+		Result result = new Result();
+		result.setData(data);
+		result.UpdateToken(token);
+		return result;
+	}
 }

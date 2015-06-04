@@ -13,7 +13,7 @@ public class OrderfoodService {
 	@Autowired
 	private OrderfoodDao orderfoodDao;
 
-	public List<Orderfood> getOrderfoodList(Integer orderId) {
+	public List<Orderfood> getOrderfoodList(Long orderId) {
 		return orderfoodDao.selectByOrderId(orderId);
 	}
 }

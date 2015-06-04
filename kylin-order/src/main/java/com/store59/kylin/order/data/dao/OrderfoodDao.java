@@ -15,7 +15,7 @@ public class OrderfoodDao {
 	@Autowired
 	private OrderfoodMapper slaveOrderfoodMapper;
 
-	public List<Orderfood> selectByOrderId(Integer orderId) {
+	public List<Orderfood> selectByOrderId(Long orderId) {
 		return slaveOrderfoodMapper.selectByOrderId(orderId);
 	}
 
