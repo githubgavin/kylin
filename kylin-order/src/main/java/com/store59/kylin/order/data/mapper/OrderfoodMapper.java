@@ -17,5 +17,5 @@ public interface OrderfoodMapper {
 
 	int updateByPrimaryKey(Orderfood record);
 
-    List<Orderfood> selectByOrderId(Integer orderId);
+    List<Orderfood> selectByOrderId(Long orderId);
 }

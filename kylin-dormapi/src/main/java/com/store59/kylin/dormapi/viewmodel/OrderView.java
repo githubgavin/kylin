@@ -2,8 +2,11 @@ package com.store59.kylin.dormapi.viewmodel;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.store59.kylin.order.data.model.Order;
 
+@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class OrderView {
 	private Long orderId;
 	private BigDecimal orderAmount;
