@@ -35,7 +35,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
 	public Object getOrderList(HttpServletRequest request, Integer dorm_id,
-			Integer type) {
+			Integer type, Integer page_size, Integer page) {
 		Object obj = request.getSession().getAttribute("usertoken");
 		if (obj == null || !(obj instanceof UserToken)) {
 			throw new ServiceException(2, "invalid token");
@@ -45,19 +45,19 @@ public class OrderController {
 		OrderFilter filter = new OrderFilter();
 		List<Byte> status = new ArrayList<Byte>();
 		filter.setDormId(dorm_id);
-		if (type == null) {
-			// 获取所以订单时加入limit限制返回量
-			filter.setLimit(50);
-		} else if (type == 1) {
+		if (type != null && type == 1) {
 			status.add((byte) 0);
 			status.add((byte) 1);
 			status.add((byte) 2);
-			filter.setStatus(status);
-		} else if (type == 2) {
+		} else if (type != null && type == 1) {
 			status.add((byte) 4);
 			status.add((byte) 5);
-			filter.setStatus(status);
 		}
+		filter.setStatus(status);
+		page_size = page_size == null ? 50 : Math.max(page_size, 1);
+		Integer pageIndex = page == null ? 0 : Math.max(page - 1, 0);
+		filter.setOffset(pageIndex * page_size);
+		filter.setLimit(page_size);
 		List<Order> orders = orderService.getOrderList(filter);
 		List<OrderView> orderViews = new ArrayList<>();
 		for (Order order : orders) {
