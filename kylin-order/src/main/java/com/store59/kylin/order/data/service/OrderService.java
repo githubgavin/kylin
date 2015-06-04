@@ -22,13 +22,6 @@ public class OrderService {
 		return orderDao.selectByFilter(filter);
 	}
 
-	public List<Order> getOrderList(Integer dormId, List<Byte> status) {
-		OrderFilter filter = new OrderFilter();
-		filter.setDormId(dormId);
-		filter.setStatus(status);
-		return orderDao.selectByFilter(filter);
-	}
-
 	public Boolean updateOrder(Order order) {
 		return orderDao.updateByPrimaryKeySelective(order);
 	}
