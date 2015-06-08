@@ -23,6 +23,8 @@ import com.store59.kylin.order.data.model.Order;
 import com.store59.kylin.order.data.model.Orderfood;
 import com.store59.kylin.order.data.service.OrderService;
 import com.store59.kylin.order.data.service.OrderfoodService;
+import com.store59.kylin.user.data.model.User;
+import com.store59.kylin.user.service.UserService;
 
 @RestController
 public class OrderController {
@@ -32,6 +34,8 @@ public class OrderController {
 	private DormLogic dormLogic;
 	@Autowired
 	private OrderfoodService orderfoodService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
 	public Object getOrderList(HttpServletRequest request, Integer dorm_id,
@@ -61,7 +65,16 @@ public class OrderController {
 		List<Order> orders = orderService.getOrderList(filter);
 		List<OrderView> orderViews = new ArrayList<>();
 		for (Order order : orders) {
-			orderViews.add(new OrderView(order));
+			OrderView orderView = new OrderView(order);
+			Integer uid = order.getUid();
+			orderView.setUserName("游客");
+			if (uid != null && uid > 0) {
+				User user = userService.getUser(uid);
+				if (user != null) {
+					orderView.setUserName(user.getUname());
+				}
+			}
+			orderViews.add(orderView);
 		}
 		Map<String, Object> data = new HashMap<>();
 		data.put("orders", orderViews);

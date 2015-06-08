@@ -16,7 +16,7 @@ public class OrderView {
 	private String address;
 	private String phone;
 	private String remark;
-	private Integer isVisitor;
+	private String userName;
 
 	public OrderView() {
 
@@ -32,10 +32,6 @@ public class OrderView {
 				order.getAddress2());
 		this.phone = order.getPhone();
 		this.remark = order.getRemark();
-		this.isVisitor = 1;
-		if (order.getUid() != null && order.getUid() > 0) {
-			this.isVisitor = 0;
-		}
 	}
 
 	public String getOrderId() {
@@ -102,11 +98,11 @@ public class OrderView {
 		this.remark = remark;
 	}
 
-	public Integer getIsVisitor() {
-		return isVisitor;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setIsVisitor(Integer isVisitor) {
-		this.isVisitor = isVisitor;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }
