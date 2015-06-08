@@ -43,7 +43,7 @@ public class MasterDB {
 		this.sqlSession = new SqlSessionTemplate(
 				this.sqlSessionFactory.getObject());
 	}
-
+	
 	public SqlSessionTemplate getSqlSession() {
 		return this.sqlSession;
 	}

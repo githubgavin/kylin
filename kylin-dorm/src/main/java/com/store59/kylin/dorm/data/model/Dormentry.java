@@ -6,21 +6,37 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class Dormentry {
 	private Integer dormentryId;
+
 	private Integer dormId;
+
 	private Integer siteId;
+
 	private Integer sid;
+
 	private Byte status;
+
 	private Integer sort;
+
 	private String address;
+
 	private String address1;
+
 	private String address2;
+
 	private String notice;
+
 	private Integer dormentryType;
+
 	private Integer dormentryFloors;
+
 	private Integer roomNumber;
+
 	private Integer studentNumber;
+
 	private Float longitude;
+
 	private Float latitude;
+
 	private Integer maxReward;
 
 	public Integer getDormentryId() {
@@ -158,4 +174,5 @@ public class Dormentry {
 	public void setMaxReward(Integer maxReward) {
 		this.maxReward = maxReward;
 	}
+
 }

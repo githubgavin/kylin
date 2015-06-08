@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.store59.kylin.dorm.data.mapper.DormMapper">
+	<resultMap id="BaseResultMap" type="com.store59.kylin.dorm.data.model.Dorm">
+		<id column="dorm_id" property="dormId" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="sid" property="sid" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="TINYINT" />
+		<result column="package_id" property="packageId" jdbcType="INTEGER" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="delivery_address" property="deliveryAddress"
+			jdbcType="VARCHAR" />
+		<result column="yhd_province" property="yhdProvince" jdbcType="INTEGER" />
+		<result column="jd_address1" property="jdAddress1" jdbcType="INTEGER" />
+		<result column="jd_address2" property="jdAddress2" jdbcType="INTEGER" />
+		<result column="jd_address3" property="jdAddress3" jdbcType="INTEGER" />
+		<result column="jd_address4" property="jdAddress4" jdbcType="INTEGER" />
+		<result column="jd_address_detail" property="jdAddressDetail"
+			jdbcType="VARCHAR" />
+		<result column="jd_address_full" property="jdAddressFull"
+			jdbcType="VARCHAR" />
+		<result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+		<result column="site_id" property="siteId" jdbcType="INTEGER" />
+		<result column="ali_account" property="aliAccount" jdbcType="VARCHAR" />
+		<result column="ali_name" property="aliName" jdbcType="VARCHAR" />
+		<result column="is_pass" property="isPass" jdbcType="TINYINT" />
+		<result column="add_time" property="addTime" jdbcType="INTEGER" />
+		<result column="is_new" property="isNew" jdbcType="TINYINT" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="overdraft" property="overdraft" jdbcType="DECIMAL" />
+		<result column="parent_staff_id" property="parentStaffId"
+			jdbcType="INTEGER" />
+		<result column="dhid" property="dhid" jdbcType="INTEGER" />
+		<result column="notice" property="notice" jdbcType="VARCHAR" />
+		<result column="portrait" property="portrait" jdbcType="VARCHAR" />
+		<result column="verified_status" property="verifiedStatus"
+			jdbcType="TINYINT" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		dorm_id, status, sid, uid, name, gender, package_id, phone,
+		delivery_address, yhd_province,
+		jd_address1, jd_address2, jd_address3,
+		jd_address4, jd_address_detail,
+		jd_address_full,
+		zip_code, site_id,
+		ali_account, ali_name, is_pass, add_time, is_new, money,
+		overdraft,
+		parent_staff_id, dhid, notice, portrait, verified_status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from 59_dorm
+		where dorm_id = #{dormId,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUid" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from 59_dorm
+		where uid = #{uid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		59_dorm
+		where dorm_id = #{dormId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.store59.kylin.dorm.data.model.Dorm">
+		insert into 59_dorm (dorm_id,
+		status, sid,
+		uid, name, gender,
+		package_id, phone, delivery_address,
+		yhd_province, jd_address1, jd_address2,
+		jd_address3, jd_address4,
+		jd_address_detail,
+		jd_address_full, zip_code, site_id,
+		ali_account,
+		ali_name, is_pass,
+		add_time, is_new, money,
+		overdraft, parent_staff_id,
+		dhid,
+		notice, portrait, verified_status
+		)
+		values
+		(#{dormId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT},
+		#{sid,jdbcType=INTEGER},
+		#{uid,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT},
+		#{packageId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR},
+		#{deliveryAddress,jdbcType=VARCHAR},
+		#{yhdProvince,jdbcType=INTEGER},
+		#{jdAddress1,jdbcType=INTEGER}, #{jdAddress2,jdbcType=INTEGER},
+		#{jdAddress3,jdbcType=INTEGER}, #{jdAddress4,jdbcType=INTEGER},
+		#{jdAddressDetail,jdbcType=VARCHAR},
+		#{jdAddressFull,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR},
+		#{siteId,jdbcType=INTEGER},
+		#{aliAccount,jdbcType=VARCHAR},
+		#{aliName,jdbcType=VARCHAR}, #{isPass,jdbcType=TINYINT},
+		#{addTime,jdbcType=INTEGER}, #{isNew,jdbcType=TINYINT},
+		#{money,jdbcType=DECIMAL},
+		#{overdraft,jdbcType=DECIMAL},
+		#{parentStaffId,jdbcType=INTEGER}, #{dhid,jdbcType=INTEGER},
+		#{notice,jdbcType=VARCHAR}, #{portrait,jdbcType=VARCHAR},
+		#{verifiedStatus,jdbcType=TINYINT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.store59.kylin.dorm.data.model.Dorm">
+		insert into 59_dorm
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="dormId != null">
+				dorm_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="sid != null">
+				sid,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="packageId != null">
+				package_id,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="deliveryAddress != null">
+				delivery_address,
+			</if>
+			<if test="yhdProvince != null">
+				yhd_province,
+			</if>
+			<if test="jdAddress1 != null">
+				jd_address1,
+			</if>
+			<if test="jdAddress2 != null">
+				jd_address2,
+			</if>
+			<if test="jdAddress3 != null">
+				jd_address3,
+			</if>
+			<if test="jdAddress4 != null">
+				jd_address4,
+			</if>
+			<if test="jdAddressDetail != null">
+				jd_address_detail,
+			</if>
+			<if test="jdAddressFull != null">
+				jd_address_full,
+			</if>
+			<if test="zipCode != null">
+				zip_code,
+			</if>
+			<if test="siteId != null">
+				site_id,
+			</if>
+			<if test="aliAccount != null">
+				ali_account,
+			</if>
+			<if test="aliName != null">
+				ali_name,
+			</if>
+			<if test="isPass != null">
+				is_pass,
+			</if>
+			<if test="addTime != null">
+				add_time,
+			</if>
+			<if test="isNew != null">
+				is_new,
+			</if>
+			<if test="money != null">
+				money,
+			</if>
+			<if test="overdraft != null">
+				overdraft,
+			</if>
+			<if test="parentStaffId != null">
+				parent_staff_id,
+			</if>
+			<if test="dhid != null">
+				dhid,
+			</if>
+			<if test="notice != null">
+				notice,
+			</if>
+			<if test="portrait != null">
+				portrait,
+			</if>
+			<if test="verifiedStatus != null">
+				verified_status,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="dormId != null">
+				#{dormId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="sid != null">
+				#{sid,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=TINYINT},
+			</if>
+			<if test="packageId != null">
+				#{packageId,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="deliveryAddress != null">
+				#{deliveryAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="yhdProvince != null">
+				#{yhdProvince,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress1 != null">
+				#{jdAddress1,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress2 != null">
+				#{jdAddress2,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress3 != null">
+				#{jdAddress3,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress4 != null">
+				#{jdAddress4,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddressDetail != null">
+				#{jdAddressDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="jdAddressFull != null">
+				#{jdAddressFull,jdbcType=VARCHAR},
+			</if>
+			<if test="zipCode != null">
+				#{zipCode,jdbcType=VARCHAR},
+			</if>
+			<if test="siteId != null">
+				#{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="aliAccount != null">
+				#{aliAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="aliName != null">
+				#{aliName,jdbcType=VARCHAR},
+			</if>
+			<if test="isPass != null">
+				#{isPass,jdbcType=TINYINT},
+			</if>
+			<if test="addTime != null">
+				#{addTime,jdbcType=INTEGER},
+			</if>
+			<if test="isNew != null">
+				#{isNew,jdbcType=TINYINT},
+			</if>
+			<if test="money != null">
+				#{money,jdbcType=DECIMAL},
+			</if>
+			<if test="overdraft != null">
+				#{overdraft,jdbcType=DECIMAL},
+			</if>
+			<if test="parentStaffId != null">
+				#{parentStaffId,jdbcType=INTEGER},
+			</if>
+			<if test="dhid != null">
+				#{dhid,jdbcType=INTEGER},
+			</if>
+			<if test="notice != null">
+				#{notice,jdbcType=VARCHAR},
+			</if>
+			<if test="portrait != null">
+				#{portrait,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiedStatus != null">
+				#{verifiedStatus,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.store59.kylin.dorm.data.model.Dorm">
+		update 59_dorm
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="sid != null">
+				sid = #{sid,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=TINYINT},
+			</if>
+			<if test="packageId != null">
+				package_id = #{packageId,jdbcType=INTEGER},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="deliveryAddress != null">
+				delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="yhdProvince != null">
+				yhd_province = #{yhdProvince,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress1 != null">
+				jd_address1 = #{jdAddress1,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress2 != null">
+				jd_address2 = #{jdAddress2,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress3 != null">
+				jd_address3 = #{jdAddress3,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddress4 != null">
+				jd_address4 = #{jdAddress4,jdbcType=INTEGER},
+			</if>
+			<if test="jdAddressDetail != null">
+				jd_address_detail = #{jdAddressDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="jdAddressFull != null">
+				jd_address_full = #{jdAddressFull,jdbcType=VARCHAR},
+			</if>
+			<if test="zipCode != null">
+				zip_code = #{zipCode,jdbcType=VARCHAR},
+			</if>
+			<if test="siteId != null">
+				site_id = #{siteId,jdbcType=INTEGER},
+			</if>
+			<if test="aliAccount != null">
+				ali_account = #{aliAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="aliName != null">
+				ali_name = #{aliName,jdbcType=VARCHAR},
+			</if>
+			<if test="isPass != null">
+				is_pass = #{isPass,jdbcType=TINYINT},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=INTEGER},
+			</if>
+			<if test="isNew != null">
+				is_new = #{isNew,jdbcType=TINYINT},
+			</if>
+			<if test="money != null">
+				money = #{money,jdbcType=DECIMAL},
+			</if>
+			<if test="overdraft != null">
+				overdraft = #{overdraft,jdbcType=DECIMAL},
+			</if>
+			<if test="parentStaffId != null">
+				parent_staff_id = #{parentStaffId,jdbcType=INTEGER},
+			</if>
+			<if test="dhid != null">
+				dhid = #{dhid,jdbcType=INTEGER},
+			</if>
+			<if test="notice != null">
+				notice = #{notice,jdbcType=VARCHAR},
+			</if>
+			<if test="portrait != null">
+				portrait = #{portrait,jdbcType=VARCHAR},
+			</if>
+			<if test="verifiedStatus != null">
+				verified_status = #{verifiedStatus,jdbcType=TINYINT},
+			</if>
+		</set>
+		where dorm_id = #{dormId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.store59.kylin.dorm.data.model.Dorm">
+		update 59_dorm
+		set status = #{status,jdbcType=TINYINT},
+		sid = #{sid,jdbcType=INTEGER},
+		uid = #{uid,jdbcType=INTEGER},
+		name = #{name,jdbcType=VARCHAR},
+		gender = #{gender,jdbcType=TINYINT},
+		package_id = #{packageId,jdbcType=INTEGER},
+		phone = #{phone,jdbcType=VARCHAR},
+		delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+		yhd_province = #{yhdProvince,jdbcType=INTEGER},
+		jd_address1 = #{jdAddress1,jdbcType=INTEGER},
+		jd_address2 = #{jdAddress2,jdbcType=INTEGER},
+		jd_address3 = #{jdAddress3,jdbcType=INTEGER},
+		jd_address4 = #{jdAddress4,jdbcType=INTEGER},
+		jd_address_detail = #{jdAddressDetail,jdbcType=VARCHAR},
+		jd_address_full = #{jdAddressFull,jdbcType=VARCHAR},
+		zip_code = #{zipCode,jdbcType=VARCHAR},
+		site_id = #{siteId,jdbcType=INTEGER},
+		ali_account = #{aliAccount,jdbcType=VARCHAR},
+		ali_name = #{aliName,jdbcType=VARCHAR},
+		is_pass = #{isPass,jdbcType=TINYINT},
+		add_time = #{addTime,jdbcType=INTEGER},
+		is_new = #{isNew,jdbcType=TINYINT},
+		money = #{money,jdbcType=DECIMAL},
+		overdraft = #{overdraft,jdbcType=DECIMAL},
+		parent_staff_id = #{parentStaffId,jdbcType=INTEGER},
+		dhid = #{dhid,jdbcType=INTEGER},
+		notice = #{notice,jdbcType=VARCHAR},
+		portrait = #{portrait,jdbcType=VARCHAR},
+		verified_status = #{verifiedStatus,jdbcType=TINYINT}
+		where dorm_id = #{dormId,jdbcType=INTEGER}
+	</update>
+</mapper>
