@@ -16,6 +16,7 @@ public class OrderView {
 	private String address;
 	private String phone;
 	private String remark;
+	private Integer isVisitor;
 
 	public OrderView() {
 
@@ -31,6 +32,10 @@ public class OrderView {
 				order.getAddress2());
 		this.phone = order.getPhone();
 		this.remark = order.getRemark();
+		this.isVisitor = 1;
+		if (order.getUid() != null && order.getUid() > 0) {
+			this.isVisitor = 0;
+		}
 	}
 
 	public String getOrderId() {
@@ -95,5 +100,13 @@ public class OrderView {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public Integer getIsVisitor() {
+		return isVisitor;
+	}
+
+	public void setIsVisitor(Integer isVisitor) {
+		this.isVisitor = isVisitor;
 	}
 }
