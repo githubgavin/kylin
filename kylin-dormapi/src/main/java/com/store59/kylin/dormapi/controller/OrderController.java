@@ -104,14 +104,40 @@ public class OrderController {
 		return result;
 	}
 
-	@RequestMapping(value = "/order/setstatus", method = RequestMethod.POST)
-	public Object setStatus(HttpServletRequest request, Long order_id,
-			Byte status) {
+	@RequestMapping(value = "/order/cancel", method = RequestMethod.POST)
+	public Object cancelStatus(HttpServletRequest request, Long order_id) {
 		Object obj = request.getSession().getAttribute("usertoken");
 		if (obj == null || !(obj instanceof UserToken)) {
 			throw new ServiceException(2, "invalid token");
 		}
 		UserToken token = (UserToken) obj;
+		Byte status = (byte) 5;
+		return updateStatus(order_id, status, token);
+	}
+
+	@RequestMapping(value = "/order/process", method = RequestMethod.POST)
+	public Object processStatus(HttpServletRequest request, Long order_id) {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "invalid token");
+		}
+		UserToken token = (UserToken) obj;
+		Byte status = (byte) 1;
+		return updateStatus(order_id, status, token);
+	}
+
+	@RequestMapping(value = "/order/confirm", method = RequestMethod.POST)
+	public Object confirmStatus(HttpServletRequest request, Long order_id) {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "invalid token");
+		}
+		UserToken token = (UserToken) obj;
+		Byte status = (byte) 2;
+		return updateStatus(order_id, status, token);
+	}
+
+	private Object updateStatus(Long order_id, Byte status, UserToken token) {
 		Boolean updateStatus = orderService.setStatus(order_id, status);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (updateStatus) {
