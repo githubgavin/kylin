@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.store59.kylin.dorm.data.mapper.DormitemMapper">
+	<resultMap id="BaseResultMap" type="com.store59.kylin.dorm.data.model.Dormitem">
+		<id column="item_id" property="itemId" jdbcType="INTEGER" />
+		<result column="dorm_id" property="dormId" jdbcType="INTEGER" />
+		<result column="rid" property="rid" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="TINYINT" />
+		<result column="stock" property="stock" jdbcType="INTEGER" />
+		<result column="price" property="price" jdbcType="DECIMAL" />
+		<result column="purchase_price" property="purchasePrice"
+			jdbcType="DECIMAL" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+		<result column="suggest_purchase" property="suggestPurchase"
+			jdbcType="INTEGER" />
+		<result column="buy_limit" property="buyLimit" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		item_id, dorm_id, rid, status, stock, price,
+		purchase_price, sales,
+		suggest_purchase,
+		buy_limit
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from 59_dormitem
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		59_dormitem
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.store59.kylin.dorm.data.model.Dormitem">
+		insert into 59_dormitem
+		(item_id, dorm_id, rid,
+		status, stock, price,
+		purchase_price, sales,
+		suggest_purchase,
+		buy_limit)
+		values (#{itemId,jdbcType=INTEGER},
+		#{dormId,jdbcType=INTEGER},
+		#{rid,jdbcType=INTEGER},
+		#{status,jdbcType=TINYINT}, #{stock,jdbcType=INTEGER},
+		#{price,jdbcType=DECIMAL},
+		#{purchasePrice,jdbcType=DECIMAL},
+		#{sales,jdbcType=INTEGER},
+		#{suggestPurchase,jdbcType=INTEGER},
+		#{buyLimit,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.store59.kylin.dorm.data.model.Dormitem">
+		insert into 59_dormitem
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="itemId != null">
+				item_id,
+			</if>
+			<if test="dormId != null">
+				dorm_id,
+			</if>
+			<if test="rid != null">
+				rid,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="stock != null">
+				stock,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="purchasePrice != null">
+				purchase_price,
+			</if>
+			<if test="sales != null">
+				sales,
+			</if>
+			<if test="suggestPurchase != null">
+				suggest_purchase,
+			</if>
+			<if test="buyLimit != null">
+				buy_limit,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="itemId != null">
+				#{itemId,jdbcType=INTEGER},
+			</if>
+			<if test="dormId != null">
+				#{dormId,jdbcType=INTEGER},
+			</if>
+			<if test="rid != null">
+				#{rid,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="stock != null">
+				#{stock,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="purchasePrice != null">
+				#{purchasePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="sales != null">
+				#{sales,jdbcType=INTEGER},
+			</if>
+			<if test="suggestPurchase != null">
+				#{suggestPurchase,jdbcType=INTEGER},
+			</if>
+			<if test="buyLimit != null">
+				#{buyLimit,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.store59.kylin.dorm.data.model.Dormitem">
+		update 59_dormitem
+		<set>
+			<if test="dormId != null">
+				dorm_id = #{dormId,jdbcType=INTEGER},
+			</if>
+			<if test="rid != null">
+				rid = #{rid,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="stock != null">
+				stock = #{stock,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="purchasePrice != null">
+				purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="sales != null">
+				sales = #{sales,jdbcType=INTEGER},
+			</if>
+			<if test="suggestPurchase != null">
+				suggest_purchase = #{suggestPurchase,jdbcType=INTEGER},
+			</if>
+			<if test="buyLimit != null">
+				buy_limit = #{buyLimit,jdbcType=INTEGER},
+			</if>
+		</set>
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.store59.kylin.dorm.data.model.Dormitem">
+		update 59_dormitem
+		set dorm_id = #{dormId,jdbcType=INTEGER},
+		rid =
+		#{rid,jdbcType=INTEGER},
+		status = #{status,jdbcType=TINYINT},
+		stock =
+		#{stock,jdbcType=INTEGER},
+		price = #{price,jdbcType=DECIMAL},
+		purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+		sales =
+		#{sales,jdbcType=INTEGER},
+		suggest_purchase =
+		#{suggestPurchase,jdbcType=INTEGER},
+		buy_limit =
+		#{buyLimit,jdbcType=INTEGER}
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</update>
+	<update id="addDormItemStock">
+	<![CDATA[
+		update 59_dormitem
+		set stock = stock + #{stock}
+		where dorm_id = #{dormId,jdbcType=INTEGER}
+			and rid = #{rid,jdbcType=INTEGER}
+			and stock + #{stock} >= 0
+	]]>
+	</update>
+</mapper>

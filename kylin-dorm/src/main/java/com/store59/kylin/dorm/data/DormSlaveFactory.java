@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import com.store59.kylin.datasource.factory.SlaveDB;
 import com.store59.kylin.dorm.data.mapper.DormMapper;
 import com.store59.kylin.dorm.data.mapper.DormentryMapper;
+import com.store59.kylin.dorm.data.mapper.DormitemMapper;
 
 @Configuration
 public class DormSlaveFactory {
@@ -28,12 +29,20 @@ public class DormSlaveFactory {
 		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
 		return mapperFactory;
 	}
-	
+
 	@Bean
-	public MapperFactoryBean<DormMapper> slaveDormMapper()
-			throws Exception {
+	public MapperFactoryBean<DormMapper> slaveDormMapper() throws Exception {
 		MapperFactoryBean<DormMapper> mapperFactory = new MapperFactoryBean<>();
 		mapperFactory.setMapperInterface(DormMapper.class);
+		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
+		return mapperFactory;
+	}
+
+	@Bean
+	public MapperFactoryBean<DormitemMapper> slaveDormitemMapper()
+			throws Exception {
+		MapperFactoryBean<DormitemMapper> mapperFactory = new MapperFactoryBean<>();
+		mapperFactory.setMapperInterface(DormitemMapper.class);
 		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
 		return mapperFactory;
 	}

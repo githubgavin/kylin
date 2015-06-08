@@ -16,6 +16,10 @@ public class OrderDao {
 	@Autowired
 	private OrderMapper slaveOrderMapper;
 
+	public Order selectByPrimaryKey(Long orderId) {
+		return slaveOrderMapper.selectByPrimaryKey(orderId);
+	}
+
 	public List<Order> selectByFilter(OrderFilter filter) {
 		return slaveOrderMapper.selectByFilter(filter);
 	}
