@@ -90,4 +90,25 @@ public class OrderController {
 		result.UpdateToken(token);
 		return result;
 	}
+
+	@RequestMapping(value = "/order/setstatus", method = RequestMethod.POST)
+	public Object setStatus(HttpServletRequest request, Long order_id,
+			Byte status) {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "invalid token");
+		}
+		UserToken token = (UserToken) obj;
+		Boolean updateStatus = orderService.setStatus(order_id, status);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (updateStatus) {
+			data.put("status", 1);
+		} else {
+			data.put("status", 0);
+		}
+		Result result = new Result();
+		result.setData(data);
+		result.UpdateToken(token);
+		return result;
+	}
 }

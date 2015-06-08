@@ -5,174 +5,174 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class Dormentry {
-    private Integer dormentryId;
+	private Integer dormentryId;
 
-    private Integer dormId;
+	private Integer dormId;
 
-    private Integer siteId;
+	private Integer siteId;
 
-    private Integer sid;
+	private Integer sid;
 
-    private Byte status;
+	private Byte status;
 
-    private Integer sort;
+	private Integer sort;
 
-    private String address;
+	private String address;
 
-    private String address1;
+	private String address1;
 
-    private String address2;
+	private String address2;
 
-    private String notice;
+	private String notice;
 
-    private Integer dormentryType;
+	private Integer dormentryType;
 
-    private Integer dormentryFloors;
+	private Integer dormentryFloors;
 
-    private Integer roomNumber;
+	private Integer roomNumber;
 
-    private Integer studentNumber;
+	private Integer studentNumber;
 
-    private Float longitude;
+	private Float longitude;
 
-    private Float latitude;
+	private Float latitude;
 
-    private Integer maxReward;
+	private Integer maxReward;
 
-    public Integer getDormentryId() {
-        return dormentryId;
-    }
+	public Integer getDormentryId() {
+		return dormentryId;
+	}
 
-    public void setDormentryId(Integer dormentryId) {
-        this.dormentryId = dormentryId;
-    }
+	public void setDormentryId(Integer dormentryId) {
+		this.dormentryId = dormentryId;
+	}
 
-    public Integer getDormId() {
-        return dormId;
-    }
+	public Integer getDormId() {
+		return dormId;
+	}
 
-    public void setDormId(Integer dormId) {
-        this.dormId = dormId;
-    }
+	public void setDormId(Integer dormId) {
+		this.dormId = dormId;
+	}
 
-    public Integer getSiteId() {
-        return siteId;
-    }
+	public Integer getSiteId() {
+		return siteId;
+	}
 
-    public void setSiteId(Integer siteId) {
-        this.siteId = siteId;
-    }
+	public void setSiteId(Integer siteId) {
+		this.siteId = siteId;
+	}
 
-    public Integer getSid() {
-        return sid;
-    }
+	public Integer getSid() {
+		return sid;
+	}
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
-    }
+	public void setSid(Integer sid) {
+		this.sid = sid;
+	}
 
-    public Byte getStatus() {
-        return status;
-    }
+	public Byte getStatus() {
+		return status;
+	}
 
-    public void setStatus(Byte status) {
-        this.status = status;
-    }
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
 
-    public Integer getSort() {
-        return sort;
-    }
+	public Integer getSort() {
+		return sort;
+	}
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
+	public void setAddress(String address) {
+		this.address = address == null ? null : address.trim();
+	}
 
-    public String getAddress1() {
-        return address1;
-    }
+	public String getAddress1() {
+		return address1;
+	}
 
-    public void setAddress1(String address1) {
-        this.address1 = address1 == null ? null : address1.trim();
-    }
+	public void setAddress1(String address1) {
+		this.address1 = address1 == null ? null : address1.trim();
+	}
 
-    public String getAddress2() {
-        return address2;
-    }
+	public String getAddress2() {
+		return address2;
+	}
 
-    public void setAddress2(String address2) {
-        this.address2 = address2 == null ? null : address2.trim();
-    }
+	public void setAddress2(String address2) {
+		this.address2 = address2 == null ? null : address2.trim();
+	}
 
-    public String getNotice() {
-        return notice;
-    }
+	public String getNotice() {
+		return notice;
+	}
 
-    public void setNotice(String notice) {
-        this.notice = notice == null ? null : notice.trim();
-    }
+	public void setNotice(String notice) {
+		this.notice = notice == null ? null : notice.trim();
+	}
 
-    public Integer getDormentryType() {
-        return dormentryType;
-    }
+	public Integer getDormentryType() {
+		return dormentryType;
+	}
 
-    public void setDormentryType(Integer dormentryType) {
-        this.dormentryType = dormentryType;
-    }
+	public void setDormentryType(Integer dormentryType) {
+		this.dormentryType = dormentryType;
+	}
 
-    public Integer getDormentryFloors() {
-        return dormentryFloors;
-    }
+	public Integer getDormentryFloors() {
+		return dormentryFloors;
+	}
 
-    public void setDormentryFloors(Integer dormentryFloors) {
-        this.dormentryFloors = dormentryFloors;
-    }
+	public void setDormentryFloors(Integer dormentryFloors) {
+		this.dormentryFloors = dormentryFloors;
+	}
 
-    public Integer getRoomNumber() {
-        return roomNumber;
-    }
+	public Integer getRoomNumber() {
+		return roomNumber;
+	}
 
-    public void setRoomNumber(Integer roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+	public void setRoomNumber(Integer roomNumber) {
+		this.roomNumber = roomNumber;
+	}
 
-    public Integer getStudentNumber() {
-        return studentNumber;
-    }
+	public Integer getStudentNumber() {
+		return studentNumber;
+	}
 
-    public void setStudentNumber(Integer studentNumber) {
-        this.studentNumber = studentNumber;
-    }
+	public void setStudentNumber(Integer studentNumber) {
+		this.studentNumber = studentNumber;
+	}
 
-    public Float getLongitude() {
-        return longitude;
-    }
+	public Float getLongitude() {
+		return longitude;
+	}
 
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
+	public void setLongitude(Float longitude) {
+		this.longitude = longitude;
+	}
 
-    public Float getLatitude() {
-        return latitude;
-    }
+	public Float getLatitude() {
+		return latitude;
+	}
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
+	public void setLatitude(Float latitude) {
+		this.latitude = latitude;
+	}
 
-    public Integer getMaxReward() {
-        return maxReward;
-    }
+	public Integer getMaxReward() {
+		return maxReward;
+	}
 
-    public void setMaxReward(Integer maxReward) {
-        this.maxReward = maxReward;
-    }
+	public void setMaxReward(Integer maxReward) {
+		this.maxReward = maxReward;
+	}
 
 }
