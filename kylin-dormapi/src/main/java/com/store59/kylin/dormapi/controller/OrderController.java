@@ -52,8 +52,8 @@ public class OrderController {
 		if (type != null && type == 1) {
 			status.add((byte) 0);
 			status.add((byte) 1);
-			status.add((byte) 2);
 		} else if (type != null && type == 1) {
+			status.add((byte) 2);
 			status.add((byte) 4);
 			status.add((byte) 5);
 		}
