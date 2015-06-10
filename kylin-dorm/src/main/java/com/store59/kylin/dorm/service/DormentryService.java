@@ -17,17 +17,22 @@ public class DormentryService {
 	private DormentryDao dormentryDao;
 	@Autowired
 	private ICache cache;
-	private int cacheDormentryListTimeout = 10;
+	private int cacheDormentryListTimeout = 0;
 
 	public List<Dormentry> getDormentryList(int dormId) {
 		List<Dormentry> result = null;
 		String cacheKey = String.format("dorm:dormentrylist:%s", dormId);
 		String cacheValue = null;
-		cacheValue = cache.get(cacheKey);
+		if (cacheDormentryListTimeout > 0) {
+			cacheValue = cache.get(cacheKey);
+		}
 		if (cacheValue == null) {
 			result = dormentryDao.getDormEntryList(dormId);
 			cacheValue = Util.getJsonFromObject(result);
-			this.cache.setex(cacheKey, cacheDormentryListTimeout, cacheValue);
+			if (cacheDormentryListTimeout > 0) {
+				this.cache.setex(cacheKey, cacheDormentryListTimeout,
+						cacheValue);
+			}
 		} else {
 			result = Util.getObjectFromJson(cacheValue,
 					new TypeReference<List<Dormentry>>() {
