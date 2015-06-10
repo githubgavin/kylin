@@ -20,6 +20,8 @@ public class OrderService {
 	private OrderfoodDao orderfoodDao;
 	@Autowired
 	private DormitemService dormitemService;
+	@Autowired
+	private CouponService couponService;
 
 	public List<Order> getOrderList(OrderFilter filter) {
 		List<Byte> status = filter.getStatus();
@@ -53,6 +55,7 @@ public class OrderService {
 		// 取消订单，需要返回库存
 		if (status == 5) {
 			backDormItemStock(orderId, order.getDormId());
+			couponService.backOrderCoupon(orderId);
 		}
 		return true;
 	}
