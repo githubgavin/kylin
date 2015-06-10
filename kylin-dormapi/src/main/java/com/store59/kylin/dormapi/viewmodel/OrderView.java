@@ -26,7 +26,7 @@ public class OrderView {
 		this.orderId = order.getOrderId().toString();
 		this.orderAmount = order.getOrderAmount();
 		this.status = order.getStatus();
-		this.buyTimes = order.getBuyTimes();
+		//this.buyTimes = order.getBuyTimes();
 		this.addTime = order.getAddTime();
 		this.address = String.format("%s %s", order.getAddress1(),
 				order.getAddress2());
@@ -59,6 +59,9 @@ public class OrderView {
 	}
 
 	public Integer getBuyTimes() {
+		if(buyTimes==null){
+			return 0;
+		}
 		return buyTimes;
 	}
 
