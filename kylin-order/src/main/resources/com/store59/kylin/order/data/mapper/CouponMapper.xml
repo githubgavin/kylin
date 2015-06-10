@@ -252,8 +252,8 @@
 	<update id="backOrderCoupon">
 		update 59_coupon
 		set use_order_id=NULL,
-		user_time=0,
-		user_uid=NULL
+		use_time=0,
+		use_uid=NULL
 		where use_order_id=#{orderId}
 	</update>
 </mapper>
