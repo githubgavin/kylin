@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.store59.kylin.datasource.factory.MasterDB;
+import com.store59.kylin.order.data.mapper.CouponMapper;
 import com.store59.kylin.order.data.mapper.OrderMapper;
 import com.store59.kylin.order.data.mapper.OrderfoodMapper;
 
@@ -33,6 +34,15 @@ public class OrderMasterFactory {
 			throws Exception {
 		MapperFactoryBean<OrderfoodMapper> mapperFactory = new MapperFactoryBean<>();
 		mapperFactory.setMapperInterface(OrderfoodMapper.class);
+		mapperFactory.setSqlSessionTemplate(masterSqlSession());
+		return mapperFactory;
+	}
+
+	@Bean
+	public MapperFactoryBean<CouponMapper> masterCouponMapper()
+			throws Exception {
+		MapperFactoryBean<CouponMapper> mapperFactory = new MapperFactoryBean<>();
+		mapperFactory.setMapperInterface(CouponMapper.class);
 		mapperFactory.setSqlSessionTemplate(masterSqlSession());
 		return mapperFactory;
 	}
