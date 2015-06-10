@@ -40,7 +40,7 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		dorm_id, status, sid, uid, name, gender, package_id, phone,
-		delivery_address, yhd_province,
+		delivery_address,
 		jd_address1, jd_address2, jd_address3,
 		jd_address4, jd_address_detail,
 		jd_address_full,
