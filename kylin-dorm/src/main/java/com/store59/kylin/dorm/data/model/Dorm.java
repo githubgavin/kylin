@@ -25,8 +25,6 @@ public class Dorm {
 
 	private String deliveryAddress;
 
-	private Integer yhdProvince;
-
 	private Integer jdAddress1;
 
 	private Integer jdAddress2;
@@ -138,14 +136,6 @@ public class Dorm {
 	public void setDeliveryAddress(String deliveryAddress) {
 		this.deliveryAddress = deliveryAddress == null ? null : deliveryAddress
 				.trim();
-	}
-
-	public Integer getYhdProvince() {
-		return yhdProvince;
-	}
-
-	public void setYhdProvince(Integer yhdProvince) {
-		this.yhdProvince = yhdProvince;
 	}
 
 	public Integer getJdAddress1() {
