@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.store59.kylin.dorm.data.mapper.DormpushmapMapper">
+	<resultMap id="BaseResultMap" type="com.store59.kylin.dorm.data.model.Dormpushmap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="dorm_id" property="dormId" jdbcType="INTEGER" />
+		<result column="target_id" property="targetId" jdbcType="VARCHAR" />
+		<result column="map_type" property="mapType" jdbcType="SMALLINT" />
+		<result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+		<result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+		<result column="app_version" property="appVersion" jdbcType="VARCHAR" />
+		<result column="system_version" property="systemVersion"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id, dorm_id, target_id, map_type, device_id, device_token,
+		app_version,
+		system_version
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from 59_dormpushmap
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		59_dormpushmap
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert">
+		insert into 59_dormpushmap (id, dorm_id, target_id,
+		map_type, device_id, device_token,
+		app_version, system_version)
+		values
+		(#{id,jdbcType=INTEGER}, #{dormId,jdbcType=INTEGER},
+		#{targetId,jdbcType=VARCHAR},
+		#{mapType,jdbcType=SMALLINT},
+		#{deviceId,jdbcType=VARCHAR}, #{deviceToken,jdbcType=VARCHAR},
+		#{appVersion,jdbcType=VARCHAR}, #{systemVersion,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective">
+		insert into 59_dormpushmap
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="dormId != null">
+				dorm_id,
+			</if>
+			<if test="targetId != null">
+				target_id,
+			</if>
+			<if test="mapType != null">
+				map_type,
+			</if>
+			<if test="deviceId != null">
+				device_id,
+			</if>
+			<if test="deviceToken != null">
+				device_token,
+			</if>
+			<if test="appVersion != null">
+				app_version,
+			</if>
+			<if test="systemVersion != null">
+				system_version,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="dormId != null">
+				#{dormId,jdbcType=INTEGER},
+			</if>
+			<if test="targetId != null">
+				#{targetId,jdbcType=VARCHAR},
+			</if>
+			<if test="mapType != null">
+				#{mapType,jdbcType=SMALLINT},
+			</if>
+			<if test="deviceId != null">
+				#{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceToken != null">
+				#{deviceToken,jdbcType=VARCHAR},
+			</if>
+			<if test="appVersion != null">
+				#{appVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="systemVersion != null">
+				#{systemVersion,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective">
+		update 59_dormpushmap
+		<set>
+			<if test="dormId != null">
+				dorm_id = #{dormId,jdbcType=INTEGER},
+			</if>
+			<if test="targetId != null">
+				target_id = #{targetId,jdbcType=VARCHAR},
+			</if>
+			<if test="mapType != null">
+				map_type = #{mapType,jdbcType=SMALLINT},
+			</if>
+			<if test="deviceId != null">
+				device_id = #{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceToken != null">
+				device_token = #{deviceToken,jdbcType=VARCHAR},
+			</if>
+			<if test="appVersion != null">
+				app_version = #{appVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="systemVersion != null">
+				system_version = #{systemVersion,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey">
+		update 59_dormpushmap
+		set dorm_id =
+		#{dormId,jdbcType=INTEGER},
+		target_id = #{targetId,jdbcType=VARCHAR},
+		map_type = #{mapType,jdbcType=SMALLINT},
+		device_id =
+		#{deviceId,jdbcType=VARCHAR},
+		device_token =
+		#{deviceToken,jdbcType=VARCHAR},
+		app_version =
+		#{appVersion,jdbcType=VARCHAR},
+		system_version =
+		#{systemVersion,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getDormpushmapByDevice" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from 59_dormpushmap
+		where device_id = #{deviceId}
+		limit 1
+	</select>
+</mapper>
