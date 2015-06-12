@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.store59.kylin.dorm.data.model.Dorm;
+import com.store59.kylin.dorm.data.model.Dormpushmap;
+import com.store59.kylin.dorm.service.DormpushmapService;
 import com.store59.kylin.dormapi.exception.ServiceException;
 import com.store59.kylin.dormapi.logic.DormLogic;
 import com.store59.kylin.dormapi.logic.UserToken;
@@ -25,6 +27,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private DormLogic dormLogic;
+	@Autowired
+	private DormpushmapService dormpushmapService;
 
 	@RequestMapping(value = "/user/login", method = RequestMethod.POST)
 	public Object login(HttpServletRequest request, String username,
@@ -86,6 +90,36 @@ public class UserController {
 		UserToken token = (UserToken) obj;
 		Boolean status = userService.resetPassword(token.getUserId(),
 				oldpassword, password);
+		Map<String, Object> data = new HashMap<String, Object>();
+		if (status) {
+			data.put("status", 1);
+		} else {
+			data.put("status", 0);
+		}
+		Result result = new Result();
+		result.setData(data);
+		result.UpdateToken(token);
+		return result;
+	}
+
+	@RequestMapping(value = "/device/update", method = RequestMethod.POST)
+	public Object updateDevice(HttpServletRequest request, String device_id,
+			Short device_type, String device_token, String getui_client_id,
+			String app_version, String system_version) {
+		Object obj = request.getSession().getAttribute("usertoken");
+		if (obj == null || !(obj instanceof UserToken)) {
+			throw new ServiceException(2, "empty token");
+		}
+		UserToken token = (UserToken) obj;
+		Dormpushmap dormpushmap = new Dormpushmap();
+		dormpushmap.setDormId(token.getDormId());
+		dormpushmap.setMapType(device_type);
+		dormpushmap.setTargetId(getui_client_id);
+		dormpushmap.setDeviceId(device_id);
+		dormpushmap.setDeviceToken(device_token);
+		dormpushmap.setAppVersion(app_version);
+		dormpushmap.setSystemVersion(system_version);
+		Boolean status = dormpushmapService.updateDormpushmap(dormpushmap);
 		Map<String, Object> data = new HashMap<String, Object>();
 		if (status) {
 			data.put("status", 1);
