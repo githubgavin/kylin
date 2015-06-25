@@ -2,6 +2,10 @@ package com.store59.kylin.order.data.model;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class Coupon {
 	private Integer itemId;
 
