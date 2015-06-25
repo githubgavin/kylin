@@ -1,19 +1,19 @@
-package com.store59.kylin.api.exception;
+package com.store59.kylin.common.exception;
 
 @SuppressWarnings("serial")
-public class ServiceException extends RuntimeException {
+public class BaseException extends RuntimeException {
 	private int status;
 	private String msg;
 
-	public ServiceException() {
+	public BaseException() {
 		this(-1);
 	}
 
-	public ServiceException(int status) {
+	public BaseException(int status) {
 		this(status, null);
 	}
 
-	public ServiceException(int status, String msg) {
+	public BaseException(int status, String msg) {
 		this.status = status;
 		this.msg = msg;
 	}

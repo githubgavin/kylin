@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.store59.kylin.api.exception.ServiceException;
 import com.store59.kylin.api.viewmodel.Result;
+import com.store59.kylin.common.exception.BaseException;
 
 @ControllerAdvice
 public class ServiceExceptionHandler {
@@ -28,8 +28,8 @@ public class ServiceExceptionHandler {
 	public Result handleBadRequest(HttpServletRequest req, Exception ex) {
 		Result r = new Result();
 		System.out.println(ex.getClass());
-		if (ex instanceof ServiceException) {
-			ServiceException e = (ServiceException) ex;
+		if (ex instanceof BaseException) {
+			BaseException e = (BaseException) ex;
 			r.setStatus(e.getStatus());
 			r.setMsg(e.getMsg());
 		} else {
