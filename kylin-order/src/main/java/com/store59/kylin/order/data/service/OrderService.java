@@ -32,6 +32,9 @@ public class OrderService {
 	}
 
 	public Boolean updateOrder(Order order) {
+		if (order.getStatus() != null) {
+			this.setStatus(order.getOrderId(), order.getStatus());
+		}
 		return orderDao.updateByPrimaryKeySelective(order);
 	}
 
