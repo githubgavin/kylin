@@ -26,7 +26,6 @@
 		<module>kylin-coupon</module>
 		<module>kylin-datasource</module>
 		<module>kylin-dorm</module>
-		<module>kylin-dormapi</module>
 		<module>kylin-good</module>
 		<module>kylin-location</module>
 		<module>kylin-order</module>
