@@ -11,6 +11,7 @@ import com.store59.kylin.dorm.data.mapper.DormMapper;
 import com.store59.kylin.dorm.data.mapper.DormentryMapper;
 import com.store59.kylin.dorm.data.mapper.DormitemMapper;
 import com.store59.kylin.dorm.data.mapper.DormpushmapMapper;
+import com.store59.kylin.dorm.data.mapper.DormrepoMapper;
 
 @Configuration
 public class DormSlaveFactory {
@@ -47,11 +48,21 @@ public class DormSlaveFactory {
 		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
 		return mapperFactory;
 	}
+
 	@Bean
 	public MapperFactoryBean<DormpushmapMapper> slaveDormpushmapMapper()
 			throws Exception {
 		MapperFactoryBean<DormpushmapMapper> mapperFactory = new MapperFactoryBean<>();
 		mapperFactory.setMapperInterface(DormpushmapMapper.class);
+		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
+		return mapperFactory;
+	}
+
+	@Bean
+	public MapperFactoryBean<DormrepoMapper> slaveDormrepoMapper()
+			throws Exception {
+		MapperFactoryBean<DormrepoMapper> mapperFactory = new MapperFactoryBean<>();
+		mapperFactory.setMapperInterface(DormrepoMapper.class);
 		mapperFactory.setSqlSessionTemplate(slaveSqlSession());
 		return mapperFactory;
 	}
