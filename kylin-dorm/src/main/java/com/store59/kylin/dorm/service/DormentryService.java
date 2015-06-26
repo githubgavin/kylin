@@ -44,4 +44,8 @@ public class DormentryService {
 	public Boolean updateDormentry(Dormentry dormentry) {
 		return dormentryDao.updateByPrimaryKeySelective(dormentry);
 	}
+	
+	public Dormentry getDormentry(Integer dormentryId){
+		return dormentryDao.selectByPrimaryKey(dormentryId);
+	}
 }
