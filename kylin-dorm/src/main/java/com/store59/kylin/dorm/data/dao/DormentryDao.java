@@ -27,4 +27,8 @@ public class DormentryDao {
 		return false;
 	}
 
+	public Dormentry selectByPrimaryKey(Integer dormentryId) {
+		return slaveDormentryMapper.selectByPrimaryKey(dormentryId);
+	}
+
 }

@@ -177,4 +177,41 @@
 			and stock + #{stock} >= 0
 	]]>
 	</update>
+	<select id="selectByDormIdRidList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		<![CDATA[
+			from 59_dormitem
+			where dorm_id = #{dormId}
+				and rid in
+		]]>
+		<foreach collection="ridList" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<update id="bulkUpdateStock">
+	<![CDATA[
+		update 59_dormitem
+		set stock = stock + case 
+	]]>
+		<foreach collection="filter" index="index" item="item" open=" "
+			separator=" " close=" ">
+			when rid = #{item.rid} then #{item.stock}
+		</foreach>
+	<![CDATA[
+		end
+		where dorm_id = #{dormId,jdbcType=INTEGER} and rid in 
+	]]>
+		<foreach collection="filter" index="index" item="item" open="("
+			separator="," close=")">
+			#{item.rid}
+		</foreach>
+		and stock + case
+		<foreach collection="filter" index="index" item="item" open=" "
+			separator=" " close=" ">
+			when rid = #{item.rid} then #{item.stock}
+		</foreach>
+		end >= 0
+	</update>
 </mapper>

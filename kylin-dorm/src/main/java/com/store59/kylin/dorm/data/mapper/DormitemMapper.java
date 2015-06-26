@@ -1,7 +1,11 @@
 package com.store59.kylin.dorm.data.mapper;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
+import com.store59.kylin.dorm.data.filter.StockFilter;
 import com.store59.kylin.dorm.data.model.Dormitem;
 
 public interface DormitemMapper {
@@ -19,4 +23,10 @@ public interface DormitemMapper {
 
 	int addDormItemStock(@Param("dormId") int dormId, @Param("rid") int rid,
 			@Param("stock") int stock);
+
+	List<Dormitem> selectByDormIdRidList(@Param("dormId") int dormId,
+			@Param("ridList") Collection<Integer> ridList);
+
+	int bulkUpdateStock(@Param("dormId") int dormId,
+			@Param("filter") List<StockFilter> filter);
 }
