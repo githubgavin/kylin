@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.store59.kylin.api.viewmodel.Result;
 import com.store59.kylin.common.Util;
 import com.store59.kylin.common.exception.ServiceException;
+import com.store59.kylin.order.data.filter.OrderFilter;
 import com.store59.kylin.order.data.model.CartItem;
 import com.store59.kylin.order.data.model.Order;
 import com.store59.kylin.order.data.model.Orderfood;
@@ -96,5 +97,39 @@ public class OrderController {
 		Result result = new Result();
 		result.setData(order);
 		return result;
+	}
+
+	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
+	public Object getList(HttpServletRequest request, Integer start_time,
+			Integer end_time, Integer dorm_id,Integer dormentry_id, Integer uid, String phone,
+			String status, Integer page_size, Integer page) {
+		List<Byte> statusList = null;
+		if (status != null) {
+			statusList = Util.getObjectFromJson(status,
+					new TypeReference<List<Byte>>() {
+					});
+		}
+		int limit = 50;
+		if (page_size != null) {
+			limit = page_size;
+		}
+		int offset = 0;
+		if (page != null) {
+			offset = limit * (page - 1);
+		}
+		OrderFilter filter = new OrderFilter();
+		filter.setStartTime(start_time);
+		filter.setEndTime(end_time);
+		filter.setDormId(dorm_id);
+		filter.setDormentryId(dormentry_id);
+		filter.setUid(uid);
+		filter.setPhone(phone);
+		filter.setStatus(statusList);
+		filter.setLimit(limit);
+		filter.setOffset(offset);
+		List<Order> orders = orderService.getOrderList(filter);
+		Map<String,Object> data = new HashMap<>();
+		data.put("orders", orders);
+		return data;
 	}
 }

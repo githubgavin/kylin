@@ -1,10 +1,12 @@
 package com.store59.kylin.order.data.filter;
+
 import java.util.List;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class OrderFilter {
 	private Integer dormId;
+	private Integer dormentryId;
 	private Integer startTime;
 	private Integer endTime;
 	private String phone;
@@ -115,5 +117,13 @@ public class OrderFilter {
 
 	public void setUid(Integer uid) {
 		this.uid = uid;
+	}
+
+	public Integer getDormentryId() {
+		return dormentryId;
+	}
+
+	public void setDormentryId(Integer dormentryId) {
+		this.dormentryId = dormentryId;
 	}
 }
