@@ -22,9 +22,11 @@
 		<result column="text" property="text" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		item_id, type, handout, add_time, use_time, use_uid, use_order_id, code,
+		item_id, type, handout, add_time, use_time, use_uid,
+		use_order_id, code,
 		discount,
-		expire_date, ref_id, uid, threshold, nvshen, rid, rid_num, rid_amount, text
+		expire_date, ref_id, uid, threshold,
+		nvshen, rid, rid_num, rid_amount, text
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -33,27 +35,42 @@
 		from 59_coupon
 		where item_id = #{itemId,jdbcType=INTEGER}
 	</select>
+	<select id="getCouponByCode" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from 59_coupon
+		where code = #{code}
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from 59_coupon
+		delete from
+		59_coupon
 		where item_id = #{itemId,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.store59.kylin.order.data.model.Coupon">
-		insert into 59_coupon (item_id, type, handout,
+		insert into 59_coupon
+		(item_id, type, handout,
 		add_time, use_time, use_uid,
-		use_order_id, code, discount,
+		use_order_id,
+		code, discount,
 		expire_date, ref_id, uid,
 		threshold, nvshen, rid,
 		rid_num, rid_amount, text
 		)
-		values (#{itemId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT},
+		values (#{itemId,jdbcType=INTEGER},
+		#{type,jdbcType=TINYINT},
 		#{handout,jdbcType=TINYINT},
-		#{addTime,jdbcType=INTEGER}, #{useTime,jdbcType=INTEGER}, #{useUid,jdbcType=INTEGER},
-		#{useOrderId,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR},
+		#{addTime,jdbcType=INTEGER}, #{useTime,jdbcType=INTEGER},
+		#{useUid,jdbcType=INTEGER},
+		#{useOrderId,jdbcType=BIGINT},
+		#{code,jdbcType=VARCHAR},
 		#{discount,jdbcType=DECIMAL},
-		#{expireDate,jdbcType=INTEGER}, #{refId,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER},
-		#{threshold,jdbcType=INTEGER}, #{nvshen,jdbcType=TINYINT},
+		#{expireDate,jdbcType=INTEGER}, #{refId,jdbcType=VARCHAR},
+		#{uid,jdbcType=INTEGER},
+		#{threshold,jdbcType=INTEGER},
+		#{nvshen,jdbcType=TINYINT},
 		#{rid,jdbcType=INTEGER},
-		#{ridNum,jdbcType=INTEGER}, #{ridAmount,jdbcType=DECIMAL}, #{text,jdbcType=VARCHAR}
+		#{ridNum,jdbcType=INTEGER}, #{ridAmount,jdbcType=DECIMAL},
+		#{text,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.store59.kylin.order.data.model.Coupon">
@@ -231,23 +248,30 @@
 	<update id="updateByPrimaryKey" parameterType="com.store59.kylin.order.data.model.Coupon">
 		update 59_coupon
 		set type = #{type,jdbcType=TINYINT},
-		handout = #{handout,jdbcType=TINYINT},
+		handout =
+		#{handout,jdbcType=TINYINT},
 		add_time = #{addTime,jdbcType=INTEGER},
 		use_time = #{useTime,jdbcType=INTEGER},
-		use_uid = #{useUid,jdbcType=INTEGER},
-		use_order_id = #{useOrderId,jdbcType=BIGINT},
+		use_uid =
+		#{useUid,jdbcType=INTEGER},
+		use_order_id =
+		#{useOrderId,jdbcType=BIGINT},
 		code = #{code,jdbcType=VARCHAR},
 		discount = #{discount,jdbcType=DECIMAL},
-		expire_date = #{expireDate,jdbcType=INTEGER},
+		expire_date =
+		#{expireDate,jdbcType=INTEGER},
 		ref_id = #{refId,jdbcType=VARCHAR},
-		uid = #{uid,jdbcType=INTEGER},
+		uid
+		= #{uid,jdbcType=INTEGER},
 		threshold = #{threshold,jdbcType=INTEGER},
 		nvshen = #{nvshen,jdbcType=TINYINT},
 		rid = #{rid,jdbcType=INTEGER},
 		rid_num = #{ridNum,jdbcType=INTEGER},
-		rid_amount = #{ridAmount,jdbcType=DECIMAL},
+		rid_amount =
+		#{ridAmount,jdbcType=DECIMAL},
 		text = #{text,jdbcType=VARCHAR}
-		where item_id = #{itemId,jdbcType=INTEGER}
+		where
+		item_id = #{itemId,jdbcType=INTEGER}
 	</update>
 	<update id="backOrderCoupon">
 		update 59_coupon
@@ -255,5 +279,59 @@
 		use_time=0,
 		use_uid=NULL
 		where use_order_id=#{orderId}
+	</update>
+	<update id="updateByCodeSelective">
+		update 59_coupon
+		<set>
+			<if test="type != null">
+				type = #{type,jdbcType=TINYINT},
+			</if>
+			<if test="handout != null">
+				handout = #{handout,jdbcType=TINYINT},
+			</if>
+			<if test="addTime != null">
+				add_time = #{addTime,jdbcType=INTEGER},
+			</if>
+			<if test="useTime != null">
+				use_time = #{useTime,jdbcType=INTEGER},
+			</if>
+			<if test="useUid != null">
+				use_uid = #{useUid,jdbcType=INTEGER},
+			</if>
+			<if test="useOrderId != null">
+				use_order_id = #{useOrderId,jdbcType=BIGINT},
+			</if>
+			<if test="discount != null">
+				discount = #{discount,jdbcType=DECIMAL},
+			</if>
+			<if test="expireDate != null">
+				expire_date = #{expireDate,jdbcType=INTEGER},
+			</if>
+			<if test="refId != null">
+				ref_id = #{refId,jdbcType=VARCHAR},
+			</if>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="threshold != null">
+				threshold = #{threshold,jdbcType=INTEGER},
+			</if>
+			<if test="nvshen != null">
+				nvshen = #{nvshen,jdbcType=TINYINT},
+			</if>
+			<if test="rid != null">
+				rid = #{rid,jdbcType=INTEGER},
+			</if>
+			<if test="ridNum != null">
+				rid_num = #{ridNum,jdbcType=INTEGER},
+			</if>
+			<if test="ridAmount != null">
+				rid_amount = #{ridAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="text != null">
+				text = #{text,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where code = #{code,jdbcType=VARCHAR}
 	</update>
 </mapper>

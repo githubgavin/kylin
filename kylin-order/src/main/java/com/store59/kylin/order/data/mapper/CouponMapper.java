@@ -17,5 +17,9 @@ public interface CouponMapper {
 	int updateByPrimaryKey(Coupon record);
 	
 	int backOrderCoupon(Long orderId);
+	
+	Coupon getCouponByCode(String code);
+	
+	int updateByCodeSelective(Coupon record);
 
 }

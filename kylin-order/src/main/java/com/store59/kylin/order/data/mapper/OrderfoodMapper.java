@@ -2,6 +2,8 @@ package com.store59.kylin.order.data.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.store59.kylin.order.data.model.Orderfood;
 
 public interface OrderfoodMapper {
@@ -17,5 +19,8 @@ public interface OrderfoodMapper {
 
 	int updateByPrimaryKey(Orderfood record);
 
-    List<Orderfood> selectByOrderId(Long orderId);
+	List<Orderfood> selectByOrderId(Long orderId);
+
+	int insertOrderfoodList(
+			@Param("orderfoodList") List<Orderfood> orderfoodList);
 }

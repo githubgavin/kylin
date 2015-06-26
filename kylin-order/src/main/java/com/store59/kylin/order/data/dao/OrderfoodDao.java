@@ -18,5 +18,13 @@ public class OrderfoodDao {
 	public List<Orderfood> selectByOrderId(Long orderId) {
 		return slaveOrderfoodMapper.selectByOrderId(orderId);
 	}
+	
+	public Boolean insertOrderfoodList(List<Orderfood> orderfoodList){
+		int count=masterOrderfoodMapper.insertOrderfoodList(orderfoodList);
+		if(count!=orderfoodList.size()){
+			return false;
+		}
+		return true;
+	}
 
 }

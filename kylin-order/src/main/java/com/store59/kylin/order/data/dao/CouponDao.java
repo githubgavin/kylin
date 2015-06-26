@@ -22,4 +22,13 @@ public class CouponDao {
 		int rows = masterCouponMapper.backOrderCoupon(orderId);
 		return rows > 0 ? true : false;
 	}
+
+	public Coupon getCouponByCode(String code) {
+		return slaveCouponMapper.getCouponByCode(code);
+	}
+
+	public Boolean updateByCodeSelective(Coupon record) {
+		int rows = masterCouponMapper.updateByCodeSelective(record);
+		return rows > 0 ? true : false;
+	}
 }
