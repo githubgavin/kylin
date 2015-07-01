@@ -12,7 +12,6 @@
 		<result column="phone" property="phone" jdbcType="VARCHAR" />
 		<result column="delivery_address" property="deliveryAddress"
 			jdbcType="VARCHAR" />
-		<result column="yhd_province" property="yhdProvince" jdbcType="INTEGER" />
 		<result column="jd_address1" property="jdAddress1" jdbcType="INTEGER" />
 		<result column="jd_address2" property="jdAddress2" jdbcType="INTEGER" />
 		<result column="jd_address3" property="jdAddress3" jdbcType="INTEGER" />
@@ -40,14 +39,16 @@
 	</resultMap>
 	<sql id="Base_Column_List">
 		dorm_id, status, sid, uid, name, gender, package_id, phone,
-		delivery_address, yhd_province,
-		jd_address1, jd_address2, jd_address3,
-		jd_address4, jd_address_detail,
+		delivery_address, jd_address1, jd_address2, jd_address3,
+		jd_address4,
+		jd_address_detail,
 		jd_address_full,
 		zip_code, site_id,
-		ali_account, ali_name, is_pass, add_time, is_new, money,
+		ali_account,
+		ali_name, is_pass, add_time, is_new, money,
 		overdraft,
-		parent_staff_id, dhid, notice, portrait, verified_status
+		parent_staff_id,
+		dhid, notice, portrait, verified_status
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -73,7 +74,7 @@
 		status, sid,
 		uid, name, gender,
 		package_id, phone, delivery_address,
-		yhd_province, jd_address1, jd_address2,
+		jd_address1, jd_address2,
 		jd_address3, jd_address4,
 		jd_address_detail,
 		jd_address_full, zip_code, site_id,
@@ -82,18 +83,24 @@
 		add_time, is_new, money,
 		overdraft, parent_staff_id,
 		dhid,
-		notice, portrait, verified_status
+		notice,
+		portrait, verified_status
 		)
 		values
-		(#{dormId,jdbcType=INTEGER}, #{status,jdbcType=TINYINT},
+		(#{dormId,jdbcType=INTEGER},
+		#{status,jdbcType=TINYINT},
 		#{sid,jdbcType=INTEGER},
 		#{uid,jdbcType=INTEGER},
-		#{name,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT},
-		#{packageId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{gender,jdbcType=TINYINT},
+		#{packageId,jdbcType=INTEGER},
+		#{phone,jdbcType=VARCHAR},
 		#{deliveryAddress,jdbcType=VARCHAR},
 		#{yhdProvince,jdbcType=INTEGER},
-		#{jdAddress1,jdbcType=INTEGER}, #{jdAddress2,jdbcType=INTEGER},
-		#{jdAddress3,jdbcType=INTEGER}, #{jdAddress4,jdbcType=INTEGER},
+		#{jdAddress1,jdbcType=INTEGER},
+		#{jdAddress2,jdbcType=INTEGER},
+		#{jdAddress3,jdbcType=INTEGER},
+		#{jdAddress4,jdbcType=INTEGER},
 		#{jdAddressDetail,jdbcType=VARCHAR},
 		#{jdAddressFull,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR},
 		#{siteId,jdbcType=INTEGER},
@@ -136,9 +143,6 @@
 			</if>
 			<if test="deliveryAddress != null">
 				delivery_address,
-			</if>
-			<if test="yhdProvince != null">
-				yhd_province,
 			</if>
 			<if test="jdAddress1 != null">
 				jd_address1,
@@ -321,9 +325,6 @@
 			<if test="deliveryAddress != null">
 				delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
 			</if>
-			<if test="yhdProvince != null">
-				yhd_province = #{yhdProvince,jdbcType=INTEGER},
-			</if>
 			<if test="jdAddress1 != null">
 				jd_address1 = #{jdAddress1,jdbcType=INTEGER},
 			</if>
@@ -389,35 +390,52 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.store59.kylin.dorm.data.model.Dorm">
 		update 59_dorm
-		set status = #{status,jdbcType=TINYINT},
+		set
+		status = #{status,jdbcType=TINYINT},
 		sid = #{sid,jdbcType=INTEGER},
-		uid = #{uid,jdbcType=INTEGER},
+		uid
+		= #{uid,jdbcType=INTEGER},
 		name = #{name,jdbcType=VARCHAR},
-		gender = #{gender,jdbcType=TINYINT},
+		gender =
+		#{gender,jdbcType=TINYINT},
 		package_id = #{packageId,jdbcType=INTEGER},
 		phone = #{phone,jdbcType=VARCHAR},
-		delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
-		yhd_province = #{yhdProvince,jdbcType=INTEGER},
-		jd_address1 = #{jdAddress1,jdbcType=INTEGER},
-		jd_address2 = #{jdAddress2,jdbcType=INTEGER},
-		jd_address3 = #{jdAddress3,jdbcType=INTEGER},
-		jd_address4 = #{jdAddress4,jdbcType=INTEGER},
-		jd_address_detail = #{jdAddressDetail,jdbcType=VARCHAR},
-		jd_address_full = #{jdAddressFull,jdbcType=VARCHAR},
-		zip_code = #{zipCode,jdbcType=VARCHAR},
+		delivery_address =
+		#{deliveryAddress,jdbcType=VARCHAR},
+		jd_address1 =
+		#{jdAddress1,jdbcType=INTEGER},
+		jd_address2 =
+		#{jdAddress2,jdbcType=INTEGER},
+		jd_address3 =
+		#{jdAddress3,jdbcType=INTEGER},
+		jd_address4 =
+		#{jdAddress4,jdbcType=INTEGER},
+		jd_address_detail =
+		#{jdAddressDetail,jdbcType=VARCHAR},
+		jd_address_full =
+		#{jdAddressFull,jdbcType=VARCHAR},
+		zip_code =
+		#{zipCode,jdbcType=VARCHAR},
 		site_id = #{siteId,jdbcType=INTEGER},
 		ali_account = #{aliAccount,jdbcType=VARCHAR},
-		ali_name = #{aliName,jdbcType=VARCHAR},
+		ali_name =
+		#{aliName,jdbcType=VARCHAR},
 		is_pass = #{isPass,jdbcType=TINYINT},
 		add_time = #{addTime,jdbcType=INTEGER},
-		is_new = #{isNew,jdbcType=TINYINT},
+		is_new =
+		#{isNew,jdbcType=TINYINT},
 		money = #{money,jdbcType=DECIMAL},
-		overdraft = #{overdraft,jdbcType=DECIMAL},
-		parent_staff_id = #{parentStaffId,jdbcType=INTEGER},
+		overdraft
+		= #{overdraft,jdbcType=DECIMAL},
+		parent_staff_id =
+		#{parentStaffId,jdbcType=INTEGER},
 		dhid = #{dhid,jdbcType=INTEGER},
 		notice = #{notice,jdbcType=VARCHAR},
-		portrait = #{portrait,jdbcType=VARCHAR},
-		verified_status = #{verifiedStatus,jdbcType=TINYINT}
-		where dorm_id = #{dormId,jdbcType=INTEGER}
+		portrait =
+		#{portrait,jdbcType=VARCHAR},
+		verified_status =
+		#{verifiedStatus,jdbcType=TINYINT}
+		where dorm_id =
+		#{dormId,jdbcType=INTEGER}
 	</update>
 </mapper>

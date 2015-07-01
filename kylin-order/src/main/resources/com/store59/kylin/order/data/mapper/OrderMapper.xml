@@ -81,6 +81,9 @@
 			<if test="dormId != null">
 				and dorm_id = #{dormId}
 			</if>
+			<if test="dormentryId != null">
+				and dormentry_id = #{dormentryId}
+			</if>
 			<if test="startTime != null">
 				and add_time >= #{startTime}
 			</if>

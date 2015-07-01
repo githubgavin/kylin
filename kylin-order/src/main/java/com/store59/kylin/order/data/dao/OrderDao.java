@@ -19,7 +19,7 @@ public class OrderDao {
 	public Order selectByPrimaryKey(Long orderId) {
 		return slaveOrderMapper.selectByPrimaryKey(orderId);
 	}
-
+	
 	public List<Order> selectByFilter(OrderFilter filter) {
 		return slaveOrderMapper.selectByFilter(filter);
 	}
@@ -30,6 +30,10 @@ public class OrderDao {
 			return true;
 		}
 		return false;
+	}
+
+	public int insertSelective(Order order){
+		return masterOrderMapper.insertSelective(order);
 	}
 
 }

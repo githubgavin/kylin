@@ -28,5 +28,10 @@
 			<artifactId>kylin-dorm</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.store59</groupId>
+			<artifactId>kylin-user</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>

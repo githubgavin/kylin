@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.store59.kylin.dorm.data.mapper.DormrepoMapper">
+	<resultMap id="BaseResultMap" type="com.store59.kylin.dorm.data.model.Dormrepo">
+		<id column="item_id" jdbcType="INTEGER" property="itemId" />
+		<result column="status" jdbcType="TINYINT" property="status" />
+		<result column="cate_id" jdbcType="TINYINT" property="cateId" />
+		<result column="sort" jdbcType="SMALLINT" property="sort" />
+		<result column="rid" jdbcType="INTEGER" property="rid" />
+		<result column="jd_sku" jdbcType="INTEGER" property="jdSku" />
+		<result column="jd_unit_num" jdbcType="INTEGER" property="jdUnitNum" />
+		<result column="stock" jdbcType="INTEGER" property="stock" />
+		<result column="min_stock" jdbcType="INTEGER" property="minStock" />
+		<result column="price" jdbcType="DECIMAL" property="price" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="tip" jdbcType="VARCHAR" property="tip" />
+		<result column="image_small" jdbcType="VARCHAR" property="imageSmall" />
+		<result column="image_medium" jdbcType="VARCHAR" property="imageMedium" />
+		<result column="image_big" jdbcType="VARCHAR" property="imageBig" />
+		<result column="barcode" jdbcType="VARCHAR" property="barcode" />
+		<result column="url" jdbcType="VARCHAR" property="url" />
+		<result column="sm_base_price" jdbcType="DECIMAL" property="smBasePrice" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		item_id, status, cate_id, sort, rid, jd_sku, jd_unit_num,
+		stock, min_stock,
+		price,
+		name, tip, image_small, image_medium,
+		image_big, barcode, url,
+		sm_base_price
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from 59_dormrepo
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		59_dormrepo
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert">
+		insert into 59_dormrepo
+		(item_id, status, cate_id,
+		sort, rid, jd_sku,
+		jd_unit_num, stock,
+		min_stock,
+		price, name, tip,
+		image_small,
+		image_medium, image_big,
+		barcode,
+		url, sm_base_price)
+		values
+		(#{itemId,jdbcType=INTEGER},
+		#{status,jdbcType=TINYINT},
+		#{cateId,jdbcType=TINYINT},
+		#{sort,jdbcType=SMALLINT},
+		#{rid,jdbcType=INTEGER},
+		#{jdSku,jdbcType=INTEGER},
+		#{jdUnitNum,jdbcType=INTEGER},
+		#{stock,jdbcType=INTEGER},
+		#{minStock,jdbcType=INTEGER},
+		#{price,jdbcType=DECIMAL},
+		#{name,jdbcType=VARCHAR},
+		#{tip,jdbcType=VARCHAR},
+		#{imageSmall,jdbcType=VARCHAR},
+		#{imageMedium,jdbcType=VARCHAR},
+		#{imageBig,jdbcType=VARCHAR},
+		#{barcode,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{smBasePrice,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective">
+		insert into 59_dormrepo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="itemId != null">
+				item_id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="cateId != null">
+				cate_id,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="rid != null">
+				rid,
+			</if>
+			<if test="jdSku != null">
+				jd_sku,
+			</if>
+			<if test="jdUnitNum != null">
+				jd_unit_num,
+			</if>
+			<if test="stock != null">
+				stock,
+			</if>
+			<if test="minStock != null">
+				min_stock,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="tip != null">
+				tip,
+			</if>
+			<if test="imageSmall != null">
+				image_small,
+			</if>
+			<if test="imageMedium != null">
+				image_medium,
+			</if>
+			<if test="imageBig != null">
+				image_big,
+			</if>
+			<if test="barcode != null">
+				barcode,
+			</if>
+			<if test="url != null">
+				url,
+			</if>
+			<if test="smBasePrice != null">
+				sm_base_price,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="itemId != null">
+				#{itemId,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="cateId != null">
+				#{cateId,jdbcType=TINYINT},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=SMALLINT},
+			</if>
+			<if test="rid != null">
+				#{rid,jdbcType=INTEGER},
+			</if>
+			<if test="jdSku != null">
+				#{jdSku,jdbcType=INTEGER},
+			</if>
+			<if test="jdUnitNum != null">
+				#{jdUnitNum,jdbcType=INTEGER},
+			</if>
+			<if test="stock != null">
+				#{stock,jdbcType=INTEGER},
+			</if>
+			<if test="minStock != null">
+				#{minStock,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DECIMAL},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="tip != null">
+				#{tip,jdbcType=VARCHAR},
+			</if>
+			<if test="imageSmall != null">
+				#{imageSmall,jdbcType=VARCHAR},
+			</if>
+			<if test="imageMedium != null">
+				#{imageMedium,jdbcType=VARCHAR},
+			</if>
+			<if test="imageBig != null">
+				#{imageBig,jdbcType=VARCHAR},
+			</if>
+			<if test="barcode != null">
+				#{barcode,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="smBasePrice != null">
+				#{smBasePrice,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective">
+		update 59_dormrepo
+		<set>
+			<if test="status != null">
+				status = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="cateId != null">
+				cate_id = #{cateId,jdbcType=TINYINT},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=SMALLINT},
+			</if>
+			<if test="rid != null">
+				rid = #{rid,jdbcType=INTEGER},
+			</if>
+			<if test="jdSku != null">
+				jd_sku = #{jdSku,jdbcType=INTEGER},
+			</if>
+			<if test="jdUnitNum != null">
+				jd_unit_num = #{jdUnitNum,jdbcType=INTEGER},
+			</if>
+			<if test="stock != null">
+				stock = #{stock,jdbcType=INTEGER},
+			</if>
+			<if test="minStock != null">
+				min_stock = #{minStock,jdbcType=INTEGER},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DECIMAL},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="tip != null">
+				tip = #{tip,jdbcType=VARCHAR},
+			</if>
+			<if test="imageSmall != null">
+				image_small = #{imageSmall,jdbcType=VARCHAR},
+			</if>
+			<if test="imageMedium != null">
+				image_medium = #{imageMedium,jdbcType=VARCHAR},
+			</if>
+			<if test="imageBig != null">
+				image_big = #{imageBig,jdbcType=VARCHAR},
+			</if>
+			<if test="barcode != null">
+				barcode = #{barcode,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="smBasePrice != null">
+				sm_base_price = #{smBasePrice,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where item_id = #{itemId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey">
+		update 59_dormrepo
+		set status =
+		#{status,jdbcType=TINYINT},
+		cate_id =
+		#{cateId,jdbcType=TINYINT},
+		sort =
+		#{sort,jdbcType=SMALLINT},
+		rid =
+		#{rid,jdbcType=INTEGER},
+		jd_sku =
+		#{jdSku,jdbcType=INTEGER},
+		jd_unit_num = #{jdUnitNum,jdbcType=INTEGER},
+		stock =
+		#{stock,jdbcType=INTEGER},
+		min_stock =
+		#{minStock,jdbcType=INTEGER},
+		price = #{price,jdbcType=DECIMAL},
+		name =
+		#{name,jdbcType=VARCHAR},
+		tip
+		= #{tip,jdbcType=VARCHAR},
+		image_small =
+		#{imageSmall,jdbcType=VARCHAR},
+		image_medium =
+		#{imageMedium,jdbcType=VARCHAR},
+		image_big =
+		#{imageBig,jdbcType=VARCHAR},
+		barcode = #{barcode,jdbcType=VARCHAR},
+		url = #{url,jdbcType=VARCHAR},
+		sm_base_price =
+		#{smBasePrice,jdbcType=DECIMAL}
+		where item_id =
+		#{itemId,jdbcType=INTEGER}
+	</update>
+	<select id="getDormRepoByRid" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from 59_dormrepo
+		where rid = #{rid,jdbcType=INTEGER}
+	</select>
+</mapper>

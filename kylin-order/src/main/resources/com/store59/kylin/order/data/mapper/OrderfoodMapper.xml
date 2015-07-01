@@ -323,4 +323,25 @@
 		where item_id =
 		#{itemId,jdbcType=INTEGER}
 	</update>
+	<insert id="insertOrderfoodList">
+	<![CDATA[
+		insert into 59_orderfood (order_id, rid, price, 
+      		quantity, amount, origin_price, 
+      		promotion_id, promotion_type, promotion_label, 
+      		fname, image_small, image_medium, image_big)
+      	values 
+	]]>
+		<foreach collection="orderfoodList" index="index" item="orderFood" open=" "
+			separator="," close=" ">
+		<![CDATA[
+			(#{orderFood.orderId,jdbcType=BIGINT}, #{orderFood.rid,jdbcType=INTEGER}, 
+			#{orderFood.price,jdbcType=DECIMAL}, #{orderFood.quantity,jdbcType=SMALLINT}, 
+			#{orderFood.amount,jdbcType=DECIMAL}, #{orderFood.originPrice,jdbcType=DECIMAL}, 
+			#{orderFood.promotionId,jdbcType=INTEGER}, #{orderFood.promotionType,jdbcType=INTEGER}, 
+			#{orderFood.promotionLabel,jdbcType=VARCHAR}, #{orderFood.fname,jdbcType=VARCHAR}, 
+			#{orderFood.imageSmall,jdbcType=VARCHAR}, #{orderFood.imageMedium,jdbcType=VARCHAR}, 
+			#{orderFood.imageBig,jdbcType=VARCHAR})
+		]]>
+		</foreach>
+	</insert>
 </mapper>
