@@ -21,6 +21,8 @@ public class Dormpushmap {
 
 	private String systemVersion;
 
+	private Short receiveStatus;
+
 	public Integer getId() {
 		return id;
 	}
@@ -84,5 +86,13 @@ public class Dormpushmap {
 	public void setSystemVersion(String systemVersion) {
 		this.systemVersion = systemVersion == null ? null : systemVersion
 				.trim();
+	}
+
+	public Short getReceiveStatus() {
+		return receiveStatus;
+	}
+
+	public void setReceiveStatus(Short receiveStatus) {
+		this.receiveStatus = receiveStatus;
 	}
 }
