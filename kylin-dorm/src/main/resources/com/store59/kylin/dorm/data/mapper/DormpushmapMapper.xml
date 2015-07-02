@@ -11,12 +11,14 @@
 		<result column="app_version" property="appVersion" jdbcType="VARCHAR" />
 		<result column="system_version" property="systemVersion"
 			jdbcType="VARCHAR" />
+		<result column="receive_status" property="receiveStatus"
+			jdbcType="SMALLINT" />
 	</resultMap>
 
 	<sql id="Base_Column_List">
 		id, dorm_id, target_id, map_type, device_id, device_token,
 		app_version,
-		system_version
+		system_version,receive_status
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -33,13 +35,19 @@
 	<insert id="insert">
 		insert into 59_dormpushmap (id, dorm_id, target_id,
 		map_type, device_id, device_token,
-		app_version, system_version)
+		app_version,
+		system_version,receive_status)
 		values
-		(#{id,jdbcType=INTEGER}, #{dormId,jdbcType=INTEGER},
+		(#{id,jdbcType=INTEGER},
+		#{dormId,jdbcType=INTEGER},
 		#{targetId,jdbcType=VARCHAR},
 		#{mapType,jdbcType=SMALLINT},
-		#{deviceId,jdbcType=VARCHAR}, #{deviceToken,jdbcType=VARCHAR},
-		#{appVersion,jdbcType=VARCHAR}, #{systemVersion,jdbcType=VARCHAR})
+		#{deviceId,jdbcType=VARCHAR},
+		#{deviceToken,jdbcType=VARCHAR},
+		#{appVersion,jdbcType=VARCHAR},
+		#{systemVersion,jdbcType=VARCHAR},
+		#{receiveStatus,jdbcType=SMALLINT}
+		)
 	</insert>
 	<insert id="insertSelective">
 		insert into 59_dormpushmap
@@ -68,6 +76,9 @@
 			<if test="systemVersion != null">
 				system_version,
 			</if>
+			<if test="receiveStatus != null">
+				receive_status,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -93,6 +104,9 @@
 			</if>
 			<if test="systemVersion != null">
 				#{systemVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="receiveStatus != null">
+				#{receiveStatus,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -120,6 +134,9 @@
 			<if test="systemVersion != null">
 				system_version = #{systemVersion,jdbcType=VARCHAR},
 			</if>
+			<if test="receiveStatus != null">
+				receive_status = #{receiveStatus,jdbcType=SMALLINT},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -136,10 +153,12 @@
 		app_version =
 		#{appVersion,jdbcType=VARCHAR},
 		system_version =
-		#{systemVersion,jdbcType=VARCHAR}
+		#{systemVersion,jdbcType=VARCHAR},
+		receive_status =
+		#{receiveStatus,jdbcType=SMALLINT}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<select id="getDormpushmapByDevice" resultMap="BaseResultMap" >
+	<select id="getDormpushmapByDevice" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from 59_dormpushmap
