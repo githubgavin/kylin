@@ -26,5 +26,9 @@ public class DormpushmapService {
 		}
 		return dormpushmapDao.insertSelective(dormpushmap);
 	}
+	
+	public Dormpushmap getDormpushmapByDevice(String deviceId){
+		return dormpushmapDao.getDormpushmapByDevice(deviceId);
+	}
 
 }
