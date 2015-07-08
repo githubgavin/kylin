@@ -10,4 +10,6 @@ public interface ICache {
 	Boolean exists(String key);
 
 	Long del(String key);
+
+	Long expire(String key, int seconds);
 }

@@ -114,5 +114,11 @@ public class RedisCache implements ICache {
 			return jedis.del(key);
 		}
 	}
+	
+	public Long expire(String key,int seconds){
+		try (ShardedJedis jedis = pool.getResource()) {
+			return jedis.expire(key,seconds);
+		}
+	}
 
 }
