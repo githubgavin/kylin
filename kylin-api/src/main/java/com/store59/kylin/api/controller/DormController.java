@@ -15,10 +15,15 @@ import com.store59.kylin.dorm.service.DormService;
 public class DormController {
 	@Autowired
 	private DormService dormService;
-	
+
 	@RequestMapping(value = "/dorm/info", method = RequestMethod.GET)
-	public Object info(HttpServletRequest request, Integer dorm_id) {
-		Dorm dorm = dormService.getDorm(dorm_id);
+	public Object info(HttpServletRequest request, Integer dorm_id, Integer uid) {
+		Dorm dorm = null;
+		if (dorm_id != null) {
+			dorm = dormService.getDorm(dorm_id);
+		} else {
+			dorm = dormService.getDormByUid(uid);
+		}
 		Result result = new Result();
 		result.setData(dorm);
 		return result;
