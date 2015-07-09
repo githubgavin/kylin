@@ -1,5 +1,8 @@
 package com.store59.kylin.api.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,16 @@ public class DormentryController {
 		Object data = dormentryService.getDormentry(dormentry_id);
 		Result result = new Result();
 		result.setData(data);
+		return result;
+	}
+
+	@RequestMapping(value = "/dormentry/list", method = RequestMethod.GET)
+	public Object getList(HttpServletRequest request, Integer dorm_id) {
+		Object lists = dormentryService.getDormentryList(dorm_id);
+		Map<String, Object> map = new HashMap<>();
+		map.put("dormentries", lists);
+		Result result = new Result();
+		result.setData(map);
 		return result;
 	}
 }
