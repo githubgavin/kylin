@@ -1,5 +1,9 @@
 package com.store59.kylin.location.data.model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy.class)
 public class Province {
 	private Integer provinceId;
 	private String name;
