@@ -75,6 +75,11 @@
 			<artifactId>kylin-order</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.store59</groupId>
+			<artifactId>kylin-location</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>kylinapi</finalName>
