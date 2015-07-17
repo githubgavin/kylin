@@ -130,6 +130,8 @@ public class OrderController {
 		List<Order> orders = orderService.getOrderList(filter);
 		Map<String,Object> data = new HashMap<>();
 		data.put("orders", orders);
-		return data;
+		Result result = new Result();
+		result.setData(data);
+		return result;
 	}
 }
