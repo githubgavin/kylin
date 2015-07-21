@@ -77,4 +77,11 @@
 			</plugin>
 		</plugins>
 	</build>
+	<distributionManagement>
+        <repository>
+            <id>Kylin-Snapshots</id>
+            <name>Kylin Snapshots</name>
+            <url>http://nexus.59store.com:8081/nexus/content/repositories/Kylin-Snapshots/</url>
+        </repository>
+    </distributionManagement>
 </project>
