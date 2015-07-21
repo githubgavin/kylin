@@ -11,6 +11,7 @@
 
 	<artifactId>kylin-datasource</artifactId>
 	<name>kylin-datasource</name>
+	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
