@@ -1,6 +1,5 @@
 package com.store59.kylin.common;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 
@@ -14,9 +13,6 @@ public class Application {
 	 * @return
 	 */
 	public static ApplicationContext getContext() {
-		if (ctx == null) {
-			ctx = SpringApplication.run(Application.class, new String[] {});
-		}
-		return ctx;
+	    return null;
 	}
 }
