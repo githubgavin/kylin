@@ -47,4 +47,7 @@ public class MasterDB {
 	public SqlSessionTemplate getSqlSession() {
 		return this.sqlSession;
 	}
+
+	public SqlSessionFactoryBean getSqlSessionFactory() {return this.sqlSessionFactory;}
+
 }

@@ -39,7 +39,6 @@ public class SlaveDB {
 
 		this.sqlSessionFactory = new SqlSessionFactoryBean();
 		this.sqlSessionFactory.setDataSource(this.dataSource);
-
 		this.sqlSession = new SqlSessionTemplate(
 				this.sqlSessionFactory.getObject());
 	}
@@ -47,4 +46,6 @@ public class SlaveDB {
 	public SqlSessionTemplate getSqlSession() {
 		return this.sqlSession;
 	}
+
+	public SqlSessionFactoryBean getSqlSessionFactory() {return this.sqlSessionFactory;}
 }
