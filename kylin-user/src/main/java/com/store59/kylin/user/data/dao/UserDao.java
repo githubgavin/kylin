@@ -13,7 +13,7 @@ public class UserDao {
 	@Autowired
 	private UserMapper slaveUserMapper;
 
-	public User selectByPrimaryKey(int uid) {
+	public User selectByPrimaryKey(Long uid) {
 		return slaveUserMapper.selectByPrimaryKey(uid);
 	}
 

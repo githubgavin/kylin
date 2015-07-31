@@ -106,7 +106,7 @@ public class OrderService {
 	}
 
 	public Order placeOrder(byte type, byte paytype, byte source,
-			int dormentryId, int uid, List<CartItem> cartItemList,
+			int dormentryId, Long uid, List<CartItem> cartItemList,
 			String couponCode, BigDecimal promotionDiscount,
 			BigDecimal foodAmount, int foodNum, BigDecimal orderAmount,
 			String phone, String dormitory, String ip, String remark) {
@@ -127,7 +127,7 @@ public class OrderService {
 			}
 		} else {
 			user = new User();
-			user.setUid(0);
+			user.setUid(0L);
 			user.setUname("游客");
 			user.setPortrait("");
 		}

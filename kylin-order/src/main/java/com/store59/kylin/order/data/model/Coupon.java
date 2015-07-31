@@ -17,7 +17,7 @@ public class Coupon {
 
 	private Integer useTime;
 
-	private Integer useUid;
+	private Long useUid;
 
 	private Long useOrderId;
 
@@ -29,7 +29,7 @@ public class Coupon {
 
 	private String refId;
 
-	private Integer uid;
+	private Long uid;
 
 	private Integer threshold;
 
@@ -83,11 +83,11 @@ public class Coupon {
 		this.useTime = useTime;
 	}
 
-	public Integer getUseUid() {
+	public Long getUseUid() {
 		return useUid;
 	}
 
-	public void setUseUid(Integer useUid) {
+	public void setUseUid(Long useUid) {
 		this.useUid = useUid;
 	}
 
@@ -131,11 +131,11 @@ public class Coupon {
 		this.refId = refId == null ? null : refId.trim();
 	}
 
-	public Integer getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 
