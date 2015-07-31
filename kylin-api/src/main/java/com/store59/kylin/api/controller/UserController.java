@@ -16,7 +16,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	@RequestMapping(value = "/user/info", method = RequestMethod.GET)
-	public Object info(HttpServletRequest request, Integer uid) {
+	public Object info(HttpServletRequest request, Long uid) {
 		User user = userService.getUser(uid);
 		Result result = new Result();
 		result.setData(user);

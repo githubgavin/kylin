@@ -15,11 +15,11 @@ public class UserService {
 		return userDao.getUserForLogin(name, password);
 	}
 
-	public User getUser(int uid) {
+	public User getUser(Long uid) {
 		return userDao.selectByPrimaryKey(uid);
 	}
 
-	public Boolean resetPassword(int uid, String oldPassword, String password) {
+	public Boolean resetPassword(Long uid, String oldPassword, String password) {
 		User user = getUser(uid);
 		if (user == null || !user.getPasswd().equals(oldPassword)) {
 			return false;

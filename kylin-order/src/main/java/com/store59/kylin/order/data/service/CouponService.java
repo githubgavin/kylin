@@ -29,11 +29,11 @@ public class CouponService {
 		return couponDao.updateByCodeSelective(coupon);
 	}
 
-	public boolean isValid(String code, int uid, BigDecimal foodAmount) {
+	public boolean isValid(String code, Long uid, BigDecimal foodAmount) {
 		Coupon coupon = getCouponByCode(code);
 
 		// 校验优惠券的从属
-		int belongTo = coupon.getUid();
+		Long belongTo = coupon.getUid();
 		if (belongTo != 0 && belongTo != uid) {
 			return false;
 		}
@@ -57,7 +57,7 @@ public class CouponService {
 		return true;
 	}
 	
-	public boolean useCoupon(String code, int uid, long orderId) {
+	public boolean useCoupon(String code, Long uid, long orderId) {
 		int now = (int) (System.currentTimeMillis() / 1000);
 		Coupon coupon = new Coupon();
 		coupon.setCode(code);
