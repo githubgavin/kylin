@@ -101,7 +101,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
 	public Object getList(HttpServletRequest request, Integer start_time,
-			Integer end_time, Integer dorm_id,Integer dormentry_id, Integer uid, String phone,
+			Integer end_time, Integer dorm_id,Integer dormentry_id, Long uid, String phone,
 			String status, Integer page_size, Integer page) {
 		List<Byte> statusList = null;
 		if (status != null) {
