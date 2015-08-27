@@ -14,7 +14,7 @@ public class OrderFilter {
 	private List<Byte> status;
 	private Integer offset;
 	private Integer limit;
-	private Integer uid;
+	private Long uid;
 
 	public OrderFilter() {
 	}
@@ -111,11 +111,11 @@ public class OrderFilter {
 		this.limit = limit;
 	}
 
-	public Integer getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 

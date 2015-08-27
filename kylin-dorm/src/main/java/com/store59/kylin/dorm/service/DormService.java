@@ -15,7 +15,7 @@ public class DormService {
 		return dormDao.selectByPrimaryKey(dormId);
 	}
 
-	public Dorm getDormByUid(Integer uid) {
+	public Dorm getDormByUid(Long uid) {
 		return dormDao.selectByUid(uid);
 	}
 

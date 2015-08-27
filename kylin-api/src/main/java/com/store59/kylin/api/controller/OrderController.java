@@ -74,7 +74,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/order/create", method = RequestMethod.POST)
 	public Result placeOrder(HttpServletRequest request, Byte type,
-			Byte paytype, Byte source, Integer dormentry_id, Integer uid,
+			Byte paytype, Byte source, Integer dormentry_id, Long uid,
 			String items, String coupon_code, BigDecimal promotion_discount,
 			BigDecimal food_amount, Integer food_num, BigDecimal order_amount,
 			String phone, String dormitory, String ip, String remark) {
@@ -101,7 +101,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
 	public Object getList(HttpServletRequest request, Integer start_time,
-			Integer end_time, Integer dorm_id,Integer dormentry_id, Integer uid, String phone,
+			Integer end_time, Integer dorm_id,Integer dormentry_id, Long uid, String phone,
 			String status, Integer page_size, Integer page) {
 		List<Byte> statusList = null;
 		if (status != null) {

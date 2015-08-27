@@ -17,7 +17,7 @@ public class DormDao {
 		return slaveDormMapper.selectByPrimaryKey(dormId);
 	}
 
-	public Dorm selectByUid(Integer uid) {
+	public Dorm selectByUid(Long uid) {
 		return slaveDormMapper.selectByUid(uid);
 	}
 
