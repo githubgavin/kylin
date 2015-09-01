@@ -38,7 +38,7 @@
 	]]>
 	</select>
 	<sql id="Base_Column_List">
-		dormentry_id, dorm_id, site_id, sid, status, sort, address, address1, address2,address3
+		dormentry_id, dorm_id, site_id, sid, status, sort, address, address1, address2,address3,
 		notice,
 		dormentry_type, dormentry_floors, room_number, student_number, longitude, latitude,
 		max_reward
