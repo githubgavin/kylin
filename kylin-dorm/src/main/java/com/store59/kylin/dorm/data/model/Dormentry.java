@@ -23,6 +23,8 @@ public class Dormentry {
 
 	private String address2;
 
+	private String address3;
+
 	private String notice;
 
 	private Integer dormentryType;
@@ -111,7 +113,15 @@ public class Dormentry {
 		this.address2 = address2 == null ? null : address2.trim();
 	}
 
-	public String getNotice() {
+	public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
+    }
+
+    public String getNotice() {
 		return notice;
 	}
 
