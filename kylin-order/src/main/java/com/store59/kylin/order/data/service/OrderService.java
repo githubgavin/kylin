@@ -70,7 +70,8 @@ public class OrderService {
             throw new RuntimeException("请求参数有误");
         }
         Byte oldStatus = order.getStatus();
-        if (oldStatus == 4 || oldStatus == 5) {
+        if (oldStatus == 4 || oldStatus == 5
+                || (status == 2 && oldStatus.equals(status))) {
             throw new RuntimeException("订单不允许更新状态");
         }
         Order updateOrder = new Order();
