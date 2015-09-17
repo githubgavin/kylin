@@ -13,7 +13,7 @@ public class Dorm {
 
 	private Integer sid;
 
-	private Integer uid;
+	private Long uid;
 
 	private String name;
 
@@ -89,11 +89,11 @@ public class Dorm {
 		this.sid = sid;
 	}
 
-	public Integer getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
-	public void setUid(Integer uid) {
+	public void setUid(Long uid) {
 		this.uid = uid;
 	}
 

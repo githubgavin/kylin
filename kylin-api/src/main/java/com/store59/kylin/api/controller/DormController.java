@@ -17,7 +17,7 @@ public class DormController {
 	private DormService dormService;
 
 	@RequestMapping(value = "/dorm/info", method = RequestMethod.GET)
-	public Object info(HttpServletRequest request, Integer dorm_id, Integer uid) {
+	public Object info(HttpServletRequest request, Integer dorm_id, Long uid) {
 		Dorm dorm = null;
 		if (dorm_id != null) {
 			dorm = dormService.getDorm(dorm_id);

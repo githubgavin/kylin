@@ -11,7 +11,7 @@ public interface DormMapper {
 
     Dorm selectByPrimaryKey(Integer dormId);
 
-    Dorm selectByUid(Integer uid);
+    Dorm selectByUid(Long uid);
 
     int updateByPrimaryKeySelective(Dorm record);
 
