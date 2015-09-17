@@ -1,8 +1,7 @@
 package com.store59.kylin.datasource.factory;
 
-import javax.sql.DataSource;
-
-import org.apache.ibatis.datasource.pooled.PooledDataSource;
+import org.apache.tomcat.jdbc.pool.DataSource;
+import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.InitializingBean;
@@ -19,61 +18,110 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @Configuration
 @EnableTransactionManagement
 public class MasterDB implements TransactionManagementConfigurer, InitializingBean {
-	private String url = "jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8";
-	private String driver = "com.mysql.jdbc.Driver";
-	private DataSource dataSource;
-	private SqlSessionFactoryBean sqlSessionFactory;
-	private SqlSessionTemplate sqlSession;
-	private @Value("${datasource.master.host}") String host;
-	private @Value("${datasource.master.port}") int port;
-	private @Value("${datasource.master.db}") String db;
-	private @Value("${datasource.master.username}") String username;
-	private @Value("${datasource.master.password}") String password;
-	private @Value("${datasource.master.maxconn}") int poolMaximumActiveConnections;
-	private @Value("${datasource.master.minconn}") int poolMaximumIdleConnections;
 
-	public MasterDB() {
-	}
-	
-	public SqlSessionTemplate getSqlSession() {
-		return this.sqlSession;
-	}
+    private String url = "jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8";
+    private String driver = "com.mysql.jdbc.Driver";
+    private DataSource dataSource;
+    private SqlSessionFactoryBean sqlSessionFactory;
+    private SqlSessionTemplate sqlSession;
+    @Value("${datasource.master.host}")
+    private String host;
+    @Value("${datasource.master.port}")
+    private int port;
+    @Value("${datasource.master.db}")
+    private String db;
+    @Value("${datasource.master.username}")
+    private String username;
+    @Value("${datasource.master.password}")
+    private String password;
+    @Value("${datasource.master.maxconn}")
+    private int maxActive;
+    @Value("${datasource.master.minconn}")
+    private int minIdle;
+    @Value("${datasource.master.maxIdle:0}")
+    private int maxIdle;
+    @Value("${datasource.master.validationInterval:30000}")
+    private int validationInterval;
+    @Value("${datasource.master.validationQueryTimeout:30000}")
+    private int validationQueryTimeout;
+    @Value("${datasource.master.timeBetweenEvictionRunsMillis:30000}")
+    private int timeBetweenEvictionRunsMillis;
+    @Value("${datasource.master.initialSize:0}")
+    private int initialSize;
+    @Value("${datasource.master.maxWait:10000}")
+    private int maxWait;
+    @Value("${datasource.master.removeAbandonedTimeout:60}")
+    private int removeAbandonedTimeout;
+    @Value("${datasource.master.minEvictableIdleTimeMillis:30000}")
+    private int minEvictableIdleTimeMillis;
 
-	public SqlSessionFactoryBean getSqlSessionFactory() {return this.sqlSessionFactory;}
+    public MasterDB() {
+        if (maxIdle <= 0) {
+            maxIdle = maxActive;
+        }
+        if (initialSize <= 0) {
+            initialSize = minIdle;
+        }
+    }
 
-	@Bean SqlSessionTemplate masterSqlSessionTemplate() {
-		return this.getSqlSession();
-	}
+    public SqlSessionTemplate getSqlSession() {
+        return this.sqlSession;
+    }
 
-	@Bean SqlSessionFactoryBean masterSqlSessionFactoryBean() {
-		return this.getSqlSessionFactory();
-	}
+    public SqlSessionFactoryBean getSqlSessionFactory() {
+        return this.sqlSessionFactory;
+    }
 
-	@Bean PlatformTransactionManager txManager() {
-		return new DataSourceTransactionManager(dataSource);
-	}
+    @Bean
+    SqlSessionTemplate masterSqlSessionTemplate() {
+        return this.getSqlSession();
+    }
 
-	@Override
-	 public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return txManager();
-	}
+    @Bean
+    SqlSessionFactoryBean masterSqlSessionFactoryBean() {
+        return this.getSqlSessionFactory();
+    }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		PooledDataSource dataSource = new PooledDataSource(this.driver,
-				String.format(this.url, host, port, db), username, password);
-		dataSource
-				.setPoolMaximumActiveConnections(poolMaximumActiveConnections);
-		dataSource.setPoolMaximumIdleConnections(poolMaximumIdleConnections);
-		dataSource.setPoolPingEnabled(true);
-		dataSource.setPoolPingQuery("select 1");
-		dataSource.setPoolPingConnectionsNotUsedFor(3600000);
-		this.dataSource = dataSource;
+    @Bean
+    PlatformTransactionManager txManager() {
+        return new DataSourceTransactionManager(dataSource);
+    }
 
-		this.sqlSessionFactory = new SqlSessionFactoryBean();
-		this.sqlSessionFactory.setDataSource(this.dataSource);
+    @Override
+    public PlatformTransactionManager annotationDrivenTransactionManager() {
+        return txManager();
+    }
 
-		this.sqlSession = new SqlSessionTemplate(
-				this.sqlSessionFactory.getObject());
-	}
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        PoolProperties p = new PoolProperties();
+        p.setUrl(String.format(this.url, host, port, db));
+        p.setDriverClassName(this.driver);
+        p.setUsername(this.username);
+        p.setPassword(this.password);
+        p.setTestWhileIdle(true);
+        p.setTestOnBorrow(true);
+        p.setValidationQuery("SELECT 1");
+        p.setValidationInterval(validationInterval);
+        p.setValidationQueryTimeout(validationQueryTimeout);
+        p.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        p.setMaxActive(maxActive);
+        p.setInitialSize(initialSize);
+        p.setMaxWait(maxWait);
+        p.setRemoveAbandonedTimeout(removeAbandonedTimeout);
+        p.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        p.setInitSQL("set names utf8mb4");
+        p.setMinIdle(minIdle);
+        p.setMaxIdle(maxIdle);
+        p.setLogAbandoned(true);
+        p.setDefaultAutoCommit(true);
+        DataSource datasource = new DataSource();
+        datasource.setPoolProperties(p);
+
+        DataSource dataSource = new DataSource(p);
+        this.dataSource = dataSource;
+        this.sqlSessionFactory = new SqlSessionFactoryBean();
+        this.sqlSessionFactory.setDataSource(this.dataSource);
+        this.sqlSession = new SqlSessionTemplate(this.sqlSessionFactory.getObject());
+    }
 }

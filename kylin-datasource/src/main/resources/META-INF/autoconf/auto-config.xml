@@ -28,9 +28,9 @@
 		<property name="db.slave.password" defaultValue="59store"
 			description="Slave database password" />
 		<property name="db.slave.maxconn" defaultValue="20"
-			description="Slave database poolMaximumActiveConnections" />
+			description="Slave database maxActive" />
 		<property name="db.slave.minconn" defaultValue="10"
-			description="Slave database poolMaximumIdleConnections" />
+			description="Slave database minIdle" />
 		<property name="db.slave.mappers" defaultValue=""
 			description="Slave database mappers" />
 	</group>
