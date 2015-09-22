@@ -42,7 +42,7 @@ public class MasterDB implements TransactionManagementConfigurer, InitializingBe
     private int maxIdle;
     @Value("${datasource.master.validationInterval:30000}")
     private int validationInterval;
-    @Value("${datasource.master.validationQueryTimeout:30000}")
+    @Value("${datasource.master.validationQueryTimeout:5}")
     private int validationQueryTimeout;
     @Value("${datasource.master.timeBetweenEvictionRunsMillis:30000}")
     private int timeBetweenEvictionRunsMillis;

@@ -37,7 +37,7 @@ public class SlaveDB implements InitializingBean {
 	private int maxIdle;
 	@Value("${datasource.slave.validationInterval:30000}")
 	private int validationInterval;
-	@Value("${datasource.slave.validationQueryTimeout:30000}")
+	@Value("${datasource.slave.validationQueryTimeout:5}")
 	private int validationQueryTimeout;
 	@Value("${datasource.slave.timeBetweenEvictionRunsMillis:30000}")
 	private int timeBetweenEvictionRunsMillis;
