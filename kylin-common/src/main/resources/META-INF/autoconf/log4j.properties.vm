@@ -1,4 +1,4 @@
-log4j.rootLogger=ERROR,ServerDailyRollingFile,stdout
+log4j.rootLogger=INFO,ServerDailyRollingFile,stdout
 log4j.logger.controller=INFO,controllerfile
 log4j.logger.print =INFO,printfile
 
@@ -6,23 +6,23 @@ log4j.appender.controllerfile=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.controllerfile.DatePattern='.'yyyy-MM-dd_HH
 log4j.appender.controllerfile.File=${log4j.appender.controllerfile.File}
 log4j.appender.controllerfile.layout=org.apache.log4j.PatternLayout
-log4j.appender.controllerfile.layout.ConversionPattern=%d - %m%n
+log4j.appender.controllerfile.layout.ConversionPattern=%d - %p [%l] %m%n
 log4j.appender.controllerfile.Append=true
 
 log4j.appender.ServerDailyRollingFile=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.ServerDailyRollingFile.DatePattern='.'yyyy-MM-dd_HH
 log4j.appender.ServerDailyRollingFile.File=${log4j.appender.ServerDailyRollingFile.File}
 log4j.appender.ServerDailyRollingFile.layout=org.apache.log4j.PatternLayout
-log4j.appender.ServerDailyRollingFile.layout.ConversionPattern=%d - %m%n
+log4j.appender.ServerDailyRollingFile.layout.ConversionPattern=%d - %p [%l] %m%n
 log4j.appender.ServerDailyRollingFile.Append=true
 
 log4j.appender.printfile=org.apache.log4j.DailyRollingFileAppender
 log4j.appender.printfile.DatePattern='.'yyyy-MM-dd_HH
 log4j.appender.printfile.File=${log4j.appender.printfile.File}
 log4j.appender.printfile.layout=org.apache.log4j.PatternLayout
-log4j.appender.printfile.layout.ConversionPattern=%d - %m%n
+log4j.appender.printfile.layout.ConversionPattern=%d - %p [%l] %m%n
 log4j.appender.printfile.Append=true
 
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.ConversionPattern=%d - %m%n
+log4j.appender.stdout.layout.ConversionPattern=%d - %p [%l] %m%n
