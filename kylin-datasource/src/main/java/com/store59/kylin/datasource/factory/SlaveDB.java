@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -51,7 +52,8 @@ public class SlaveDB implements InitializingBean {
 	private int minEvictableIdleTimeMillis;
 
 	@Autowired
-	public SlaveDB() {}
+	public SlaveDB() {
+	}
 
 	public SqlSessionTemplate getSqlSession() {
 		return this.sqlSession;
@@ -60,6 +62,7 @@ public class SlaveDB implements InitializingBean {
 	public SqlSessionFactoryBean getSqlSessionFactory() {return this.sqlSessionFactory;}
 
 	@Bean
+	@Scope("prototype")
 	SqlSessionTemplate slaveSqlSessionTemplate() {
 		return this.getSqlSession();
 	}
@@ -70,6 +73,12 @@ public class SlaveDB implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		if (maxIdle <= 0) {
+			maxIdle = maxActive;
+		}
+		if (initialSize <= 0) {
+			initialSize = minIdle;
+		}
 		PoolProperties p = new PoolProperties();
 		p.setUrl(String.format(this.url, host, port, db));
 		p.setDriverClassName(this.driver);
