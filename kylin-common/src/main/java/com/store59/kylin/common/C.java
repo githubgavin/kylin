@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2015, 59store. All rights reserved.
+ */
 package com.store59.kylin.common;
 
 public class C {
