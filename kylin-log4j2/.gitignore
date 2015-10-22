@@ -11,3 +11,6 @@ target/
 
 # Mac crap
 .DS_Store
+
+*.iml
+.idea/

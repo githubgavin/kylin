@@ -7,11 +7,23 @@ package com.store59.kylin.common.exception;
 public class ServiceException extends BaseException {
 
     public ServiceException() {
-
+        super();
     }
 
-    public ServiceException(int status, String msg) {
-        super(status, msg);
+    public ServiceException(int status) {
+        super(status);
+    }
+
+    public ServiceException(int status, String message) {
+        super(status, message);
+    }
+
+    public ServiceException(Throwable cause) {
+        super(cause);
+    }
+
+    public ServiceException(int status, String message, Throwable cause) {
+        super(status, message, cause);
     }
 
 }

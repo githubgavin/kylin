@@ -15,8 +15,6 @@
 			description="Master database poolMaximumActiveConnections" />
 		<property name="db.master.minconn" defaultValue="10"
 			description="Master database poolMaximumIdleConnections" />
-		<property name="db.master.mappers" defaultValue=""
-			description="Master database mappers" />
 		<property name="db.slave.ip" defaultValue="127.0.0.1"
 			description="Slave database server ip" />
 		<property name="db.slave.port" defaultValue="3306"
@@ -31,10 +29,8 @@
 			description="Slave database maxActive" />
 		<property name="db.slave.minconn" defaultValue="10"
 			description="Slave database minIdle" />
-		<property name="db.slave.mappers" defaultValue=""
-			description="Slave database mappers" />
 	</group>
 	<script>
-		<generate template="application.properties.vm" destfile="application.properties"></generate>
+		<generate template="datasource.properties.vm" destfile="datasource.properties"></generate>
 	</script>
 </config>

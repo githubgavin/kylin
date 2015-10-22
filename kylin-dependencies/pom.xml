@@ -24,6 +24,7 @@
         <mybatis.version>3.2.8</mybatis.version>
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <tomcat-jdbc.version>8.0.23</tomcat-jdbc.version>
+        <hessian.version>4.0.37</hessian.version>
     </properties>
 
     <dependencyManagement>
@@ -44,6 +45,12 @@
                 <groupId>org.apache.tomcat</groupId>
                 <artifactId>tomcat-jdbc</artifactId>
                 <version>${tomcat-jdbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

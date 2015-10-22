@@ -21,8 +21,8 @@ public class BaseException extends RuntimeException {
         this(status, null);
     }
 
-    public BaseException(int status, String msg) {
-        super(msg);
+    public BaseException(int status, String message) {
+        super(message);
         this.status = status;
     }
 
@@ -30,8 +30,8 @@ public class BaseException extends RuntimeException {
         super(cause);
     }
 
-    public BaseException(int status, String msg, Throwable cause) {
-        super(msg, cause);
+    public BaseException(int status, String message, Throwable cause) {
+        super(message, cause);
         this.status = status;
     }
 
@@ -41,6 +41,10 @@ public class BaseException extends RuntimeException {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getMsg() {
+        return getMessage();
     }
 
 }

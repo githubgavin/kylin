@@ -10,10 +10,10 @@
 
 	<modules>
 		<module>kylin-datasource</module>
-		<module>kylin-dorm</module>
 		<module>kylin-common</module>
 		<module>kylin-parent</module>
 		<module>kylin-dependencies</module>
+		<module>kylin-log4j2</module>
 	</modules>
 
 </project>
