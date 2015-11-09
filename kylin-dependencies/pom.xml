@@ -25,10 +25,18 @@
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <tomcat-jdbc.version>8.0.23</tomcat-jdbc.version>
         <hessian.version>4.0.37</hessian.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <kylin.version>2.0-SNAPSHOT</kylin.version>
+        <kylin.log4j2.version>${kylin.version}</kylin.log4j2.version>
+        <kylin.redis.version>1.2-SNAPSHOT</kylin.redis.version>
+        <kylin.rpc.version>1.1-SNAPSHOT</kylin.rpc.version>
+        <kylin.utils.version>1.0-SNAPSHOT</kylin.utils.version>
+        <kylin.datasource.version>${kylin.version}</kylin.datasource.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
@@ -52,6 +60,49 @@
                 <artifactId>hessian</artifactId>
                 <version>${hessian.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-common</artifactId>
+                <version>${kylin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-log4j2</artifactId>
+                <version>${kylin.log4j2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-redis</artifactId>
+                <version>${kylin.redis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>rpc-utils-server</artifactId>
+                <version>${kylin.rpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-datasource</artifactId>
+                <version>${kylin.datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-utils</artifactId>
+                <version>${kylin.utils.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
