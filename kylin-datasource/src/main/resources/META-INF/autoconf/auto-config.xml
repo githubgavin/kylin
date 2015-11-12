@@ -6,6 +6,7 @@
         <property name="db.master.dbname" defaultValue="db59store" description="Master database name"/>
         <property name="db.master.username" defaultValue="admin" description="Master database user name"/>
         <property name="db.master.password" defaultValue="admin" description="Master database password"/>
+        <property name="db.master.mappersPath" defaultValue="" description="Master mappers path"/>
         <property name="db.master.maxconn" defaultValue="20" description="Master database poolMaximumIdleConnections"/>
         <property name="db.master.minconn" defaultValue="5" description="Master database poolMaximumIdleConnections"/>
         <property name="db.master.maxActive" defaultValue="20" description="Master database maxActive"/>
@@ -22,6 +23,7 @@
         <property name="db.slave.dbname" defaultValue="db59store" description="Slave database name"/>
         <property name="db.slave.username" defaultValue="admin" description="Slave database user name"/>
         <property name="db.slave.password" defaultValue="admin" description="Slave database password"/>
+        <property name="db.slave.mappersPath" defaultValue="" description="Slave mappers path"/>
         <property name="db.slave.maxconn" defaultValue="20" description="Slave database poolMaximumIdleConnections"/>
         <property name="db.slave.minconn" defaultValue="5" description="Slave database poolMaximumIdleConnections"/>
         <property name="db.slave.maxActive" defaultValue="20" description="Slave database maxActive"/>

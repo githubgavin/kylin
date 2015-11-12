@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Configuration
-@EnableConfigurationProperties(DatasourcePreperties.class)
 public class SlaveDB {
 
 	private static Logger logger = LoggerFactory.getLogger(MasterDB.class);

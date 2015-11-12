@@ -3,10 +3,10 @@
  */
 package com.store59.kylin.datasource.factory;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -14,9 +14,10 @@ import org.springframework.context.annotation.PropertySource;
  * @version 2.0 15/11/3
  * @since 2.0
  */
-@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
+@Component
 @ConfigurationProperties(prefix = "datasource")
 @PropertySource("classpath:datasource.properties")
+@EnableConfigurationProperties(DatasourcePreperties.class)
 public class DatasourcePreperties {
 
     private DB master;
@@ -44,6 +45,7 @@ public class DatasourcePreperties {
         private String db;
         private String username;
         private String password;
+        private String mappersPath;
         private int    maxActive;
         private int    minIdle;
         private int    maxIdle;
@@ -54,6 +56,14 @@ public class DatasourcePreperties {
         private int    maxWait = 10000;
         private int    removeAbandonedTimeout = 60;
         private int    minEvictableIdleTimeMillis = 30000;
+
+        public String getMappersPath() {
+            return mappersPath;
+        }
+
+        public void setMappersPath(String mappersPath) {
+            this.mappersPath = mappersPath;
+        }
 
         public String getHost() {
             return host;

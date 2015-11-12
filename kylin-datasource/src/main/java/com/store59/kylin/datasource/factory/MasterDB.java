@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @Component
 @Configuration
 @EnableTransactionManagement
-@EnableConfigurationProperties(DatasourcePreperties.class)
 public class MasterDB implements TransactionManagementConfigurer {
 
     private static Logger logger = LoggerFactory.getLogger(MasterDB.class);
