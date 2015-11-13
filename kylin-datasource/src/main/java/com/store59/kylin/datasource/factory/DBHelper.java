@@ -14,13 +14,22 @@ public class DBHelper {
 
     private static String url    = "jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8";
     private static String driver = "com.mysql.jdbc.Driver";
+    public static int DEFAULT_MAX_IDLE = 10;
+    public static int DEFAULT_MIN_IDLE = 2;
+    public static int DEFAULT_MAX_ACTIVE = 20;
 
     public static PoolProperties buildPoolProperties(DatasourcePreperties.DB dbProperties) {
         if (dbProperties == null) {
             return null;
         }
         if (dbProperties.getMaxIdle() <= 0) {
-            dbProperties.setMaxIdle(dbProperties.getMaxActive());
+            dbProperties.setMaxIdle(DEFAULT_MAX_IDLE);
+        }
+        if (dbProperties.getMaxActive() <= 0) {
+            dbProperties.setMaxActive(DEFAULT_MAX_ACTIVE);
+        }
+        if (dbProperties.getMinIdle() <= 0) {
+            dbProperties.setMinIdle(DEFAULT_MIN_IDLE);
         }
         if (dbProperties.getInitialSize() <= 0) {
             dbProperties.setInitialSize(dbProperties.getMinIdle());

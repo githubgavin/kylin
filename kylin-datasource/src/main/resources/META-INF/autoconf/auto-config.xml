@@ -7,9 +7,9 @@
         <property name="db.master.username" defaultValue="admin" description="Master database user name"/>
         <property name="db.master.password" defaultValue="admin" description="Master database password"/>
         <property name="db.master.mappersPath" defaultValue="" description="Master mappers path"/>
-        <property name="db.master.maxconn" defaultValue="20" description="Master database poolMaximumIdleConnections"/>
-        <property name="db.master.minconn" defaultValue="5" description="Master database poolMaximumIdleConnections"/>
-        <property name="db.master.maxActive" defaultValue="20" description="Master database maxActive"/>
+        <property name="db.master.maxconn" defaultValue="20" description="Master database maxActive"/>
+        <property name="db.master.minconn" defaultValue="5" description="Master database minIdle"/>
+        <property name="db.master.maxIdle" defaultValue="20" description="Master database maxIdle"/>
         <property name="db.master.validationInterval" defaultValue="30000" requered="false" description="Master database validationInterval"/>
         <property name="db.master.validationQueryTimeout" defaultValue="5" requered="false" description="Master database validationQueryTimeout"/>
         <property name="db.master.timeBetweenEvictionRunsMillis" defaultValue="1800000" requered="false" description="Master database timeBetweenEvictionRunsMillis"/>
@@ -24,9 +24,9 @@
         <property name="db.slave.username" defaultValue="admin" description="Slave database user name"/>
         <property name="db.slave.password" defaultValue="admin" description="Slave database password"/>
         <property name="db.slave.mappersPath" defaultValue="" description="Slave mappers path"/>
-        <property name="db.slave.maxconn" defaultValue="20" description="Slave database poolMaximumIdleConnections"/>
-        <property name="db.slave.minconn" defaultValue="5" description="Slave database poolMaximumIdleConnections"/>
-        <property name="db.slave.maxActive" defaultValue="20" description="Slave database maxActive"/>
+        <property name="db.slave.maxconn" defaultValue="20" description="Slave database maxActive"/>
+        <property name="db.slave.minconn" defaultValue="5" description="Slave database minIdle"/>
+        <property name="db.slave.maxIdle" defaultValue="20" description="Slave database maxIdle"/>
         <property name="db.slave.validationInterval" defaultValue="30000" requered="false" description="Slave database validationInterval"/>
         <property name="db.slave.validationQueryTimeout" defaultValue="5" requered="false" description="Slave database validationQueryTimeout"/>
         <property name="db.slave.timeBetweenEvictionRunsMillis" defaultValue="1800000" requered="false" description="Slave database timeBetweenEvictionRunsMillis"/>
