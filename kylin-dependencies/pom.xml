@@ -33,7 +33,7 @@
         <kylin.utils.version>1.0-SNAPSHOT</kylin.utils.version>
         <kylin.datasource.version>${kylin.version}</kylin.datasource.version>
         <kylin.rpc.client.version>${kylin.rpc.version}</kylin.rpc.client.version>
-        <kylin.rpc.monitor.statd.version>${kylin.rpc.version}</kylin.rpc.monitor.statd.version>
+        <kylin.rpc.monitor.statsd.version>${kylin.rpc.version}</kylin.rpc.monitor.statsd.version>
         <rpc.utils.server.version>1.0.1-SNAPSHOT</rpc.utils.server.version>
     </properties>
 
@@ -109,8 +109,8 @@
 
             <dependency>
                 <groupId>com.store59</groupId>
-                <artifactId>kylin-rpc-monitor-statd</artifactId>
-                <version>${kylin.rpc.monitor.statd.version}</version>
+                <artifactId>kylin-rpc-monitor-statsd</artifactId>
+                <version>${kylin.rpc.monitor.statsd.version}</version>
                 <type>jar</type>
             </dependency>
 
