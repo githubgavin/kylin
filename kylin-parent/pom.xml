@@ -13,6 +13,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kylin-parent</artifactId>
+    <groupId>com.store59</groupId>
     <packaging>pom</packaging>
 
     <distributionManagement>
