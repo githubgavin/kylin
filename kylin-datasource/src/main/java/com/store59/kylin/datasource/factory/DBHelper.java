@@ -18,7 +18,7 @@ public class DBHelper {
     public static int DEFAULT_MIN_IDLE = 2;
     public static int DEFAULT_MAX_ACTIVE = 20;
 
-    public static PoolProperties buildPoolProperties(DatasourcePreperties.DB dbProperties) {
+    public static PoolProperties buildPoolProperties(DatasourceProperties.DB dbProperties) {
         if (dbProperties == null) {
             return null;
         }

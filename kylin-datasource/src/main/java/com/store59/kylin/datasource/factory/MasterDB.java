@@ -10,7 +10,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -33,7 +32,7 @@ public class MasterDB implements TransactionManagementConfigurer {
 
     private static Logger logger = LoggerFactory.getLogger(MasterDB.class);
     @Autowired
-    private DatasourcePreperties datasourcePreperties;
+    private DatasourceProperties datasourceProperties;
 
     public MasterDB() {
     }
@@ -62,7 +61,7 @@ public class MasterDB implements TransactionManagementConfigurer {
 
     @Bean
     DataSource masterDataSource() {
-        PoolProperties p = DBHelper.buildPoolProperties(datasourcePreperties.getMaster());
+        PoolProperties p = DBHelper.buildPoolProperties(datasourceProperties.getMaster());
         p.setLogAbandoned(true);
         p.setDefaultAutoCommit(true);
         return new DataSource(p);

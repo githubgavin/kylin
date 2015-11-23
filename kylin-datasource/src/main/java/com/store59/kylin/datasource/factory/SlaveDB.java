@@ -10,7 +10,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -28,7 +27,7 @@ public class SlaveDB {
 
 	private static Logger logger = LoggerFactory.getLogger(MasterDB.class);
 	@Autowired
-	private DatasourcePreperties datasourcePreperties;
+    private DatasourceProperties datasourceProperties;
 
 	public SlaveDB() {
 	}
@@ -57,7 +56,7 @@ public class SlaveDB {
 
 	@Bean
 	DataSource slaveDataSource() {
-		PoolProperties p = DBHelper.buildPoolProperties(datasourcePreperties.getSlave());
+        PoolProperties p = DBHelper.buildPoolProperties(datasourceProperties.getSlave());
 		p.setDefaultReadOnly(true);
 		p.setLogAbandoned(true);
 		return new DataSource(p);

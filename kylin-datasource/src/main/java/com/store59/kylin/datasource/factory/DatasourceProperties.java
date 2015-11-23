@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "datasource")
 @PropertySource("classpath:datasource.properties")
-@EnableConfigurationProperties(DatasourcePreperties.class)
-public class DatasourcePreperties {
+@EnableConfigurationProperties(DatasourceProperties.class)
+public class DatasourceProperties {
 
     private DB master;
     private DB slave;
