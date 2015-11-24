@@ -3,9 +3,9 @@ Configuration:
     RollingRandomAccessFile:
       - name: infoRollingFile
         ThresholdFilter:
-          level: info
-          onMatch: ACCEPT
-          onMismatch: DENY
+          level: error
+          onMatch: DENY
+          onMismatch: ACCEPT
         fileName: /var/log/tomcat_log/${rolling.relative.directory}/${rolling.file.name}
         filePattern: /var/log/tomcat_log/${rolling.relative.directory}/${rolling.file.name}.%d{yyyy-MM-dd}.gz
         PatternLayout:
