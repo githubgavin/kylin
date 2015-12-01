@@ -27,7 +27,7 @@ public class SlaveDB {
 
 	private static Logger logger = LoggerFactory.getLogger(MasterDB.class);
 	@Autowired
-    private DatasourceProperties datasourceProperties;
+	private DatasourceProperties datasourceProperties;
 
 	public SlaveDB() {
 	}
@@ -56,7 +56,7 @@ public class SlaveDB {
 
 	@Bean
 	DataSource slaveDataSource() {
-        PoolProperties p = DBHelper.buildPoolProperties(datasourceProperties.getSlave());
+		PoolProperties p = DBHelper.buildPoolProperties(datasourceProperties.getSlave());
 		p.setDefaultReadOnly(true);
 		p.setLogAbandoned(true);
 		return new DataSource(p);

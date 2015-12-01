@@ -22,7 +22,7 @@ import java.util.Properties;
 public class AutoMapperScannerConfigurator {
 
     @Bean
-    Properties datasourceProperties() throws Exception {
+    Properties datasourceConf() throws Exception {
         PropertiesFactoryBean factoryBean = new PropertiesFactoryBean();
         factoryBean.setLocation(new ClassPathResource("datasource.properties"));
         factoryBean.afterPropertiesSet();
@@ -32,7 +32,7 @@ public class AutoMapperScannerConfigurator {
     @Bean
     MapperScannerConfigurer masterMapperScannerConfigurer() throws Exception {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage(datasourceProperties().getProperty("datasource.master.mappersPath"));
+        configurer.setBasePackage(datasourceConf().getProperty("datasource.master.mappersPath"));
         configurer.setSqlSessionTemplateBeanName("masterSqlSessionTemplate");
         configurer.setNameGenerator(new MapperBeanNameGenerator("master"));
         return configurer;
@@ -41,7 +41,7 @@ public class AutoMapperScannerConfigurator {
     @Bean
     MapperScannerConfigurer slaveMapperScannerConfigurer() throws Exception {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage(datasourceProperties().getProperty("datasource.slave.mappersPath"));
+        configurer.setBasePackage(datasourceConf().getProperty("datasource.slave.mappersPath"));
         configurer.setSqlSessionTemplateBeanName("slaveSqlSessionTemplate");
         configurer.setNameGenerator(new MapperBeanNameGenerator("slave"));
         return configurer;
