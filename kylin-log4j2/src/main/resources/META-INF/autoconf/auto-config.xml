@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<group>
+		<property name="rolling.relative.directory" defaultValue=""
+			description="日志存放的相对路径的目录名, 请配置成模块名称" />
+		<property name="rolling.file.name" defaultValue="app.log"
+				  description="日志文件名" />
+	</group>
+	<script>
+		<generate template="log4j2.yml.vm" destfile="log4j2.yml"></generate>
+	</script>
+</config>

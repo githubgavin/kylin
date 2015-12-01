@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2015, 59store. All rights reserved.
+ */
 package com.store59.kylin.common.model;
 
 /**
@@ -9,6 +12,7 @@ package com.store59.kylin.common.model;
  */
 @SuppressWarnings("serial")
 public class Result<T> implements java.io.Serializable {
+
     private int status;
     private String msg;
     private T data;

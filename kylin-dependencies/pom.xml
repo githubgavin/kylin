@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.4.RELEASE</version>
+    </parent>
+
+    <artifactId>kylin-dependencies</artifactId>
+    <groupId>com.store59</groupId>
+    <packaging>pom</packaging>
+    <version>2.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+        <mybatis.version>3.2.8</mybatis.version>
+        <mybatis-spring.version>1.2.3</mybatis-spring.version>
+        <tomcat-jdbc.version>8.0.23</tomcat-jdbc.version>
+        <hessian.version>4.0.37</hessian.version>
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <kylin.version>2.0-SNAPSHOT</kylin.version>
+        <kylin.log4j2.version>${kylin.version}</kylin.log4j2.version>
+        <kylin.redis.version>1.2-SNAPSHOT</kylin.redis.version>
+        <kylin.rpc.version>${kylin.version}</kylin.rpc.version>
+        <kylin.utils.version>1.0-SNAPSHOT</kylin.utils.version>
+        <kylin.datasource.version>${kylin.version}</kylin.datasource.version>
+        <kylin.rpc.client.version>${kylin.rpc.version}</kylin.rpc.client.version>
+        <kylin.rpc.monitor.statsd.version>${kylin.rpc.version}</kylin.rpc.monitor.statsd.version>
+        <rpc.utils.server.version>1.0.1-SNAPSHOT</rpc.utils.server.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jdbc</artifactId>
+                <version>${tomcat-jdbc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.caucho</groupId>
+                <artifactId>hessian</artifactId>
+                <version>${hessian.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-common</artifactId>
+                <version>${kylin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-log4j2</artifactId>
+                <version>${kylin.log4j2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-redis</artifactId>
+                <version>${kylin.redis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>rpc-utils-server</artifactId>
+                <version>${rpc.utils.server.version}</version>
+                <type>jar</type>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-rpc-client</artifactId>
+                <version>${kylin.rpc.client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-rpc-server</artifactId>
+                <version>${kylin.rpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-rpc-monitor-statsd</artifactId>
+                <version>${kylin.rpc.monitor.statsd.version}</version>
+                <type>jar</type>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-datasource</artifactId>
+                <version>${kylin.datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-utils</artifactId>
+                <version>${kylin.utils.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>Kylin-Snapshots</id>
+            <name>Kylin Snapshots</name>
+            <url>http://nexus.59store.com:8081/nexus/content/repositories/Kylin-Snapshots/</url>
+        </repository>
+    </distributionManagement>
+</project>

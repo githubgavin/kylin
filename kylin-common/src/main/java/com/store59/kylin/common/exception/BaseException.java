@@ -1,9 +1,17 @@
+/**
+ * Copyright (c) 2015, 59store. All rights reserved.
+ */
 package com.store59.kylin.common.exception;
 
-@SuppressWarnings("serial")
+/**
+ *
+ * @author <a href="mailto:chenyb@59store.com">山人</a>
+ * @version 2.0 15/10/18
+ * @since 2.0
+ */
 public class BaseException extends RuntimeException {
+
     private int status;
-    private String msg;
 
     public BaseException() {
         this(-1);
@@ -13,19 +21,18 @@ public class BaseException extends RuntimeException {
         this(status, null);
     }
 
-    public BaseException(int status, String msg) {
+    public BaseException(int status, String message) {
+        super(message);
         this.status = status;
-        this.msg = msg;
     }
 
     public BaseException(Throwable cause) {
         super(cause);
     }
 
-    public BaseException(int status, String msg, Throwable cause) {
-        super(cause);
+    public BaseException(int status, String message, Throwable cause) {
+        super(message, cause);
         this.status = status;
-        this.msg = msg;
     }
 
     public int getStatus() {
@@ -37,15 +44,7 @@ public class BaseException extends RuntimeException {
     }
 
     public String getMsg() {
-        if (msg != null) {
-            return msg;
-        } else {
-            return getMessage();
-        }
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
+        return getMessage();
     }
 
 }
