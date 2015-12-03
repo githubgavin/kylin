@@ -8,13 +8,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.4.RELEASE</version>
+        <version>1.2.6.RELEASE</version>
     </parent>
 
     <artifactId>kylin-dependencies</artifactId>
     <groupId>com.store59</groupId>
     <packaging>pom</packaging>
-    <version>2.0-SNAPSHOT</version>
+    <version>2.1-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,15 +26,16 @@
         <tomcat-jdbc.version>8.0.23</tomcat-jdbc.version>
         <hessian.version>4.0.37</hessian.version>
         <commons-lang3.version>3.1</commons-lang3.version>
-        <kylin.version>2.0-SNAPSHOT</kylin.version>
+        <kylin.version>2.1-SNAPSHOT</kylin.version>
         <kylin.log4j2.version>${kylin.version}</kylin.log4j2.version>
-        <kylin.redis.version>1.2-SNAPSHOT</kylin.redis.version>
+        <kylin.redis.version>${kylin.version}</kylin.redis.version>
         <kylin.rpc.version>${kylin.version}</kylin.rpc.version>
         <kylin.utils.version>1.0-SNAPSHOT</kylin.utils.version>
         <kylin.datasource.version>${kylin.version}</kylin.datasource.version>
         <kylin.rpc.client.version>${kylin.rpc.version}</kylin.rpc.client.version>
         <kylin.rpc.monitor.statsd.version>${kylin.rpc.version}</kylin.rpc.monitor.statsd.version>
         <rpc.utils.server.version>1.0.1-SNAPSHOT</rpc.utils.server.version>
+        <kylin.cloud.version>1.0-SNAPSHOT</kylin.cloud.version>
     </properties>
 
     <dependencyManagement>
@@ -126,6 +127,17 @@
                 <version>${kylin.utils.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-cloud-client</artifactId>
+                <version>${kylin.cloud.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-cloud-client-support-rpc</artifactId>
+                <version>${kylin.cloud.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -136,4 +148,5 @@
             <url>http://nexus.59store.com:8081/nexus/content/repositories/Kylin-Snapshots/</url>
         </repository>
     </distributionManagement>
+
 </project>
