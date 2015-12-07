@@ -4,35 +4,28 @@
 package com.store59.kylin.datasource.factory;
 
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
-import org.springframework.beans.factory.config.PropertiesFactoryBean;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import java.util.Properties;
 
 /**
  *
  * @author <a href="mailto:chenyb@59store.com">山人</a>
- * @version 1.0 15/11/12
+ * @version 2.1 15/12/07
  * @since 1.0
  */
 @Configuration
 @Component
-public class AutoMapperScannerConfigurator {
+public class AutoMapperScannerConfigurator implements EnvironmentAware {
 
-    @Bean
-    Properties datasourceConf() throws Exception {
-        PropertiesFactoryBean factoryBean = new PropertiesFactoryBean();
-        factoryBean.setLocation(new ClassPathResource("datasource.properties"));
-        factoryBean.afterPropertiesSet();
-        return factoryBean.getObject();
-    }
+    private Environment environment;
 
     @Bean
     MapperScannerConfigurer masterMapperScannerConfigurer() throws Exception {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage(datasourceConf().getProperty("datasource.master.mappersPath"));
+        configurer.setBasePackage(environment.getProperty(DatasourceProperties.PLACEHOLDER_NAME_MASTER_MAPPERS_PATH, ""));
         configurer.setSqlSessionTemplateBeanName("masterSqlSessionTemplate");
         configurer.setNameGenerator(new MapperBeanNameGenerator("master"));
         return configurer;
@@ -41,10 +34,14 @@ public class AutoMapperScannerConfigurator {
     @Bean
     MapperScannerConfigurer slaveMapperScannerConfigurer() throws Exception {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
-        configurer.setBasePackage(datasourceConf().getProperty("datasource.slave.mappersPath"));
-        configurer.setSqlSessionTemplateBeanName("slaveSqlSessionTemplate");
+        configurer.setBasePackage(environment.getProperty(DatasourceProperties.PLACEHOLDER_NAME_SLAVE_MAPPERS_PATH, ""));
+                configurer.setSqlSessionTemplateBeanName("slaveSqlSessionTemplate");
         configurer.setNameGenerator(new MapperBeanNameGenerator("slave"));
         return configurer;
     }
 
+    @Override
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
 }
