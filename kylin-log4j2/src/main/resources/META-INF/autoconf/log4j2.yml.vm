@@ -37,7 +37,7 @@ Configuration:
     Console:
           name: console
           PatternLayout:
-            Pattern: '[%d]\t%p\t[${log.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
+          Pattern: '[%d]\t%p\t[${log.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
           target: SYSTEM_OUT
   Loggers:
 #    Logger:
