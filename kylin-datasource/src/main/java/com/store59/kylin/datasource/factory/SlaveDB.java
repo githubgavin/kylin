@@ -3,6 +3,8 @@
  */
 package com.store59.kylin.datasource.factory;
 
+import javax.annotation.PreDestroy;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -59,7 +61,12 @@ public class SlaveDB {
 		PoolProperties p = DBHelper.buildPoolProperties(datasourceProperties.getSlave());
 		p.setDefaultReadOnly(true);
 		p.setLogAbandoned(true);
-		return new DataSource(p);
+		return new DataSource(p){
+            @PreDestroy
+            public void close(){
+                   super.close(true);
+                } 
+        };
 	}
 
 }

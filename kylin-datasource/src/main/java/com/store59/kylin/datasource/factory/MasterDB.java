@@ -3,6 +3,8 @@
  */
 package com.store59.kylin.datasource.factory;
 
+import javax.annotation.PreDestroy;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -64,7 +66,12 @@ public class MasterDB implements TransactionManagementConfigurer {
         PoolProperties p = DBHelper.buildPoolProperties(datasourceProperties.getMaster());
         p.setLogAbandoned(true);
         p.setDefaultAutoCommit(true);
-        return new DataSource(p);
+        return new DataSource(p){
+            @PreDestroy
+            public void close(){
+                   super.close(true);
+                } 
+        };
     }
 
     @Bean
