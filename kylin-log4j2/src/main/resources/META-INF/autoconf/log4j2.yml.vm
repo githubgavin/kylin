@@ -27,6 +27,13 @@ Configuration:
           TimeBasedTriggeringPolicy:
             interval: 1
             modulate: true
+    Raven:
+      - name: sentry
+        ThresholdFilter:
+          level: error
+          onMatch: ACCEPT
+          onMismatch: DENY
+        dsn: ${log.sentry.dsn}
     Console:
           name: console
           PatternLayout:
@@ -45,8 +52,9 @@ Configuration:
 #        AppenderRef:
 #          ref: console
     Root:
-      level: info
+      level: ${log.level}
       AppenderRef:
 #        - ref: console
         - ref: infoRollingFile
         - ref: errorRollingFile
+        - ref: sentry
