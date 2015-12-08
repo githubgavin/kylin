@@ -6,10 +6,10 @@ Configuration:
           level: error
           onMatch: DENY
           onMismatch: ACCEPT
-        fileName: /var/log/tomcat_log/${rolling.relative.directory}/${rolling.file.name}
-        filePattern: /var/log/tomcat_log/${rolling.relative.directory}/${rolling.file.name}.%d{yyyy-MM-dd}.gz
+        fileName: /var/log/tomcat/${log4j2.appName}/%d{yyyy-MM-dd}.log
+        filePattern: /var/log/tomcat/${log4j2.appName}/%d{yyyy-MM-dd}.log
         PatternLayout:
-          Pattern: '%d %p %c{1.} [%t] %m%n'
+          Pattern: '[%d]\t%p\t[${log4j2.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
         Policies:
           TimeBasedTriggeringPolicy:
             interval: 1
@@ -19,10 +19,10 @@ Configuration:
           level: error
           onMatch: ACCEPT
           onMismatch: DENY
-        fileName: /var/log/tomcat_log/${rolling.relative.directory}/err.log
-        filePattern: /var/log/tomcat_log/${rolling.relative.directory}/err.log.%d{yyyy-MM-dd}.gz
+        fileName: /var/log/tomcat/${log4j2.appName}/err.%d{yyyy-MM-dd}.log
+        filePattern: /var/log/tomcat/${log4j2.appName}/err.%d{yyyy-MM-dd}.log
         PatternLayout:
-          Pattern: '%d %p %c{1.} [%t] %m%n'
+          Pattern: '[%d]\t%p\t[${log4j2.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
         Policies:
           TimeBasedTriggeringPolicy:
             interval: 1
@@ -37,7 +37,7 @@ Configuration:
     Console:
           name: console
           PatternLayout:
-            Pattern: '%d %p %c{1.} [%t] %m%n'
+            Pattern: '[%d]\t%p\t[${log4j2.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
           target: SYSTEM_OUT
   Loggers:
 #    Logger:
