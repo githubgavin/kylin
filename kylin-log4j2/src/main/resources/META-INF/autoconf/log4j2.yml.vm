@@ -35,10 +35,10 @@ Configuration:
           onMismatch: DENY
         dsn: ${log.sentry.dsn}
     Console:
-          name: console
-          PatternLayout:
-          Pattern: '[%d]\t%p\t[${log.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
-          target: SYSTEM_OUT
+      name: console
+      PatternLayout:
+        Pattern: '[%d]\t%p\t[${log.appName}]\t%c{1}\t%M\t[%t]\t[%X{reqId}]\t--\t%m%n'
+      target: SYSTEM_OUT
   Loggers:
 #    Logger:
 #      - name: org.apache
