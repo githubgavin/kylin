@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConfigurationProperties(prefix = "datasource")
-@PropertySource("classpath:datasource.properties")
+//@PropertySource("classpath:datasource.properties")
 @EnableConfigurationProperties(DatasourceProperties.class)
 public class DatasourceProperties {
 
