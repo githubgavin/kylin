@@ -38,6 +38,8 @@
         <rpc.utils.server.version>1.0.1-SNAPSHOT</rpc.utils.server.version>
         <coder-utils.version>1.0-SNAPSHOT</coder-utils.version>
         <kylin.cloud.version>1.0-SNAPSHOT</kylin.cloud.version>
+        <jackson-jaxrs-json-provider.version>2.6.0</jackson-jaxrs-json-provider.version>
+        <kylin.interceptor.controller.version>1.0-SNAPSHOT</kylin.interceptor.controller.version>
     </properties>
 
     <dependencyManagement>
@@ -152,6 +154,19 @@
                 <artifactId>kylin-cloud-client-support-rpc</artifactId>
                 <version>${kylin.cloud.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                <artifactId>jackson-jaxrs-json-provider</artifactId>
+                <version>${jackson-jaxrs-json-provider.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-interceptor-controller</artifactId>
+                <version>${kylin.interceptor.controller.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
