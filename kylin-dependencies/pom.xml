@@ -37,6 +37,7 @@
         <kylin.rpc.monitor.statsd.version>${kylin.rpc.version}</kylin.rpc.monitor.statsd.version>
         <rpc.utils.server.version>1.0.1-SNAPSHOT</rpc.utils.server.version>
         <coder-utils.version>1.0-SNAPSHOT</coder-utils.version>
+        <disruptor.version>3.2.1</disruptor.version>
     </properties>
 
     <dependencyManagement>
@@ -138,6 +139,12 @@
                 <groupId>com.store59</groupId>
                 <artifactId>coder-utils</artifactId>
                 <version>${coder-utils.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
             </dependency>
 
         </dependencies>
