@@ -61,7 +61,8 @@ Configuration:
         additivity: false
 ##        includeLocation: true
         AppenderRef:
-          ref: accessRollingFile
+          - ref: accessRollingFile
+          - ref: errorRollingFile
 #      - name: com.store59
 #        level: debug
 #        additivity: false
