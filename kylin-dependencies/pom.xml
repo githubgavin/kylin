@@ -39,6 +39,7 @@
         <coder-utils.version>1.0-SNAPSHOT</coder-utils.version>
         <disruptor.version>3.2.1</disruptor.version>
         <kylin-interceptor.version>0.1.0-SNAPSHOT</kylin-interceptor.version>
+        <dto.common.version>1.0.0-SNAPSHOT</dto.common.version>
     </properties>
 
     <dependencyManagement>
@@ -158,6 +159,12 @@
                 <groupId>com.store59</groupId>
                 <artifactId>kylin-interceptor-controller-accesslog</artifactId>
                 <version>${kylin-interceptor.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>dto-common</artifactId>
+                <version>${dto.common.version}</version>
             </dependency>
 
         </dependencies>
