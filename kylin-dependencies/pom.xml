@@ -17,6 +17,7 @@
     <version>2.1-SNAPSHOT</version>
 
     <properties>
+        <kylin.version>2.1-SNAPSHOT</kylin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -27,7 +28,6 @@
         <hessian.version>4.0.37</hessian.version>
         <commons-lang3.version>3.1</commons-lang3.version>
         <raven.log4j2.version>6.0.0</raven.log4j2.version>
-        <kylin.version>2.1-SNAPSHOT</kylin.version>
         <kylin.log4j2.version>${kylin.version}</kylin.log4j2.version>
         <kylin.redis.version>${kylin.version}</kylin.redis.version>
         <kylin.rpc.version>${kylin.version}</kylin.rpc.version>
@@ -40,7 +40,8 @@
         <kylin.cloud.version>1.0-SNAPSHOT</kylin.cloud.version>
         <disruptor.version>3.2.1</disruptor.version>
         <jackson-jaxrs-json-provider.version>2.6.0</jackson-jaxrs-json-provider.version>
-        <kylin.interceptor.controller.version>1.0-SNAPSHOT</kylin.interceptor.controller.version>
+        <kylin-interceptor.version>0.1.0-SNAPSHOT</kylin-interceptor.version>
+        <dto.common.version>1.0.0-SNAPSHOT</dto.common.version>
     </properties>
 
     <dependencyManagement>
@@ -75,7 +76,7 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
+            
             <dependency>
                 <groupId>net.kencochrane.raven</groupId>
                 <artifactId>raven-log4j2</artifactId>
@@ -145,6 +146,30 @@
             </dependency>
 
             <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>${disruptor.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-interceptor-controller</artifactId>
+                <version>${kylin-interceptor.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-interceptor-controller-accesslog</artifactId>
+                <version>${kylin-interceptor.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>dto-common</artifactId>
+                <version>${dto.common.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.store59</groupId>
                 <artifactId>kylin-cloud-client</artifactId>
                 <version>${kylin.cloud.version}</version>
@@ -160,24 +185,6 @@
                 <groupId>com.fasterxml.jackson.jaxrs</groupId>
                 <artifactId>jackson-jaxrs-json-provider</artifactId>
                 <version>${jackson-jaxrs-json-provider.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.lmax</groupId>
-                <artifactId>disruptor</artifactId>
-                <version>${disruptor.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.store59</groupId>
-                <artifactId>kylin-interceptor-controller</artifactId>
-                <version>${kylin.interceptor.controller.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.store59</groupId>
-                <artifactId>kylin-interceptor-controller-accesslog</artifactId>
-                <version>${kylin-interceptor.version}</version>
             </dependency>
 
         </dependencies>
