@@ -41,7 +41,7 @@ public class ResultHelper {
             throw new BaseException(-1, "Network is error");
         } else {
             if(result.getStatus() != 0){
-                throw new BaseException(-1, String.format("invoke hessian error! status:{}; msg:{}", result.getStatus(), result.getMsg()));
+                throw new BaseException(-1, String.format("invoke hessian error! status:%s; msg:%s", result.getStatus(), result.getMsg()));
             } else {
                 return (T) result.getData();
             }
