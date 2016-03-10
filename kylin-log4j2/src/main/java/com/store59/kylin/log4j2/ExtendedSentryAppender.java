@@ -8,7 +8,6 @@ import org.apache.logging.log4j.core.config.plugins.Plugin;
 import org.apache.logging.log4j.core.config.plugins.PluginAttribute;
 import org.apache.logging.log4j.core.config.plugins.PluginElement;
 import org.apache.logging.log4j.core.config.plugins.PluginFactory;
-import org.springframework.util.StringUtils;
 
 import net.kencochrane.raven.Raven;
 import net.kencochrane.raven.log4j2.SentryAppender;
@@ -28,6 +27,7 @@ public class ExtendedSentryAppender extends SentryAppender {
      * Create a Sentry Appender.
      *
      * @param name The name of the Appender.
+     * @param enabled whether the Appender is enabled
      * @param dsn Data Source Name to access the Sentry server.
      * @param ravenFactory Name of the factory to use to build the {@link Raven} instance.
      * @param tags Tags to add to each event.
@@ -36,11 +36,12 @@ public class ExtendedSentryAppender extends SentryAppender {
      * @return The SentryAppender.
      */
     @PluginFactory
-    public static SentryAppender createAppender(@PluginAttribute("name") final String name, @PluginAttribute("dsn") final String dsn,
-            @PluginAttribute("ravenFactory") final String ravenFactory, @PluginAttribute("tags") final String tags,
-            @PluginAttribute("extraTags") final String extraTags, @PluginElement("filters") final Filter filter) {
-        if (StringUtils.isEmpty(dsn)) {
-            LOGGER.error("No dsn provided for ExtendedSentryAppender");
+    public static SentryAppender createAppender(@PluginAttribute("name") final String name, @PluginAttribute("enabled") final boolean enabled,
+            @PluginAttribute("dsn") final String dsn, @PluginAttribute("ravenFactory") final String ravenFactory,
+            @PluginAttribute("tags") final String tags, @PluginAttribute("extraTags") final String extraTags,
+            @PluginElement("filters") final Filter filter) {
+        if (!enabled) {
+            LOGGER.warn("SentryAppender is disabled");
             return null;
         }
 

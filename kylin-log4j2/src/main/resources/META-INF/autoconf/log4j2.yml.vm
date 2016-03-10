@@ -29,6 +29,7 @@ Configuration:
             modulate: true
     ExtRaven:
       - name: sentry
+        enabled: ${log.sentry.enabled}
         ThresholdFilter:
           level: error
           onMatch: ACCEPT
