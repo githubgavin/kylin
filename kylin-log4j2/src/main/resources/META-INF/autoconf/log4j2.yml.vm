@@ -27,7 +27,7 @@ Configuration:
           TimeBasedTriggeringPolicy:
             interval: 1
             modulate: true
-    Raven:
+    ExtRaven:
       - name: sentry
         ThresholdFilter:
           level: error
