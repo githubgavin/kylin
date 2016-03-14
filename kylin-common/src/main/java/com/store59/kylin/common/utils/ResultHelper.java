@@ -3,6 +3,7 @@
  */
 package com.store59.kylin.common.utils;
 
+import com.store59.kylin.common.exception.BaseException;
 import com.store59.kylin.common.model.Result;
 
 /**
@@ -26,6 +27,25 @@ public class ResultHelper {
         ret.setMsg(msg);
         ret.setStatus(retCode);
         return ret;
+    }
+
+    /**
+     * 获取result中的Data属性
+     *
+     * @param result
+     * @param <T>
+     * @return
+     */
+    public static <T> T getData(Result<T> result) {
+        if(result == null){
+            throw new BaseException(-1, "Network is error");
+        } else {
+            if(result.getStatus() != 0){
+                throw new BaseException(-1, String.format("invoke hessian error! status:%s; msg:%s", result.getStatus(), result.getMsg()));
+            } else {
+                return (T) result.getData();
+            }
+        }
     }
 
     public static Result genResultWithSuccess(Object obj) {
