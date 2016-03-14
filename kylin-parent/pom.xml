@@ -16,12 +16,26 @@
     <groupId>com.store59</groupId>
     <packaging>pom</packaging>
 
-    <distributionManagement>
-        <repository>
-            <id>Kylin-Snapshots</id>
-            <name>Kylin Snapshots</name>
-            <url>http://nexus.59store.com:8081/nexus/content/repositories/Kylin-Snapshots/</url>
-        </repository>
-    </distributionManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
+        <dependency>
+            <groupId>com.store59</groupId>
+            <artifactId>kylin-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>
