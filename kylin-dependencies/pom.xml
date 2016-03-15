@@ -86,6 +86,12 @@
 
             <dependency>
                 <groupId>com.store59</groupId>
+                <artifactId>kylin-starter</artifactId>
+                <version>${kylin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
                 <artifactId>kylin-common</artifactId>
                 <version>${kylin.version}</version>
             </dependency>

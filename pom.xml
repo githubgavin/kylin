@@ -15,6 +15,7 @@
 		<module>kylin-dependencies</module>
 		<module>kylin-log4j2</module>
 		<module>kylin-core</module>
+		<module>kylin-starters</module>
 	</modules>
 
 </project>
