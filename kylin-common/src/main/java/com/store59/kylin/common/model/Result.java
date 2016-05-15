@@ -3,19 +3,23 @@
  */
 package com.store59.kylin.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.store59.kylin.common.dto.BaseDTO;
+
 /**
  * 公用返回值结构
- * 
+ *
  * @author heqingpan
  *
  * @param <T>
  */
-@SuppressWarnings("serial")
-public class Result<T> implements java.io.Serializable {
+public class Result<T> extends BaseDTO {
+    private static final long serialVersionUID = -4159843077341007128L;
+    public static final int   SUCCESS          = 0;
 
-    private int status;
-    private String msg;
-    private T data;
+    private int               status;
+    private String            msg;
+    private T                 data;
 
     public int getStatus() {
         return status;
@@ -40,4 +44,15 @@ public class Result<T> implements java.io.Serializable {
     public void setData(T data) {
         this.data = data;
     }
+
+    /**
+     * 判断结果是否成功.
+     *
+     * @return true：成功，false：失败
+     */
+    @JsonIgnore
+    public boolean isSuccess() {
+        return getStatus() == SUCCESS;
+    }
+
 }

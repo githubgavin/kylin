@@ -14,7 +14,7 @@ import net.kencochrane.raven.log4j2.SentryAppender;
 
 /**
  * 扩展{@link SentryAppender}，支持不配置dsn属性.
- * 
+ *
  * @author <a href="mailto:zhuzm@59store.com">天河</a>
  * @version 1.0 2016年3月9日
  * @since 1.0
@@ -37,9 +37,9 @@ public class ExtendedSentryAppender extends SentryAppender {
      */
     @PluginFactory
     public static SentryAppender createAppender(@PluginAttribute("name") final String name, @PluginAttribute("enabled") final boolean enabled,
-            @PluginAttribute("dsn") final String dsn, @PluginAttribute("ravenFactory") final String ravenFactory,
-            @PluginAttribute("tags") final String tags, @PluginAttribute("extraTags") final String extraTags,
-            @PluginElement("filters") final Filter filter) {
+                                                @PluginAttribute("dsn") final String dsn, @PluginAttribute("ravenFactory") final String ravenFactory,
+                                                @PluginAttribute("tags") final String tags, @PluginAttribute("extraTags") final String extraTags,
+                                                @PluginElement("filters") final Filter filter) {
         if (!enabled) {
             LOGGER.warn("SentryAppender is disabled");
             return null;

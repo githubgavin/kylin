@@ -3,6 +3,7 @@
  */
 package com.store59.kylin.context;
 
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 public class SpringContext {
 
     private static ConfigurableEnvironment environment;
+    private static ApplicationContext applicationContext;
 
     public static ConfigurableEnvironment getEnvironment() {
         return environment;
@@ -21,5 +23,13 @@ public class SpringContext {
 
     public static void setEnvironment(ConfigurableEnvironment environment) {
         SpringContext.environment = environment;
+    }
+
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
+
+    public static void setApplicationContext(ApplicationContext applicationContext) {
+        SpringContext.applicationContext = applicationContext;
     }
 }
