@@ -25,7 +25,7 @@
         <kylin.version>2.1-SNAPSHOT</kylin.version>
         <kylin.redis.version>${kylin.version}</kylin.redis.version>
         <kylin.rpc.version>${kylin.version}</kylin.rpc.version>
-        <kylin.utils.version>1.0-SNAPSHOT</kylin.utils.version>
+        <kylin.utils.version>2.1-SNAPSHOT</kylin.utils.version>
         <coder-utils.version>1.0-SNAPSHOT</coder-utils.version>
         <kylin.cloud.version>1.0-SNAPSHOT</kylin.cloud.version>
         <kylin-interceptor.version>0.1.0-SNAPSHOT</kylin-interceptor.version>
