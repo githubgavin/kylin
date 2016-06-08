@@ -28,7 +28,7 @@
         <kylin.utils.version>2.1-SNAPSHOT</kylin.utils.version>
         <coder-utils.version>1.0-SNAPSHOT</coder-utils.version>
         <kylin.cloud.version>1.0-SNAPSHOT</kylin.cloud.version>
-        <kylin-interceptor.version>0.1.0-SNAPSHOT</kylin-interceptor.version>
+        <kylin-interceptor.version>0.4.0-SNAPSHOT</kylin-interceptor.version>
         <!-- kylin end -->
         <!-- biz store59 start -->
         <dto.common.version>1.0.1-SNAPSHOT</dto.common.version>

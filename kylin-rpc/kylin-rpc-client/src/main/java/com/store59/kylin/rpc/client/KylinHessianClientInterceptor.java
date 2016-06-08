@@ -6,11 +6,15 @@ package com.store59.kylin.rpc.client;
 import com.caucho.hessian.HessianException;
 import com.caucho.hessian.client.*;
 import org.aopalliance.intercept.MethodInvocation;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.remoting.RemoteAccessException;
+import org.springframework.remoting.RemoteConnectFailureException;
 import org.springframework.remoting.RemoteLookupFailureException;
 import org.springframework.remoting.RemoteProxyFailureException;
 import org.springframework.remoting.caucho.HessianClientInterceptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.UndeclaredThrowableException;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,6 +33,7 @@ public class KylinHessianClientInterceptor extends HessianClientInterceptor {
     private ServiceUrlSelector serviceUrlSelector;
     private String exportName;
     private String serviceName;
+//    private ThreadLocal<String> serviceUrlLocal = new ThreadLocal<>(); // 如何清除是个问题
 
     public KylinHessianClientInterceptor() {
         super();
@@ -57,12 +62,13 @@ public class KylinHessianClientInterceptor extends HessianClientInterceptor {
         try {
             url = this.getServiceUrl();
             hessianProxy = hessianProxyMap.get(url);
+            logger.debug("ServiceUrlSelector.selectUrl: " + url);
             if (hessianProxy == null) {
-                hessianProxy = createHessianProxy(this.proxyFactory);
+                hessianProxy = proxyFactory.create(getServiceInterface(), url, getBeanClassLoader());
                 hessianProxyMap.put(url, hessianProxy);
             }
         } catch (MalformedURLException ex) {
-            throw new RemoteLookupFailureException("Service URL [" + getServiceUrl() + "] is invalid", ex);
+            throw new RemoteLookupFailureException("Service URL [" + url + "] is invalid", ex);
         }
 
         if (hessianProxy == null) {
@@ -79,21 +85,39 @@ public class KylinHessianClientInterceptor extends HessianClientInterceptor {
                 targetEx = ((InvocationTargetException) targetEx).getTargetException();
             }
             if (targetEx instanceof HessianConnectionException) {
-                throw convertHessianAccessException(targetEx);
+                throw convertHessianAccessException(targetEx, url);
             } else if (targetEx instanceof HessianException || targetEx instanceof HessianRuntimeException) {
                 Throwable cause = targetEx.getCause();
-                throw convertHessianAccessException(cause != null ? cause : targetEx);
+                throw convertHessianAccessException(cause != null ? cause : targetEx, url);
             } else if (targetEx instanceof UndeclaredThrowableException) {
                 UndeclaredThrowableException utex = (UndeclaredThrowableException) targetEx;
-                throw convertHessianAccessException(utex.getUndeclaredThrowable());
+                throw convertHessianAccessException(utex.getUndeclaredThrowable(), url);
             } else {
                 throw targetEx;
             }
         } catch (Throwable ex) {
             throw new RemoteProxyFailureException(
-                    "Failed to invoke Hessian proxy for remote service [" + getServiceUrl() + "]", ex);
+                    "Failed to invoke Hessian proxy for remote service [" + url + "]", ex);
         } finally {
             resetThreadContextClassLoader(originalClassLoader);
+//            serviceUrlLocal.remove();
+        }
+    }
+
+    /**
+     * Convert the given Hessian access exception to an appropriate
+     * Spring RemoteAccessException.
+     * @param ex the exception to convert
+     * @return the RemoteAccessException to throw
+     */
+    protected RemoteAccessException convertHessianAccessException(Throwable ex, String url) {
+        if (ex instanceof HessianConnectionException || ex instanceof ConnectException) {
+            return new RemoteConnectFailureException(
+                    "Cannot connect to Hessian remote service at [" + url + "]", ex);
+        }
+        else {
+            return new RemoteAccessException(
+                    "Cannot access Hessian remote service at [" + url + "]", ex);
         }
     }
 
@@ -109,6 +133,26 @@ public class KylinHessianClientInterceptor extends HessianClientInterceptor {
             throw new IllegalArgumentException("Property \'serviceName\' is required");
         }
     }
+
+//    private String freshAndGetServiceUrl() {
+//        freshServiceUrl();
+//        return serviceUrlLocal.get();
+//    }
+//
+//    private void freshServiceUrl() {
+//        String serviceUrl = getServiceUrlSelector().selectUrl(serviceName);
+//        if (!serviceUrl.endsWith("/")) {
+//            serviceUrl = serviceUrl + "/";
+//        }
+//        serviceUrlLocal.set(serviceUrl + exportName);
+//    }
+
+//    public String getServiceUrl() {
+////        if (StringUtils.isEmpty(serviceUrlLocal.get())) {
+////            freshServiceUrl();
+////        }
+//        return serviceUrlLocal.get();
+//    }
 
     public String getServiceUrl() {
         String serviceUrl = getServiceUrlSelector().selectUrl(serviceName);
@@ -141,4 +185,5 @@ public class KylinHessianClientInterceptor extends HessianClientInterceptor {
     public void setServiceName(String serviceName) {
         this.serviceName = serviceName;
     }
+
 }
