@@ -38,7 +38,7 @@
         <mybatis-spring.version>1.2.3</mybatis-spring.version>
         <tomcat-jdbc.version>8.0.23</tomcat-jdbc.version>
         <hessian.version>4.0.37</hessian.version>
-        <commons-lang3.version>3.1</commons-lang3.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
         <raven.log4j2.version>6.0.0</raven.log4j2.version>
         <disruptor.version>3.2.1</disruptor.version>
         <jackson-jaxrs-json-provider.version>2.6.0</jackson-jaxrs-json-provider.version>
