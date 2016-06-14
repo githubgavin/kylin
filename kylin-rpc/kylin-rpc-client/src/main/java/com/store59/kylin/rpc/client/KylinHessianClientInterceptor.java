@@ -156,7 +156,7 @@ public class KylinHessianClientInterceptor extends HessianClientInterceptor {
 
     public String getServiceUrl() {
         String serviceUrl = getServiceUrlSelector().selectUrl(serviceName);
-        if (!serviceUrl.endsWith("/")) {
+        if (serviceUrl != null && !serviceUrl.endsWith("/")) {
             serviceUrl = serviceUrl + "/";
         }
         return serviceUrl + exportName;
