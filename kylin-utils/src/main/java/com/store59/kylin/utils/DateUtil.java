@@ -894,6 +894,22 @@ public class DateUtil {
     }
 
     /**
+     * 根据Unix时间戳计算那一天结束的时间戳
+     *
+     * @param time
+     *            给定任意一点时间, 精确到毫秒
+     * @return 那一天结束的时间, 精确到秒
+     */
+    public static int getEndTimeOfOneDay(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(time);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+        cal.set(Calendar.SECOND, 59);
+        return (int) (cal.getTimeInMillis() / 1000);
+    }
+
+    /**
      * 获取本月的第1天
      * @param date
      * @return

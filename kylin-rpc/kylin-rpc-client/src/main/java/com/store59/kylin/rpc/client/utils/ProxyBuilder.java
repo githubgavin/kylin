@@ -121,6 +121,7 @@ public class ProxyBuilder {
     private void initHessianClientInterceptor(HessianClientInterceptor interceptor) {
         if (useHttpClient) {
             KylinHessianProxyFactory hessianProxyFactory = new KylinHessianProxyFactory();
+            hessianProxyFactory.setOverloadEnabled(true);
             hessianProxyFactory.setUserAgent(userAgent);
             hessianProxyFactory.setSystemProperties(systemProperties);
             hessianProxyFactory.setContentCompressionDisabled(contentCompressionDisabled);
