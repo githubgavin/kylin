@@ -3,6 +3,7 @@
  */
 package com.store59.kylin.utils;
 
+import com.store59.kylin.common.exception.BaseException;
 import com.store59.kylin.common.model.Result;
 
 /**
@@ -46,6 +47,34 @@ public abstract class ResultUtils {
         if (enumMsg != null) {
             result.setStatus(enumMsg.getCode());
             result.setMsg(enumMsg.getMsg());
+        }
+
+        result.setData(data);
+        return result;
+    }
+
+    /**
+     * 将基础异常转为Result对象.
+     * 
+     * @param baseException {@link BaseException}
+     * @return {@link Result}
+     */
+    public static <T> Result<T> toResult(BaseException baseException) {
+        return toResult(baseException, null);
+    }
+
+    /**
+     * 将基础异常转为Result对象.
+     * 
+     * @param baseException {@link BaseException}
+     * @param data 数据
+     * @return {@link Result}
+     */
+    public static <T> Result<T> toResult(BaseException baseException, T data) {
+        Result<T> result = new Result<>();
+        if (baseException != null) {
+            result.setStatus(baseException.getStatus());
+            result.setMsg(baseException.getMsg());
         }
 
         result.setData(data);
