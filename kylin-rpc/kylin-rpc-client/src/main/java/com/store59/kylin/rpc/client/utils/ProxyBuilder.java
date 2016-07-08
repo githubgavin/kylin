@@ -43,7 +43,7 @@ public class ProxyBuilder {
 //     *
 //     * */
 //    private static int DEFAULT_NUM_OF_SERVER_URL = 1;
-    private boolean useHttpClient = false;
+    private boolean useHttpClient = true;
     private String userAgent;
     private boolean systemProperties;
     private boolean contentCompressionDisabled;

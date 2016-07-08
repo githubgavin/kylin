@@ -49,6 +49,7 @@ public class HessianHttpClient implements HessianConnection {
 
     @Override
     public void sendRequest() throws IOException {
+        HessianPreRequestHandle.preRequestHandle(_request);
         _request.setEntity(new ByteArrayEntity(_outputStream.toByteArray()));
         _response = _client.execute(_request);
     }
@@ -71,7 +72,9 @@ public class HessianHttpClient implements HessianConnection {
 
     @Override
     public InputStream getInputStream() throws IOException {
-        return _response == null || _response.getEntity() == null ? null : _response.getEntity().getContent();
+        InputStream is = _response == null || _response.getEntity() == null ? null : _response.getEntity().getContent();
+        HessianPostRequestHandle.postRequestHandle(_response);
+        return is;
     }
 
     @Override
