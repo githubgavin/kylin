@@ -52,6 +52,14 @@
             <!-- kylin start -->
             <dependency>
                 <groupId>com.store59</groupId>
+                <artifactId>kylin-cloud-dependencies</artifactId>
+                <version>${kylin.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
                 <artifactId>kylin-starter</artifactId>
                 <version>${kylin.version}</version>
             </dependency>
