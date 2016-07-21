@@ -6,7 +6,6 @@ package com.store59.kylin.rpc.client;
 import com.caucho.hessian.HessianException;
 import com.caucho.hessian.client.*;
 import org.aopalliance.intercept.MethodInvocation;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.remoting.RemoteAccessException;
 import org.springframework.remoting.RemoteConnectFailureException;
 import org.springframework.remoting.RemoteLookupFailureException;

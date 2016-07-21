@@ -5,15 +5,11 @@ package com.store59.kylin.rpc.protocol.hessian;
 
 import com.caucho.hessian.client.*;
 import com.caucho.hessian.io.*;
+import com.store59.kylin.rpc.protocol.hessian.ConfigurationProperties.HessianHttpClientProperties;
 
-import javax.naming.*;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Hashtable;
 
 /**
  * hessian客户端工厂类
@@ -24,11 +20,7 @@ import java.util.Hashtable;
  */
 public class KylinHessianProxyFactory extends HessianProxyFactory {
 
-    private String userAgent;
-    private boolean systemProperties;
-    private boolean contentCompressionDisabled;
-    private int maxConnTotal = 400;
-    private int maxConnPerRoute = 400;
+    private HessianHttpClientProperties hessianHttpClientProperties;
 
     /**
      * 创建一个代理工厂
@@ -68,7 +60,7 @@ public class KylinHessianProxyFactory extends HessianProxyFactory {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return new HessianHttpClientFactory();
+        return new HessianHttpClientConnectionFactory(hessianHttpClientProperties);
     }
 
     /**
@@ -87,43 +79,11 @@ public class KylinHessianProxyFactory extends HessianProxyFactory {
                 handler);
     }
 
-    public String getUserAgent() {
-        return userAgent;
+    public HessianHttpClientProperties getHessianHttpClientProperties() {
+        return hessianHttpClientProperties;
     }
 
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
-    public boolean isSystemProperties() {
-        return systemProperties;
-    }
-
-    public void setSystemProperties(boolean systemProperties) {
-        this.systemProperties = systemProperties;
-    }
-
-    public boolean isContentCompressionDisabled() {
-        return contentCompressionDisabled;
-    }
-
-    public void setContentCompressionDisabled(boolean contentCompressionDisabled) {
-        this.contentCompressionDisabled = contentCompressionDisabled;
-    }
-
-    public int getMaxConnTotal() {
-        return maxConnTotal;
-    }
-
-    public void setMaxConnTotal(int maxConnTotal) {
-        this.maxConnTotal = maxConnTotal;
-    }
-
-    public int getMaxConnPerRoute() {
-        return maxConnPerRoute;
-    }
-
-    public void setMaxConnPerRoute(int maxConnPerRoute) {
-        this.maxConnPerRoute = maxConnPerRoute;
+    public void setHessianHttpClientProperties(HessianHttpClientProperties hessianHttpClientProperties) {
+        this.hessianHttpClientProperties = hessianHttpClientProperties;
     }
 }

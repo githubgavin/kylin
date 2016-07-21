@@ -4,7 +4,7 @@
 package com.store59.kylin.rpc.protocol.hessian;
 
 import com.caucho.hessian.client.HessianConnection;
-import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -14,7 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 
 /**
  * 使用HttpClient实现hessian的远程调用
@@ -23,17 +22,17 @@ import java.net.URL;
  * @version 1.0 15/12/16
  * @since 1.0
  */
-public class HessianHttpClient implements HessianConnection {
+public class HessianHttpClientConnection implements HessianConnection {
 
-    private          CloseableHttpClient _client;
-    private          HttpPost            _request;
-    private volatile HttpResponse        _response;
+    private          CloseableHttpClient   _client;
+    private          HttpPost              _request;
+    private volatile CloseableHttpResponse _response;
 
     private ByteArrayOutputStream _outputStream;
 
-    public HessianHttpClient(URL url, CloseableHttpClient client) {
+    public HessianHttpClientConnection(HttpPost httpPost, CloseableHttpClient client) {
         _client = client;
-        _request = new HttpPost(url.toString());
+        _request = httpPost;
         _outputStream = new ByteArrayOutputStream();
     }
 
@@ -66,8 +65,7 @@ public class HessianHttpClient implements HessianConnection {
 
     @Override
     public String getContentEncoding() {
-        return null;
-//        return _response == null || _response.getEntity() == null || _response.getEntity().getContentEncoding() == null? "deflate" : _response.getEntity().getContentEncoding().getValue();
+        return _response == null || _response.getEntity() == null || _response.getEntity().getContentEncoding() == null ? null : _response.getEntity().getContentEncoding().getValue();
     }
 
     @Override
@@ -80,11 +78,13 @@ public class HessianHttpClient implements HessianConnection {
     @Override
     public void close() throws IOException {
         _outputStream.close();
-        if (_request != null)
-            _request.abort();
+//        if (_request != null)
+//            _request.abort();
     }
 
     @Override
     public void destroy() throws IOException {
+        if (_response != null)
+            _response.close();
     }
 }
