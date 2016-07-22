@@ -68,7 +68,7 @@ public class CommonKeyUtils {
 
         rand = random.nextInt(randMask);
 
-        return new Long(((timestamp - twepoch) << 22) | sequence | rand).toString();
+        return Long.toString((timestamp - twepoch) << 22 | sequence << 10 | rand);
     }
 
     private static long tilNextMillis(final long lastTimestamp) {
