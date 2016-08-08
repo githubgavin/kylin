@@ -3,13 +3,15 @@
  */
 package com.store59.kylin.rpc.client.utils;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.remoting.caucho.HessianClientInterceptor;
+import org.springframework.remoting.caucho.HessianProxyFactoryBean;
+
 import com.store59.kylin.cloud.client.support.rpc.KylinCloudServiceUrlSelector;
 import com.store59.kylin.context.SpringContext;
 import com.store59.kylin.rpc.client.KylinHessianProxyFactoryBean;
 import com.store59.kylin.rpc.client.ServiceUrlSelector;
 import com.store59.kylin.rpc.protocol.hessian.KylinHessianProxyFactory;
-import org.springframework.remoting.caucho.HessianClientInterceptor;
-import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 
 /**
  *
@@ -211,24 +213,29 @@ public class ProxyBuilder {
 //    }
 
     /**
+     * 服务名和属性serverURL冲突, 默认serviceUrl优先
      *
-     * 服务名
-     * 和属性serverURL冲突, 默认serviceUrl优先
-     *
+     * @deprecated replace by {@link #setServiceUrl(String)}
      */
+    @Deprecated
     public ProxyBuilder setServiceName(String serviceName) {
         this.serviceName = serviceName;
         return this;
     }
 
     /**
-     *
-     * 服务url
-     * 和属性serviceName冲突, 默认serviceUrl优先
-     *
+     * serviceUrl支持：
+     * <ol>
+     * <li>服务名，支持负载均衡，推荐使用</li>
+     * <li>正常URL（以http开头），不支持负载均衡，通常用于测试使用</li>
+     * </ol>
      */
     public ProxyBuilder setServiceUrl(String serviceUrl) {
-        this.serviceUrl = serviceUrl;
+        if (StringUtils.startsWithIgnoreCase(serviceUrl, "http")) {
+            this.serviceUrl = serviceUrl;
+        } else {
+            this.serviceName = serviceUrl;
+        }
         return this;
     }
 
