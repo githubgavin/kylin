@@ -19,6 +19,7 @@
 		<module>kylin-utils</module>
 		<module>kylin-starters</module>
 		<module>kylin-rpc</module>
+		<module>kylin-multidatasource</module>
 	</modules>
 
 </project>
