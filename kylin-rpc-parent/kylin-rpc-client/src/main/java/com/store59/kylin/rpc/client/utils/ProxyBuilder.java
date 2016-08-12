@@ -3,6 +3,7 @@
  */
 package com.store59.kylin.rpc.client.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import com.store59.kylin.cloud.client.support.rpc.KylinCloudServiceUrlSelector;
 import com.store59.kylin.context.SpringContext;
 import com.store59.kylin.rpc.client.KylinHessianProxyFactoryBean;
@@ -34,12 +35,11 @@ import org.springframework.remoting.caucho.HessianProxyFactoryBean;
  * @since 2.1
  */
 public class ProxyBuilder {
-
+    private static final String HTTP                  = "http";
     private boolean useHttpClient = true;
     private long connectTimeout = -1;
     private long readTimeout = -1;
     private String serviceUrl;
-    private String serviceName;
     private String serviceExportName;
     private Class interfaceClass;
 
@@ -62,8 +62,8 @@ public class ProxyBuilder {
     }
 
     private void check() {
-        if (serviceUrl == null && serviceName == null) {
-            throw new IllegalArgumentException("Property 'serviceUrl' or 'serviceName' is required");
+        if (serviceUrl == null) {
+            throw new IllegalArgumentException("Property 'serviceUrl' is required");
         }
         if (serviceExportName == null) {
             throw new IllegalArgumentException("Property 'serviceExportName' is required");
@@ -80,10 +80,11 @@ public class ProxyBuilder {
      */
     public <T> T build() {
         check();
-        if (serviceUrl != null) {
+        if (StringUtils.startsWithIgnoreCase(serviceUrl, HTTP)) {
             return this.buildNormalHPFBean();
+        } else {
+            return this.buildKylinHPFBean();
         }
-        return this.buildKylinHPFBean();
     }
 
     private <T> T buildNormalHPFBean() {
@@ -98,7 +99,7 @@ public class ProxyBuilder {
         KylinHessianProxyFactoryBean hessianProxyFactoryBean = new KylinHessianProxyFactoryBean();
         hessianProxyFactoryBean.setOverloadEnabled(true);
         hessianProxyFactoryBean.setExportName(serviceExportName);
-        hessianProxyFactoryBean.setServiceName(serviceName);
+        hessianProxyFactoryBean.setServiceName(serviceUrl);
         hessianProxyFactoryBean.setServiceInterface(interfaceClass);
         hessianProxyFactoryBean.setServiceUrlSelector(serviceUrlSelector);
         initHessianClientInterceptor(hessianProxyFactoryBean);
@@ -186,20 +187,20 @@ public class ProxyBuilder {
 
     /**
      *
-     * 服务名
-     * 和属性serverURL冲突, 默认serviceUrl优先
-     *
+     * @deprecated replace by {@link #setServiceUrl(String)}
      */
+    @Deprecated
     public ProxyBuilder setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+        this.setServiceUrl(serviceName);
         return this;
     }
 
     /**
-     *
-     * 服务url
-     * 和属性serviceName冲突, 默认serviceUrl优先
-     *
+     * serviceUrl支持：
+     * <ol>
+     * <li>服务名，支持负载均衡，推荐使用</li>
+     * <li>正常URL（以http开头），不支持负载均衡，通常用于测试使用</li>
+     * </ol>
      */
     public ProxyBuilder setServiceUrl(String serviceUrl) {
         this.serviceUrl = serviceUrl;

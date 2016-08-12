@@ -18,8 +18,9 @@
 		<module>kylin-redis</module>
 		<module>kylin-utils</module>
 		<module>kylin-starters</module>
-		<module>kylin-rpc</module>
+		<module>kylin-rpc-parent</module>
 		<module>kylin-monitor</module>
+		<module>kylin-multidatasource</module>
 	</modules>
 
 </project>
