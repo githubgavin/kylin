@@ -78,6 +78,12 @@
 
             <dependency>
                 <groupId>com.store59</groupId>
+                <artifactId>kylin-monitor</artifactId>
+                <version>${kylin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
                 <artifactId>kylin-log4j2</artifactId>
                 <version>${kylin.version}</version>
             </dependency>

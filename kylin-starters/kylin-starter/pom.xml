@@ -20,6 +20,11 @@
 
         <dependency>
             <groupId>com.store59</groupId>
+            <artifactId>kylin-monitor</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.store59</groupId>
             <artifactId>kylin-core</artifactId>
         </dependency>
 

@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>kylin-build</artifactId>
+        <artifactId>kylin-parent</artifactId>
         <groupId>com.store59</groupId>
         <version>2.1-SNAPSHOT</version>
     </parent>
@@ -11,5 +11,50 @@
 
     <artifactId>kylin-monitor</artifactId>
 
+    <properties>
+        <spectator.version>0.30.0</spectator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.store59</groupId>
+                <artifactId>kylin-cloud-dependencies</artifactId>
+                <version>${kylin.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-spectator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.netflix.spectator</groupId>
+            <artifactId>spectator-ext-jvm</artifactId>
+            <version>${spectator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.netflix.spectator</groupId>
+            <artifactId>spectator-ext-gc</artifactId>
+            <version>${spectator.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-atlas</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
