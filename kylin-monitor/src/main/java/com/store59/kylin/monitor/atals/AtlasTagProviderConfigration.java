@@ -3,12 +3,17 @@
  */
 package com.store59.kylin.monitor.atals;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.netflix.metrics.atlas.AtlasTagProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Collections;
+import com.google.common.collect.ImmutableMap;
 
 /**
  *
@@ -18,10 +23,29 @@ import java.util.Collections;
  */
 @Configuration
 public class AtlasTagProviderConfigration {
+    private static final Logger logger = LoggerFactory.getLogger(AtlasTagProviderConfigration.class);
 
     @Bean
     AtlasTagProvider atlasCommonTags(@Value("${spring.application.name}") String appName) {
-        return () -> Collections.singletonMap("app", appName);
+        return () -> ImmutableMap.of("app", appName, "ip", getLocalHostAddress());
+    }
+
+    public static void main(String[] args) {
+        System.out.println(ImmutableMap.of("app", null));
+    }
+
+    /**
+     * 获取本地主机IP地址.
+     * 
+     * @return 本地主机IP地址
+     */
+    private String getLocalHostAddress() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            logger.error("获取本地主机IP地址失败", e);
+            return "none";
+        }
     }
 
 }
