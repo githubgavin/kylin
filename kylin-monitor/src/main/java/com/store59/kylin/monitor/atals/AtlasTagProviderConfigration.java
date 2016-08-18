@@ -40,7 +40,7 @@ public class AtlasTagProviderConfigration {
             return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             logger.error("获取本地主机IP地址失败", e);
-            return "none";
+            return "unknown";
         }
     }
 
