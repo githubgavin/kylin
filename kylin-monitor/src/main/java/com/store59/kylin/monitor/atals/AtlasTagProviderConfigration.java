@@ -30,10 +30,6 @@ public class AtlasTagProviderConfigration {
         return () -> ImmutableMap.of("app", appName, "ip", getLocalHostAddress());
     }
 
-    public static void main(String[] args) {
-        System.out.println(ImmutableMap.of("app", null));
-    }
-
     /**
      * 获取本地主机IP地址.
      * 
