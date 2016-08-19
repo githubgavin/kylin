@@ -4,6 +4,7 @@
 package com.store59.kylin.monitor.atals;
 
 import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.metrics.export.Exporter;
@@ -12,7 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
-import com.google.common.collect.Maps;
 import com.netflix.servo.MonitorRegistry;
 import com.netflix.servo.publish.BasicMetricFilter;
 import com.netflix.servo.publish.MetricFilter;
@@ -35,7 +35,7 @@ public class AtlasExporterConfiguration {
 
     @Bean
     public Exporter exporter(AtlasMetricObserver observer, MonitorRegistry monitorRegistry) {
-        NavigableMap<String, MetricFilter> filters = Maps.newTreeMap();
+        NavigableMap<String, MetricFilter> filters = new TreeMap();
         for (String filterPrefix : StringUtils.commaDelimitedListToStringArray(filterPrefixs)) {
             filters.put(filterPrefix, BasicMetricFilter.MATCH_NONE);
         }
