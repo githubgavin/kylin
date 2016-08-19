@@ -4,14 +4,13 @@
 package com.store59.kylin.monitor.atals;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.cloud.netflix.metrics.atlas.AtlasTagProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +21,9 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-public class AtlasTagProviderConfigration {
-    private static final Logger logger = LoggerFactory.getLogger(AtlasTagProviderConfigration.class);
+@ConditionalOnBean(AutoAtlasConfiguration.class)
+public class AtlasTagProviderConfiguration {
+    private static final Logger logger = LoggerFactory.getLogger(AtlasTagProviderConfiguration.class);
 
     @Bean
     AtlasTagProvider atlasCommonTags(@Value("${spring.application.name}") String appName) {

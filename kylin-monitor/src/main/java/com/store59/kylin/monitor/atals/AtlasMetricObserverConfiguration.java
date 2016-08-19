@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.cloud.netflix.metrics.atlas.AtlasMetricObserver;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-@ConditionalOnClass(AtlasMetricObserver.class)
+@ConditionalOnBean(AutoAtlasConfiguration.class)
 public class AtlasMetricObserverConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(AtlasMetricObserverConfiguration.class);
 

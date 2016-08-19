@@ -8,6 +8,7 @@ import com.netflix.spectator.api.Spectator;
 import com.netflix.spectator.gc.GcLogger;
 import com.netflix.spectator.jvm.Jmx;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -17,7 +18,8 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-public class JvmMonitorConfigration {
+@ConditionalOnBean(MonitorInterceptorConfiguration.class)
+public class JvmMonitorConfiguration {
 
     private GcLogger gc;
 

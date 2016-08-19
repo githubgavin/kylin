@@ -3,6 +3,7 @@
  */
 package com.store59.kylin.monitor;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.cloud.netflix.metrics.atlas.EnableAtlas;
@@ -19,10 +20,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @ConditionalOnProperty(value = "kylin.monitor.enabled", havingValue = "true", matchIfMissing = true)
-public class MonitorInterceptorConfigration {
+public class MonitorInterceptorConfiguration {
 
     @Configuration
     @ConditionalOnWebApplication
+    @ConditionalOnBean(MonitorInterceptorConfiguration.class)
     static class MonitorWebResourceConfiguration extends WebMvcConfigurerAdapter {
         @Bean
         LogRequestIdHandlerInterceptor logRequestIdHandlerInterceptor() {
@@ -35,9 +37,4 @@ public class MonitorInterceptorConfigration {
         }
     }
 
-    @EnableAtlas
-    @Configuration
-    @ConditionalOnProperty(value = "kylin.monitor.atlas.enabled", havingValue = "true", matchIfMissing = true)
-    static class AtlasPushConfigration {
-    }
 }

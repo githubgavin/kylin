@@ -8,6 +8,7 @@ import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.metrics.export.Exporter;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.cloud.netflix.metrics.atlas.AtlasMetricObserver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +29,7 @@ import com.netflix.servo.publish.PrefixMetricFilter;
  * @since 1.0
  */
 @Configuration
+@ConditionalOnBean(AutoAtlasConfiguration.class)
 public class AtlasExporterConfiguration {
 
     @Value("${kylin.monitor.atlas.metric.filter.prefixs}")
