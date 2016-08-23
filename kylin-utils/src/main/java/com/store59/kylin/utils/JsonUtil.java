@@ -5,7 +5,9 @@ package com.store59.kylin.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -16,6 +18,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonUtil {
 
     private static ObjectMapper JSON = new ObjectMapper();
+
+    static {
+        JSON.setSerializationInclusion(Include.NON_NULL);
+        JSON.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     public static String getJsonFromObject(Object obj) {
         if (obj == null) {
