@@ -31,12 +31,8 @@ public class AtlasMetricObserverConfiguration {
      * 
      * @param observer {@link AtlasMetricObserver}
      */
-    @Autowired
+    @Autowired(required = false)
     public void updateAtlasMetricObserver(AtlasMetricObserver observer) {
-        if (observer == null) {
-            return;
-        }
-
         try {
             Field field = AtlasMetricObserver.class.getDeclaredField("validAtlasTag");
             field.setAccessible(true);
