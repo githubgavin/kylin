@@ -34,6 +34,11 @@
 
         <dependency>
             <groupId>com.store59</groupId>
+            <artifactId>kylin-rpc-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.store59</groupId>
             <artifactId>kylin-rpc-protocol-hessian</artifactId>
         </dependency>
 

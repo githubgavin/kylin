@@ -115,6 +115,12 @@
 
             <dependency>
                 <groupId>com.store59</groupId>
+                <artifactId>kylin-rpc-context</artifactId>
+                <version>${kylin.rpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
                 <artifactId>kylin-rpc-server</artifactId>
                 <version>${kylin.rpc.version}</version>
             </dependency>

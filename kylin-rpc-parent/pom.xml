@@ -20,6 +20,7 @@
         <module>kylin-rpc-client</module>
         <module>kylin-rpc-monitor</module>
         <module>kylin-rpc-protocol-hessian</module>
+        <module>kylin-rpc-context</module>
     </modules>
 
     <dependencies>
