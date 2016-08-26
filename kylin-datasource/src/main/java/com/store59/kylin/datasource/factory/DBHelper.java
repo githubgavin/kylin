@@ -12,7 +12,7 @@ import org.apache.tomcat.jdbc.pool.PoolProperties;
  */
 public class DBHelper {
 
-    private static String url    = "jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true";
+    private static String url    = "jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull";
     private static String driver = "com.mysql.jdbc.Driver";
     public static int DEFAULT_MAX_IDLE = 10;
     public static int DEFAULT_MIN_IDLE = 2;
