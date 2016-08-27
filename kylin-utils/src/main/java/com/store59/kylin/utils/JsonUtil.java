@@ -3,6 +3,7 @@
  */
 package com.store59.kylin.utils;
 
+import com.fasterxml.jackson.core.JsonParser;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -22,6 +23,7 @@ public class JsonUtil {
     static {
         JSON.setSerializationInclusion(Include.NON_NULL);
         JSON.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        JSON.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
     }
 
     public static String getJsonFromObject(Object obj) {
