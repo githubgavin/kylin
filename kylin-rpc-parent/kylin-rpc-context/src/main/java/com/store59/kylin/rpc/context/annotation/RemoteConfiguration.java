@@ -60,5 +60,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Configuration
+@Deprecated
 public @interface RemoteConfiguration {
 }
