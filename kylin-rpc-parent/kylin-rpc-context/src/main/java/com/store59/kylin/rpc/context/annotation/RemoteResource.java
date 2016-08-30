@@ -21,12 +21,12 @@ import java.lang.annotation.*;
 public @interface RemoteResource {
 
     /**
-     * 超时时间
+     * 超时时间, 单位为毫秒
      */
     long connectTimeout() default -1;
 
     /**
-     * 超时时间
+     * 超时时间, 单位为毫秒
      */
     long readTimeout() default -1;
 

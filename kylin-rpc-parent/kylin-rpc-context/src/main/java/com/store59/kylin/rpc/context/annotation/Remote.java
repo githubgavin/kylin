@@ -28,12 +28,12 @@ public @interface Remote {
     String path() default "";
 
     /**
-     * 服务端建议客户端默认超时时间
+     * 服务端建议客户端默认超时时间, 单位为毫秒
      */
     long connectTimeout() default -1;
 
     /**
-     * 服务端建议客户端默认超时时间
+     * 服务端建议客户端默认超时时间, 单位为毫秒
      */
     long readTimeout() default -1;
 
