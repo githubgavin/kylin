@@ -54,14 +54,15 @@ public class RemoteClientAnnotationBeanPostProcessor extends InstantiationAwareB
                 long readTimeout = client.readTimeout();
                 Class interfaceClass = field.getType();
                 String clientBeanName = field.getName();
-                String appName = findAppName(interfaceClass);
+                String appName = StringUtils.isEmpty(client.url()) ? findAppName(interfaceClass) : client.url();
 
                 if (StringUtils.isEmpty(appName)) {
-                    throw new FatalBeanException("Exception initializing @RemoteBean for " + clientBeanName + ", application name did not find in configserver.");
+                    throw new FatalBeanException("Exception initializing @RemoteResource for " + clientBeanName + ", application.name did not find in configserver. " +
+                            "Please check the reference.mapping with " + interfaceClass + ".");
                 }
 
                 if (!interfaceClass.isInterface()) {
-                    throw new FatalBeanException("Exception initializing @RemoteBean for " + clientBeanName + " must be a interface.");
+                    throw new FatalBeanException("Exception initializing @RemoteResource for " + clientBeanName + " must be a interface.");
                 }
 
                 Remote remote = AnnotationUtils.findAnnotation(interfaceClass, Remote.class);

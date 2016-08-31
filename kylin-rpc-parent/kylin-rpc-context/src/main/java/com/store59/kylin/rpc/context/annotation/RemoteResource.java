@@ -38,4 +38,14 @@ public @interface RemoteResource {
      */
     String path() default "";
 
+    /**
+     * 保留属性
+     * 用于本地调试
+     * 如果配置了url, 则以url为主, 直接对url进行远程调用
+     *
+     * 例如: @RemoteResource(url = "http://192.168.30.41:7103/examplerpcservice", path="msg")
+     *      private ExampleService exampleService;
+     */
+    String url() default "";
+
 }
