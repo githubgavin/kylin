@@ -26,6 +26,8 @@ public class HessianHttpClientProperties {
     private int  maxConnPerRoute = DEFAULT_POOL_MAX_CONN_PER_ROUTE; // 每个route最大连接数, route这里表示连接的服务ip数
     private int connectTimeout  = DEFAULT_TIMEOUT_MS;
     private int readTimeout     = DEFAULT_TIMEOUT_MS;
+    private boolean useHttpClient = true;
+    private boolean useHessian2 = true;
 
     public String getUserAgent() {
         return userAgent;
@@ -81,5 +83,21 @@ public class HessianHttpClientProperties {
 
     public void setReadTimeout(int readTimeout) {
         this.readTimeout = readTimeout;
+    }
+
+    public boolean isUseHttpClient() {
+        return useHttpClient;
+    }
+
+    public void setUseHttpClient(boolean useHttpClient) {
+        this.useHttpClient = useHttpClient;
+    }
+
+    public boolean isUseHessian2() {
+        return useHessian2;
+    }
+
+    public void setUseHessian2(boolean useHessian2) {
+        this.useHessian2 = useHessian2;
     }
 }

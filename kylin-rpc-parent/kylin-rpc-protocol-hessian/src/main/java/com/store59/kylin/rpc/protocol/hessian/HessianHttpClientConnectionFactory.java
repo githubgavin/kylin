@@ -103,7 +103,7 @@ public class HessianHttpClientConnectionFactory implements HessianConnectionFact
                         RequestConfig.Builder configBuilder = RequestConfig.custom();
                         if (_facotry.getConnectTimeout() > 0) {
                             int connectTimeout = new Long(_facotry.getConnectTimeout()).intValue();
-                            configBuilder.setConnectionRequestTimeout(connectTimeout).setConnectionRequestTimeout(connectTimeout);
+                            configBuilder.setConnectionRequestTimeout(connectTimeout).setConnectTimeout(connectTimeout);
                         }
                         if (_facotry.getReadTimeout() > 0) {
                             configBuilder.setSocketTimeout(new Long(_facotry.getReadTimeout()).intValue());

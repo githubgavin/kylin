@@ -21,6 +21,7 @@
 		<module>kylin-rpc-parent</module>
 		<module>kylin-monitor</module>
 		<module>kylin-multidatasource</module>
+		<module>kylin-docs</module>
 	</modules>
 
 </project>

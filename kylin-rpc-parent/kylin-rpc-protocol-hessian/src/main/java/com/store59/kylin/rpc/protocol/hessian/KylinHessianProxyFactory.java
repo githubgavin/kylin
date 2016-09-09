@@ -29,6 +29,11 @@ public class KylinHessianProxyFactory extends HessianProxyFactory {
         super();
     }
 
+    public void setHessian2(boolean hessian2) {
+        this.setHessian2Request(hessian2);
+        this.setHessian2Reply(hessian2);
+    }
+
     /**
      * 创建一个代理工厂
      */

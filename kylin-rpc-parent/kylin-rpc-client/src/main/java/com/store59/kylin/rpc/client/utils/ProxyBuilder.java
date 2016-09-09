@@ -4,7 +4,6 @@
 package com.store59.kylin.rpc.client.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import com.store59.kylin.cloud.client.support.rpc.KylinCloudServiceUrlSelector;
 import com.store59.kylin.context.SpringContext;
 import com.store59.kylin.rpc.client.KylinHessianProxyFactoryBean;
 import com.store59.kylin.rpc.client.ServiceUrlSelector;
@@ -95,9 +94,10 @@ public class ProxyBuilder {
     }
 
     private <T> T buildKylinHPFBean() {
-        ServiceUrlSelector serviceUrlSelector = (ServiceUrlSelector) SpringContext.getApplicationContext().getBean(KylinCloudServiceUrlSelector.BEAN_NAME);
+        ServiceUrlSelector serviceUrlSelector = SpringContext.getApplicationContext().getBean(ServiceUrlSelector.class);
         KylinHessianProxyFactoryBean hessianProxyFactoryBean = new KylinHessianProxyFactoryBean();
         hessianProxyFactoryBean.setOverloadEnabled(true);
+        hessianProxyFactoryBean.setHessian2(true);
         hessianProxyFactoryBean.setExportName(serviceExportName);
         hessianProxyFactoryBean.setServiceName(serviceUrl);
         hessianProxyFactoryBean.setServiceInterface(interfaceClass);
@@ -114,9 +114,10 @@ public class ProxyBuilder {
         if (hessianClientConf == null) {
             hessianClientConf = new HessianHttpClientProperties();
         }
-        if (useHttpClient) {
+        if (hessianClientConf.isUseHttpClient()) {
             KylinHessianProxyFactory hessianProxyFactory = new KylinHessianProxyFactory();
             hessianProxyFactory.setOverloadEnabled(true);
+            hessianProxyFactory.setHessian2(hessianClientConf.isUseHessian2());
             hessianProxyFactory.setHessianHttpClientProperties(hessianClientConf);
             // Set proxyFactory
             interceptor.setProxyFactory(hessianProxyFactory);
