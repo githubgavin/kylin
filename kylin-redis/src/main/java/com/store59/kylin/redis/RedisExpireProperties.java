@@ -3,6 +3,8 @@
  */
 package com.store59.kylin.redis;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -21,10 +23,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "redis")
 public class RedisExpireProperties extends RedisProperties {
 
-    private String cachePrefix;
+    private String            cachePrefix;
 
     // 0 - never expire
-    private long defaultExpiration = 0;
+    private long              defaultExpiration = 0;
+
+    private Map<String, Long> expires;
 
     /**
      * @return the cachePrefix
@@ -52,6 +56,20 @@ public class RedisExpireProperties extends RedisProperties {
      */
     public void setDefaultExpiration(long defaultExpiration) {
         this.defaultExpiration = defaultExpiration;
+    }
+
+    /**
+     * @return the expires
+     */
+    public Map<String, Long> getExpires() {
+        return expires;
+    }
+
+    /**
+     * @param expires the expires to set
+     */
+    public void setExpires(Map<String, Long> expires) {
+        this.expires = expires;
     }
 
     /**

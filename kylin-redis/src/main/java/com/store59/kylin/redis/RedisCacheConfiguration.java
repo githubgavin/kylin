@@ -43,6 +43,7 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
         }
 
         redisCacheManager.setDefaultExpiration(expireProperties.getDefaultExpiration());
+        redisCacheManager.setExpires(expireProperties.getExpires());
         return redisCacheManager;
     }
 
