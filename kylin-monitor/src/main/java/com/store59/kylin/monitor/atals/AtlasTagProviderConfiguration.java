@@ -3,7 +3,11 @@
  */
 package com.store59.kylin.monitor.atals;
 
+import java.net.Inet4Address;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,11 +46,20 @@ public class AtlasTagProviderConfiguration {
      */
     private String getLocalHostAddress() {
         try {
-            return InetAddress.getLocalHost().getHostAddress();
-        } catch (Exception e) {
-            logger.error("获取本地主机IP地址失败", e);
-            return "unknown";
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (inetAddress instanceof Inet4Address && !inetAddress.isLoopbackAddress() && !inetAddress.isLinkLocalAddress() && inetAddress.isSiteLocalAddress()) {
+                        return inetAddress.getHostAddress().toString().trim();
+                    }
+
+                }
+            }
+        } catch (SocketException ex) {
+            logger.error("获取本地主机IP地址失败", ex);
         }
+        return "unknown";
     }
 
 }
