@@ -40,7 +40,7 @@ public class AutoMonitorConfiguration {
         registry.register(new SystemMeter(registry, ManagementFactory.getOperatingSystemMXBean()));
         registry.register(new ThreadMeter(registry, ManagementFactory.getThreadMXBean()));
         registry.register(new ClassLoadingMeter(registry, ManagementFactory.getClassLoadingMXBean()));
-        registry.register(new GarbageCollectorMeter(registry, ManagementFactory.getGarbageCollectorMXBeans()));
+        registry.register(new GarbageCollectorMeter(registry));
     }
 
 //    @Bean
@@ -50,8 +50,8 @@ public class AutoMonitorConfiguration {
 //    }
 
     @Bean
-    public SpectatorGaugeCache spectatorGaugeCache(Registry metricRegistry) {
-        return new SpectatorGaugeCache(metricRegistry);
+    public SpectatorGaugeCache spectatorGaugeCache(Registry registry) {
+        return new SpectatorGaugeCache(registry);
     }
 
 }
