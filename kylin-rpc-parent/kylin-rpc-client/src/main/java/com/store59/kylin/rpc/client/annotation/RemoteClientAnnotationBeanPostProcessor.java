@@ -21,8 +21,10 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Proxy;
 
 /**
  * @author <a href="mailto:chenyb@59store.com">山人</a>
@@ -41,8 +43,8 @@ public class RemoteClientAnnotationBeanPostProcessor extends InstantiationAwareB
 
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        Field[] fields = bean.getClass().getSuperclass().getDeclaredFields();;
-        if (!AopUtils.isAopProxy(bean)) {
+        Field[] fields = bean.getClass().getSuperclass().getDeclaredFields();
+        if (!ClassUtils.isCglibProxy(bean) && !Proxy.isProxyClass(bean.getClass())) {
             fields = bean.getClass().getDeclaredFields();
         }
         for (Field field : fields) {
