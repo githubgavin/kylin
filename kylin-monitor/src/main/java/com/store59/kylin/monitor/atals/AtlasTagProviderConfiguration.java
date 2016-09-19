@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-@ConditionalOnBean(AutoAtlasConfiguration.class)
+@ConditionalOnBean(AtlasAutoConfiguration.class)
 public class AtlasTagProviderConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(AtlasTagProviderConfiguration.class);
 

@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 1.0
  */
 @Configuration
-@ConditionalOnBean(AutoAtlasConfiguration.class)
+@ConditionalOnBean(AtlasAutoConfiguration.class)
 public class AtlasMetricObserverConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(AtlasMetricObserverConfiguration.class);
 

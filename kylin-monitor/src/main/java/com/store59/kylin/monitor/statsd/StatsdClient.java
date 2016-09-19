@@ -1,4 +1,4 @@
-package com.store59.kylin.rpc.monitor.statd;
+package com.store59.kylin.monitor.statsd;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

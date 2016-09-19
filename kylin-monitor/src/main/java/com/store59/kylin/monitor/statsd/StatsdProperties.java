@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2015, 59store. All rights reserved.
  */
-package com.store59.kylin.rpc.monitor.statd;
+package com.store59.kylin.monitor.statsd;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

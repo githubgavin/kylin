@@ -27,7 +27,7 @@ import com.netflix.servo.MonitorRegistry;
  * @since 2.1
  */
 @Configuration
-@ConditionalOnBean(AutoAtlasConfiguration.class)
+@ConditionalOnBean(AtlasAutoConfiguration.class)
 public class AtlasExporterConfiguration {
 
     @Value("${kylin.monitor.atlas.metric.filter.prefixs:}")

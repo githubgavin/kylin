@@ -3,7 +3,7 @@
  */
 package com.store59.kylin.monitor.atals;
 
-import com.store59.kylin.monitor.MonitorInterceptorConfiguration;
+import com.store59.kylin.monitor.MonitorAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.netflix.metrics.atlas.EnableAtlas;
@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @EnableAtlas
 @Configuration
-@ConditionalOnBean(MonitorInterceptorConfiguration.class)
+@ConditionalOnBean(MonitorAutoConfiguration.class)
 @ConditionalOnProperty(value = "kylin.monitor.atlas.enabled", havingValue = "true", matchIfMissing = true)
-public class AutoAtlasConfiguration {
+public class AtlasAutoConfiguration {
 }

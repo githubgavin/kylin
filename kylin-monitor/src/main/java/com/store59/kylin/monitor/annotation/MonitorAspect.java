@@ -4,7 +4,7 @@
 package com.store59.kylin.monitor.annotation;
 
 import com.netflix.servo.monitor.MonitorConfig;
-import com.store59.kylin.monitor.atals.AutoAtlasConfiguration;
+import com.store59.kylin.monitor.atals.AtlasAutoConfiguration;
 import com.store59.kylin.monitor.spectator.SpectatorGaugeCache;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 @Aspect
-@ConditionalOnBean(AutoAtlasConfiguration.class)
+@ConditionalOnBean(AtlasAutoConfiguration.class)
 public class MonitorAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(MonitorAspect.class);

@@ -39,6 +39,23 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>com.timgroup</groupId>-->
+            <!--<artifactId>java-statsd-client</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.store59</groupId>
+            <artifactId>kylin-rpc-client</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.store59</groupId>
+            <artifactId>kylin-rpc-server</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>

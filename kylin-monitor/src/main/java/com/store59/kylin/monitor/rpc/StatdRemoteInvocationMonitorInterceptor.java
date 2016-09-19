@@ -1,17 +1,16 @@
 /**
  * Copyright (c) 2015, 59store. All rights reserved.
  */
-package com.store59.kylin.rpc.monitor.interceptor;
+package com.store59.kylin.monitor.rpc;
 
-import java.lang.reflect.Method;
-
+import com.store59.kylin.monitor.statsd.StatsdClient;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StopWatch;
 
-import com.store59.kylin.rpc.monitor.statd.StatsdClient;
+import java.lang.reflect.Method;
 
 /**
  * 远程调用监控拦截器.
