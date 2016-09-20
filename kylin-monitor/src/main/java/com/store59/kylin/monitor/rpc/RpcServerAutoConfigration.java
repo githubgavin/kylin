@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Configuration;
 public class RpcServerAutoConfigration {
 
     @Bean
-    @ConditionalOnProperty(value = "kylin.monitor.rpc.statsd.enabled", havingValue = "true")
+    @ConditionalOnProperty(value = "kylin.monitor.rpc.statsd.enabled", havingValue = "true", matchIfMissing = true)
     StatdRemoteInvocationMonitorInterceptor statdRemoteInvocationMonitorInterceptor() {
         return new StatdRemoteInvocationMonitorInterceptor();
     }

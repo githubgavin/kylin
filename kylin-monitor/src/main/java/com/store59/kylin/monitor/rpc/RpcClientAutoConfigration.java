@@ -21,6 +21,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.netflix.metrics.servo.ServoMonitorCache;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import java.lang.ref.SoftReference;
@@ -87,6 +88,18 @@ public class RpcClientAutoConfigration {
             this.spectatorGaugeCache = spectatorGaugeCache;
         }
 
+        /**
+         * 和SpringCloud中DefaultMetricsTagProvider类同名方法保持一致
+         *
+         */
+        private String sanitizeUrlTemplate(String urlTemplate) {
+            String sanitized = urlTemplate.replaceAll("/", "_").replaceAll("[{}]", "-");
+            if (!StringUtils.hasText(sanitized)) {
+                sanitized = "none";
+            }
+            return sanitized;
+        }
+
         @Override
         public void invoke(HttpResponse responseEntity) {
             try {
@@ -95,7 +108,7 @@ public class RpcClientAutoConfigration {
                     RpcInfo rpcInfo = soft.get();
                     Map<String, String> tagsMap = new HashMap();
                     tagsMap.put("rtype", "client");
-                    tagsMap.put("uri", rpcInfo.uri);
+                    tagsMap.put("uri", sanitizeUrlTemplate(rpcInfo.uri.substring(1)));
                     tagsMap.put("host", rpcInfo.host);
                     MonitorConfig.Builder monitorConfigBuilder = MonitorConfig.builder(metricName);
                     for (Map.Entry<String, String> entry : tagsMap.entrySet()) {
@@ -121,7 +134,7 @@ public class RpcClientAutoConfigration {
         public RpcInfo(long startTime, String host, String uri) {
             this.startTime = startTime;
             this.host = host;
-            this.uri = uri;
+            this.uri = StringUtils.isEmpty(uri) ? "/" : uri;
         }
     }
 }
