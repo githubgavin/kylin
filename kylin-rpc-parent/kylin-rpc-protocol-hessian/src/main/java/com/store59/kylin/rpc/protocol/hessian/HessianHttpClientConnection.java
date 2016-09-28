@@ -71,7 +71,7 @@ public class HessianHttpClientConnection implements HessianConnection {
     @Override
     public InputStream getInputStream() throws IOException {
         InputStream is = _response == null || _response.getEntity() == null ? null : _response.getEntity().getContent();
-        HessianPostRequestHandle.postRequestHandle(_response);
+        HessianPostRequestHandle.postRequestHandle(_request, _response);
         return is;
     }
 

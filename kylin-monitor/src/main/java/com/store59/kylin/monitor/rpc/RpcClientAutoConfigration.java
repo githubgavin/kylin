@@ -101,7 +101,7 @@ public class RpcClientAutoConfigration {
         }
 
         @Override
-        public void invoke(HttpResponse responseEntity) {
+        public void invoke(HttpPost requestEntity, HttpResponse responseEntity) {
             try {
                 SoftReference<RpcInfo> soft = rpcInfoThreadLocal.get();
                 if (soft != null) {

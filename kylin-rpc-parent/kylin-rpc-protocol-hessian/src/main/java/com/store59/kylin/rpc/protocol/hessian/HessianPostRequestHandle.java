@@ -4,6 +4,7 @@
 package com.store59.kylin.rpc.protocol.hessian;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
 
 import java.util.ArrayList;
 
@@ -16,9 +17,9 @@ import java.util.ArrayList;
 public class HessianPostRequestHandle {
     private static ArrayList<HessianPostRequestHook> postRequestHooks = new ArrayList<HessianPostRequestHook>();
 
-    public static void postRequestHandle(HttpResponse responseEntity){
+    public static void postRequestHandle(HttpPost requestEntity, HttpResponse responseEntity){
         for (HessianPostRequestHook postQequestHook: postRequestHooks ) {
-            postQequestHook.invoke(responseEntity);
+            postQequestHook.invoke(requestEntity, responseEntity);
         }
     }
 

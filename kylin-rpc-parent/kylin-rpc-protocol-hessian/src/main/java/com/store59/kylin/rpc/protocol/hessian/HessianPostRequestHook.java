@@ -4,6 +4,7 @@
 package com.store59.kylin.rpc.protocol.hessian;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
 
 /**
  *
@@ -12,5 +13,5 @@ import org.apache.http.HttpResponse;
  * @since 1.0
  */
 public abstract class HessianPostRequestHook {
-    public abstract void invoke(HttpResponse responseEntity);
+    public abstract void invoke(HttpPost requestEntity, HttpResponse responseEntity);
 }
