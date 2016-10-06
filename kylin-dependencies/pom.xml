@@ -31,7 +31,7 @@
         <kylin-interceptor.version>0.4.0-SNAPSHOT</kylin-interceptor.version>
         <!-- kylin end -->
         <!-- biz store59 start -->
-        <dto.common.version>1.0.1-SNAPSHOT</dto.common.version>
+        <dto.common.version>1.0.2-SNAPSHOT</dto.common.version>
         <!-- biz store59 end -->
         <!-- 3 party start -->
         <mybatis.version>3.2.8</mybatis.version>
