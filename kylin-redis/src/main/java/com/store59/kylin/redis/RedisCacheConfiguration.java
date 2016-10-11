@@ -17,6 +17,10 @@ import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.integration.metadata.MetadataStore;
+import org.springframework.integration.redis.metadata.RedisMetadataStore;
+import org.springframework.integration.redis.util.RedisLockRegistry;
+import org.springframework.integration.support.locks.LockRegistry;
 
 /**
  * Redis缓存配置.
@@ -53,6 +57,20 @@ public class RedisCacheConfiguration extends CachingConfigurerSupport {
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         return redisTemplate;
+    }
+
+    @Bean
+    MetadataStore redisMetadataStore(RedisConnectionFactory redisConnectionFactory) throws Exception {
+        return new RedisMetadataStore(redisConnectionFactory);
+    }
+
+    @Bean
+    LockRegistry redisLockRegistry(RedisConnectionFactory redisConnectionFactory) {
+        String registryKey = "lockRegistry";
+        if (StringUtils.isNotBlank(expireProperties.getCachePrefix())) {
+            registryKey = expireProperties.getCachePrefix() + "." + registryKey;
+        }
+        return new RedisLockRegistry(redisConnectionFactory, registryKey);
     }
 
     @Override
