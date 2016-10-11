@@ -140,6 +140,12 @@
 
             <dependency>
                 <groupId>com.store59</groupId>
+                <artifactId>kylin-zookeeper</artifactId>
+                <version>${kylin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.store59</groupId>
                 <artifactId>kylin-utils</artifactId>
                 <version>${kylin.utils.version}</version>
             </dependency>
