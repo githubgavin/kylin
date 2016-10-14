@@ -95,6 +95,7 @@ public class ProxyBuilder {
 
     private <T> T buildKylinHPFBean() {
         ServiceUrlSelector serviceUrlSelector = SpringContext.getApplicationContext().getBean(ServiceUrlSelector.class);
+        RPCClientNameManager.add(serviceUrl);
         KylinHessianProxyFactoryBean hessianProxyFactoryBean = new KylinHessianProxyFactoryBean();
         hessianProxyFactoryBean.setOverloadEnabled(true);
         hessianProxyFactoryBean.setHessian2(true);
