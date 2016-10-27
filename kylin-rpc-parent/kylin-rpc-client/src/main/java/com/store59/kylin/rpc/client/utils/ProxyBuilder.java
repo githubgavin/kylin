@@ -115,7 +115,7 @@ public class ProxyBuilder {
         if (hessianClientConf == null) {
             hessianClientConf = new HessianHttpClientProperties();
         }
-        if (hessianClientConf.isUseHttpClient()) {
+        if (useHttpClient && hessianClientConf.isUseHttpClient()) {
             KylinHessianProxyFactory hessianProxyFactory = new KylinHessianProxyFactory();
             hessianProxyFactory.setOverloadEnabled(true);
             hessianProxyFactory.setHessian2(hessianClientConf.isUseHessian2());

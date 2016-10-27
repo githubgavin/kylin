@@ -30,9 +30,9 @@ public class HessianHttpClientConnection implements HessianConnection {
 
     private ByteArrayOutputStream _outputStream;
 
-    public HessianHttpClientConnection(HttpPost httpPost, CloseableHttpClient client) {
+    public HessianHttpClientConnection(HttpPost httpPost, CloseableHttpClient client) throws CloneNotSupportedException {
         _client = client;
-        _request = httpPost;
+        _request = (HttpPost) httpPost.clone(); // fix 并发串数据bug
         _outputStream = new ByteArrayOutputStream();
     }
 

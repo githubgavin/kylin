@@ -12,14 +12,14 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * httpClient工厂类
@@ -35,7 +35,7 @@ import java.util.logging.Logger;
  */
 public class HessianHttpClientConnectionFactory implements HessianConnectionFactory {
     private static final Logger log
-            = Logger.getLogger(HessianHttpClientConnectionFactory.class.getName());
+            = LoggerFactory.getLogger(HessianHttpClientConnectionFactory.class);
     private        HessianProxyFactory _facotry;
     private static CloseableHttpClient httpClient;
 
@@ -86,9 +86,11 @@ public class HessianHttpClientConnectionFactory implements HessianConnectionFact
     @Override
     public HessianConnection open(URL url)
             throws IOException {
-        if (log.isLoggable(Level.FINER))
-            log.finer(this + " open(" + url + ")");
-        return new HessianHttpClientConnection(getHttpPost(url.toString()), httpClient);
+        try {
+            return new HessianHttpClientConnection(getHttpPost(url.toString()), httpClient);
+        } catch (CloneNotSupportedException e) {
+            throw new IOException(e);
+        }
     }
 
     private HttpPost getHttpPost(String host) {
