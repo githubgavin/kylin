@@ -56,7 +56,7 @@ public class RemotingServiceAnnotationBeanPostProcessor extends InstantiationAwa
                 throw new FatalBeanException("Exception initializing remoting service for " + beanName + " @Remote should define on the interface.");
             }
 
-            if (remoteAnnotation.path() != null && !remoteAnnotation.path().startsWith("/")) {
+            if (StringUtils.isNotEmpty(remoteAnnotation.path()) && !remoteAnnotation.path().startsWith("/")) {
                 throw new FatalBeanException("Exception initializing remoting service for " + interfaceClass + " @Remote should bean start with \"/\".");
             }
 
